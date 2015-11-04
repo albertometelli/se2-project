@@ -1,0 +1,199 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+In order to clirify the expected functionaity of the system, in this subsection
+ we propose several possible scenarions.
+ In each scenario we enphatise several specific interactions between the
+ users and the system, but, in some of them, we do not describe the entire
+ process carried out interacting with TS to avoid usless repetitions.
+\end_layout
+
+\begin_layout Subsubsection
+Scenario 1
+\end_layout
+
+\begin_layout Standard
+Bob is an unregistered passenger of TS.
+ He has decided to visit a friend that lives in another district.
+ He accesses the TS using the PWA via browser installed on his PC, he specifies
+ his current address because his PC can’t provide him with browser geolocalizati
+on.
+ After accepting terms and conditions related to the service he confirms
+ the request.
+ The TS system processes his request and sends a notification to Bob.
+ Meanwhile the system sends the request to the first available taxi in the
+ queue associated to the area where Bob is.
+ The taxi driver, Tom, after having received the request on his smartphone
+ via TMA, he confirms it.
+ Tom visualizes the request information details and leaves from his location
+ to get to the address speciefied by Bob.
+ TS system calculates the waiting time and shows it to Bob.
+ When Tom arrives to Bob's, he picks up him and brings him to his friend.
+ Before leaving Bob pays Tom for the service and Tom informs the system
+ that he is available again.
+\end_layout
+
+\begin_layout Subsubsection
+Scenario 2
+\end_layout
+
+\begin_layout Standard
+As soon as Alice left the theater it started raining, so she decided to
+ try TS service for the first time.
+ She uses her 3G connection to download the PMA and starts it.
+ After that she accepts terms and conditions of TS, the system retrives
+ Alice’s current position by means of her GPS.
+ She confirms the requests and the system contacts the first taxi available
+ in her zone.
+ Unfortunately it has run out of fuel so, Tim, the taxi driver is waiting
+ his turn at the gas station and decides to refuse the request.
+ The system puts the Tim’s taxi at the end of the queue and sends a request
+ at the second taxi available.
+ Tess, the new taxi driver, accepts the request, picks up Alice and brings
+ her to home.
+\end_layout
+
+\begin_layout Subsubsection
+Scenario 3
+\end_layout
+
+\begin_layout Standard
+Robb needs to reach the university campus because he has to addend Software
+ Engineering 2 morning class, so he reachs the bus stop but he notices a
+ sign informing that an unexpected public transportation strike is going
+ on.
+ Unfourtunately this happens quite often, that's why Robb is a registered
+ passenger of TS.
+ He logs in the PMA and requests a taxi.
+ Due to the strike a large number of requests has been forwarded the system
+ so no taxi is available at the moment in that zone of the city.
+ Therefore the first taxi in the queue of an adjacent zone is contacted.
+ The taxi driver, Taylor, accepts the request.
+ The system shows the expected waiting time on Rob's smartphone.
+ After 15 minitues Taylor picks up Robb who will get to university, in time
+ for the class.
+\end_layout
+
+\begin_layout Subsubsection
+Scenario 4
+\end_layout
+
+\begin_layout Standard
+Arya booked a low cost flight to Marrakesh but the plane leaves early in
+ the morning so she decided to register on TS website to reserve a taxi.
+ She filled the registration form with the requested information and confirmed,
+ accepting terms and conditions.
+ The system sends her a confirmation e-mail.
+ A few days before the departure she logs in her personal area on the PWA
+ and reserves a taxi, specifing her address and the meeting time.
+ The leaving day she hasn't heard the alarm clock and she hasn't woken up.
+ When Takashi, the taxi driver, arrives at Arya’s place he doesn’t find
+ anyone so he waits for 10 minutes and then informs the system.
+ The system puts Takashi's taxi at the end of the available taxi queue.
+\end_layout
+
+\begin_layout Subsubsection
+Scenario 5
+\end_layout
+
+\begin_layout Standard
+In the city a huge sporting event has been organized for today so the city
+ center is closed.
+ Jon wants to reach his house after a stressful working day.
+ Jon usually comes back home using public transportation but today it's
+ a mess so he decides to take a taxi.
+ He sends a request using his PMA but all the taxis in all the zones are
+ busy due to the unexpected number of people coming to attend the event.
+ The system informs Jon about the situation and provieds Jon with the expected
+ waiting time: one hour, too much for Jon.
+ So he decides to ask one of his colleagues for a lift.
+\end_layout
+
+\begin_layout Subsubsection
+Scenario 6
+\end_layout
+
+\begin_layout Standard
+Sansa always uses taxis to move in the city because she has never passed
+ her driving license exam.
+ Today she needs a taxi to reach the shopping center but unfortunately she
+ doesn't have access to the Internet so she calls the taxi service phone
+ number.
+ A call center operator, Trudy, answers the phone and asks the location
+ where the taxi should pick up her and the number of passengers.
+ Sansa tells him her current address and says she would be the only passenger.
+ Trudy uses a PWA to send a request to the TS system and announce to Sansa
+ the expected waiting time when she receives the confirmation by TS.
+ 
+\end_layout
+
+\end_body
+\end_document

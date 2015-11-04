@@ -1,0 +1,1677 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\begin_preamble
+\usepackage{pdflscape}
+\usepackage{../settings}
+\end_preamble
+\use_default_options true
+\master ../RASD.lyx
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+In this section we provide an alloy model trying to capture the main features
+ of the entities affected by the TS system.
+ The model is built defining signatures according to the class diagram and
+ specifying the constraints that comes out from the requirements.
+\end_layout
+
+\begin_layout Subsection
+General model
+\end_layout
+
+\begin_layout Subsubsection
+Signatures, facts and functions
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+lstset{language=Pascal}          % Set your language (you can change the
+ language for each code-block optionally)
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{lstlisting}
+\end_layout
+
+\begin_layout Plain Layout
+
+{ do nothing } end; 
+\end_layout
+
+\begin_layout Plain Layout
+
+Write('Case insensitive '); 
+\end_layout
+
+\begin_layout Plain Layout
+
+Write('Pascal keywords.'); 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{lstlisting}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+module myTaxiService/model
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+//Auxiliary signatures 
+\end_layout
+
+\begin_layout Plain Layout
+
+sig Date{} 
+\end_layout
+
+\begin_layout Plain Layout
+
+sig Time{}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+sig Location{ 	
+\end_layout
+
+\begin_layout Plain Layout
+
+zone: lone Zone, 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+abstract sig Passenger{} 
+\end_layout
+
+\begin_layout Plain Layout
+
+sig UnregisteredPassenger extends Passenger{} 
+\end_layout
+
+\begin_layout Plain Layout
+
+sig RegisteredPassenger extends Passenger{}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+abstract sig TaxiState{} 
+\end_layout
+
+\begin_layout Plain Layout
+
+one sig OutOfService extends TaxiState{} 
+\end_layout
+
+\begin_layout Plain Layout
+
+one sig Available, Busy extends TaxiState{}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+abstract sig Taxi { 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	driver: lone TaxiDriver, 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	state: one TaxiState, 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	numberOfSeats: one Int, 
+\end_layout
+
+\begin_layout Plain Layout
+
+}  
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+sig MinivanTaxi extends Taxi {} {numberOfSeats = 9} 
+\end_layout
+
+\begin_layout Plain Layout
+
+sig NormalTaxi extends Taxi {} {numberOfSeats = 4}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+sig TaxiDriver{}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+sig Request{ 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	passenger: one Passenger, 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	date: one Date, 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	time: one Time, 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	numberOfPassengers: one Int, 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	location: one Location, 
+\end_layout
+
+\begin_layout Plain Layout
+
+}  {numberOfPassengers>=1}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+sig ConfirmedRequest extends Request{ 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	waitingTime: one Time, 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	taxis: some Taxi, 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+sig Reservation{ 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	passenger: one RegisteredPassenger, 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	date: one Date, 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	time: one Time, 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	numberOfPassengers: one Int, 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	location: one Location, 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	associatedRequest: one Request, 
+\end_layout
+
+\begin_layout Plain Layout
+
+} 
+\end_layout
+
+\begin_layout Plain Layout
+
+{numberOfPassengers>=1 and associatedRequest.passenger = passenger}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+sig Zone{ 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	adjacentZones: some Zone, 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	requestsPerMinute: one Int, 
+\end_layout
+
+\begin_layout Plain Layout
+
+}{ requestsPerMinute>0}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+//A taxi driver drives a taxi at time 
+\end_layout
+
+\begin_layout Plain Layout
+
+fact oneTaxiForEachTaxiDriver { 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	all disj t1, t2 : Taxi | t1.driver != t2.driver 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+//Available taxis must have a driver 
+\end_layout
+
+\begin_layout Plain Layout
+
+fact allAvailableTaxiMustHaveADriver { 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	all t: Taxi | t.state in Available implies one t.driver 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+//Auxiliary predicate to check if two requests are simultaneous 
+\end_layout
+
+\begin_layout Plain Layout
+
+	pred atTheSameTime[r1,r2 : Request]{ 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	r1.time = r2.time and r1.date = r2.date 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+//Each passenger can make at most one request at time 
+\end_layout
+
+\begin_layout Plain Layout
+
+fact noPassengerMakesMoreThanOneRequestAtTime { 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	all disj r1,r2 : Request | atTheSameTime[r1,r2] 
+\end_layout
+
+\begin_layout Plain Layout
+
+		implies r1.passenger != r2.passenger 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+//Each taxi can carry out at most one request at time 
+\end_layout
+
+\begin_layout Plain Layout
+
+fact noTaxiCarriesOutMoreThanOneRequestAtTime { 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	all disj r1, r2: ConfirmedRequest | atTheSameTime[r1,r2] 
+\end_layout
+
+\begin_layout Plain Layout
+
+		implies r1.taxis != r2.taxis 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+//Each request can be associated to at most one reservation 
+\end_layout
+
+\begin_layout Plain Layout
+
+fact eachRequestAssociatedToAtMostOneReservation { 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	all r: Request | lone re: Reservation | 
+\end_layout
+
+\begin_layout Plain Layout
+
+		re.associatedRequest = r 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+//In each request the number of seats must be sufficient 
+\end_layout
+
+\begin_layout Plain Layout
+
+//wrt number of passengers
+\end_layout
+
+\begin_layout Plain Layout
+
+fact numberOfSeatsSufficient { 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	all r: ConfirmedRequest | sum r.taxis.numberOfSeats 
+\end_layout
+
+\begin_layout Plain Layout
+
+		>= r.numberOfPassengers 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+//Returns the number of in service taxis
+\end_layout
+
+\begin_layout Plain Layout
+
+fun numberOfInServiceTaxis: Int { 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	#state.Available + #state.Busy 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+//At least 50% of total number of taxis must be available
+\end_layout
+
+\begin_layout Plain Layout
+
+fact atLeast50PerCentOfTaxisAreNotOutOfService { 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	mul[numberOfInServiceTaxis[],2] >= #Taxi 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Predicates
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+//Just builds a world satisfying constraints
+\end_layout
+
+\begin_layout Plain Layout
+
+pred show{}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+run show for 4 but 5 Int, exactly 1 Zone, exactly 
+\end_layout
+
+\begin_layout Plain Layout
+
+	1 Reservation, exactly 3 Request
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Boxed
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+Executing "Run show for 4 but 5 int, exactly 1 Zone, exactly 1 Reservation,
+ exactly 3 Request" 
+\end_layout
+
+\begin_layout Plain Layout
+Solver=sat4j Bitwidth=5 MaxSeq=4 SkolemDepth=1 Symmetry=20 
+\end_layout
+
+\begin_layout Plain Layout
+6397 vars.
+ 446 primary vars.
+ 16955 clauses.
+ 16ms.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+Instancefound.
+ Predicate is consistent.
+ 15ms.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage clearpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{landscape}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename instances/world1.png
+	scale 65
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+A general world built by Alloy
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{landscape}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage clearpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+//Defines how taxi drivers can change their state 
+\end_layout
+
+\begin_layout Plain Layout
+
+pred taxiChangeState[t,t': Taxi, newState: TaxiState] 
+\end_layout
+
+\begin_layout Plain Layout
+
+{     
+\end_layout
+
+\begin_layout Plain Layout
+
+	//all transitions possibile from 'Available' 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	t.state in Available implies t'.state = newState			 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	else 	
+\end_layout
+
+\begin_layout Plain Layout
+
+		//Out of service -> available 	
+\end_layout
+
+\begin_layout Plain Layout
+
+		(t.state in OutOfService and newState in Available 
+\end_layout
+
+\begin_layout Plain Layout
+
+			implies t'.state = newState 	
+\end_layout
+
+\begin_layout Plain Layout
+
+		else 	
+\end_layout
+
+\begin_layout Plain Layout
+
+			//Busy-> available 	
+\end_layout
+
+\begin_layout Plain Layout
+
+			(t.state in Busy and newState in Available 
+\end_layout
+
+\begin_layout Plain Layout
+
+				implies t'.state = newState 	
+\end_layout
+
+\begin_layout Plain Layout
+
+			else  	
+\end_layout
+
+\begin_layout Plain Layout
+
+				//Other transitions not possible 	
+\end_layout
+
+\begin_layout Plain Layout
+
+				t'.state = t.state 	)) 
+\end_layout
+
+\begin_layout Plain Layout
+
+	//All other properties not varing 
+\end_layout
+
+\begin_layout Plain Layout
+
+	and t'.driver = t.driver and t'.numberOfSeats = t.numberOfSeats
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+run taxiChangeState for 10 but 5 Int, 0 Zone, 0 Reservation, 
+\end_layout
+
+\begin_layout Plain Layout
+
+	0 Request,  0 Passenger  
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Boxed
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+Executing "Run taxiChangeState for 10 but exactly 0 Zone, exactly 0 Reservation,
+ exactly 0 Request, exactly 0 Passenger" 
+\end_layout
+
+\begin_layout Plain Layout
+Solver=sat4j Bitwidth=4 MaxSeq=7 SkolemDepth=1 Symmetry=20 
+\end_layout
+
+\begin_layout Plain Layout
+4286 vars.
+ 373 primary vars.
+ 8432 clauses.
+ 47ms.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+Instance found.
+ Predicate is consistent.
+ 78ms.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename instances/world2.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+taxiChangeStategenerated world
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Queue management model
+\end_layout
+
+\begin_layout Standard
+In this subsection we will show a modelization of the available taxi queues.
+\end_layout
+
+\begin_layout Subsubsection
+Signatures, facts and functions
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+module myTaxiService/queue
+\end_layout
+
+\begin_layout Plain Layout
+
+abstract sig TaxiState{} one 
+\end_layout
+
+\begin_layout Plain Layout
+
+sig OutOfService extends TaxiState{} 
+\end_layout
+
+\begin_layout Plain Layout
+
+one sig Available, Busy extends TaxiState{}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+sig Taxi { 	
+\end_layout
+
+\begin_layout Plain Layout
+
+state: one TaxiState, 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+sig Zone{ 	
+\end_layout
+
+\begin_layout Plain Layout
+
+queue: one Queue, 	
+\end_layout
+
+\begin_layout Plain Layout
+
+adjacentZones: some Zone, 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/*----QUEUE IMPLEMENTATION----*/
+\end_layout
+
+\begin_layout Plain Layout
+
+sig Queue { 	
+\end_layout
+
+\begin_layout Plain Layout
+
+root: lone Node 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+sig Node { 	
+\end_layout
+
+\begin_layout Plain Layout
+
+taxi: one Taxi, 	
+\end_layout
+
+\begin_layout Plain Layout
+
+next: lone Node 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+//Structural properties 
+\end_layout
+
+\begin_layout Plain Layout
+
+fact queueStructuralProperties { 	
+\end_layout
+
+\begin_layout Plain Layout
+
+//Each node belongs to exactly one queue 	
+\end_layout
+
+\begin_layout Plain Layout
+
+all n: Node | one q: Queue | n in q.root.*next	
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+//No cycles
+\end_layout
+
+\begin_layout Plain Layout
+
+no n: Node | n in n.^next									 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/*---End of QUEUE IMPLEMENTATION----*/
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+//Each queue must belong to exactly one zone 
+\end_layout
+
+\begin_layout Plain Layout
+
+fact eachQueueBelongsToExactlyOneZone { 	
+\end_layout
+
+\begin_layout Plain Layout
+
+all q: Queue | one z: Zone | q in z.queue 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+//Adjacency relation between zones is simmetric but not reflexive 
+\end_layout
+
+\begin_layout Plain Layout
+
+fact adjacencySimmetricButNotReflexive 
+\end_layout
+
+\begin_layout Plain Layout
+
+{ 	
+\end_layout
+
+\begin_layout Plain Layout
+
+adjacentZones in ~adjacentZones 	
+\end_layout
+
+\begin_layout Plain Layout
+
+no adjacentZones & iden 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+//Returns the set of taxis belonging to the queue q 
+\end_layout
+
+\begin_layout Plain Layout
+
+fun getTaxisFromQueue[q: Queue] : set Taxi {
+\end_layout
+
+\begin_layout Plain Layout
+
+	q.root.*next.taxi 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+//Queues must store only available taxis 
+\end_layout
+
+\begin_layout Plain Layout
+
+fact allTaxisInQueueAreAvailable { 	
+\end_layout
+
+\begin_layout Plain Layout
+
+all q: Queue | getTaxisFromQueue[q].state in Available 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+//Each available taxi belongs to exactly one node  
+\end_layout
+
+\begin_layout Plain Layout
+
+fact eachTaxiBelongsToExactlyOneNode { 	
+\end_layout
+
+\begin_layout Plain Layout
+
+all t: Taxi | t.state in Available implies (one n: Node | n.taxi = t) 
+\end_layout
+
+\begin_layout Plain Layout
+
+} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Predicates
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+pred showQueues{ 	
+\end_layout
+
+\begin_layout Plain Layout
+
+//Builds a realistic world 	
+\end_layout
+
+\begin_layout Plain Layout
+
+some q: Queue | #getTaxisFromQueue[q]>3 	
+\end_layout
+
+\begin_layout Plain Layout
+
+some t: Taxi | t.state in OutOfService 	
+\end_layout
+
+\begin_layout Plain Layout
+
+some t: Taxi | t.state in Busy 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+run showQueues for 10 but exactly 4 Zone, exactly 10 Taxi
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Boxed
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+Executing "Run show for 5 but exactly 4 Zone, exactly 10 Taxi" 
+\end_layout
+
+\begin_layout Plain Layout
+Solver=sat4j Bitwidth=0 MaxSeq=0 SkolemDepth=1 Symmetry=20 
+\end_layout
+
+\begin_layout Plain Layout
+3031 vars.
+ 176 primary vars.
+ 6646 clauses.
+ 15ms.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+Instance found.
+ Predicate is consistent.
+ 16ms.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Assertions
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+//No available taxi are not present any queue 
+\end_layout
+
+\begin_layout Plain Layout
+
+assert noAvailableTaxiNotInQueue { 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	no t: Taxi | t.state in Available and 
+\end_layout
+
+\begin_layout Plain Layout
+
+		(no q:Queue | t in getTaxisFromQueue[q]) 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+check noAvailableTaxiNotInQueue for 10
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Boxed
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+Executing "Check noAvailableTaxiNotInQueue for 10" 
+\end_layout
+
+\begin_layout Plain Layout
+Solver=sat4j Bitwidth=0 MaxSeq=0 SkolemDepth=1 Symmetry=20 
+\end_layout
+
+\begin_layout Plain Layout
+14039 vars.
+ 580 primary vars.
+ 36827 clauses.
+ 63ms.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+No counterexample found.
+ Assertion may be valid.
+ 31ms.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+assert noTaxiSharedBetweenQueus { 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	all disj q1,q2: Queue | no getTaxisFromQueue[q1] 
+\end_layout
+
+\begin_layout Plain Layout
+
+		&  getTaxisFromQueue[q2]  
+\end_layout
+
+\begin_layout Plain Layout
+
+} 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+check noTaxiSharedBetweenQueus for 10
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Boxed
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+Executing "Check noTaxiSharedBetweenQueus for 10" 
+\end_layout
+
+\begin_layout Plain Layout
+Solver=sat4j Bitwidth=0 MaxSeq=0 SkolemDepth=1 Symmetry=20 
+\end_layout
+
+\begin_layout Plain Layout
+14642 vars.
+ 590 primary vars.
+ 37985 clauses.
+ 47ms.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+No counterexample found.
+ Assertion may be valid.
+ 531ms.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+Executing "Run show for 4 but 5 int, exactly 1 Zone, exactly 1 Reservation,
+ exactly 3 Request" 
+\end_layout
+
+\begin_layout Plain Layout
+Solver=sat4j Bitwidth=5 MaxSeq=4 SkolemDepth=1 Symmetry=20 
+\end_layout
+
+\begin_layout Plain Layout
+6397 vars.
+ 446 primary vars.
+ 16955 clauses.
+ 16ms.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+Instancefound.
+ Predicate is consistent.
+ 15ms.
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename instances/queues.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Queue management generated world
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Considerations about Alloy
+\end_layout
+
+\begin_layout Standard
+Due to the complexity of an infomation system, like TS, in requirement specifica
+tion one often tends to overlook some aspects which are artlessly negletted.
+ Alloy is a very precious tool that allows requirement engineer to understand
+ those deficiencies in the model and to remedy that.
+\end_layout
+
+\end_body
+\end_document

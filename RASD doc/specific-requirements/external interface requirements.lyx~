@@ -1,0 +1,201 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\master ../RASD.lyx
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Subsection
+External Interface Requirements 
+\end_layout
+
+\begin_layout Subsubsection
+User Interfaces 
+\end_layout
+
+\begin_layout Subsubsection
+Hardware Interfaces 
+\end_layout
+
+\begin_layout Subsubsection
+Software Interfaces 
+\end_layout
+
+\begin_layout Subsubsection
+Communication Interfaces 
+\end_layout
+
+\begin_layout Subsection
+Functional Requirements 
+\end_layout
+
+\begin_layout Subsubsection
+[G1] Allow a passenger to request a taxi for its current position without
+ registration using either the PWA or the PMA.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[R1] Passenger has to access to the unregistered area.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[R2] Passenger has to insert a valid email address.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[R3] If geographic localization is not available the passenger has to specify
+ his address.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[R4] Passenger has to agree to terms and conditions related to his geographic
+ localization.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[R5] Passenger has to confirm the request.
+\end_layout
+
+\begin_layout Paragraph
+Functional Requirement 1.1
+\end_layout
+
+\begin_layout Subsubsection
+User Class 2 
+\end_layout
+
+\begin_layout Paragraph
+Functional Requirement 1.1 
+\end_layout
+
+\begin_layout Subsection
+Scenarios
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand input
+filename "scenarios.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Performance Requirements 
+\end_layout
+
+\begin_layout Subsection
+Design Constraints 
+\end_layout
+
+\begin_layout Subsubsection
+Standards compliance
+\end_layout
+
+\begin_layout Subsubsection
+Hardware limitations etc.
+ 
+\end_layout
+
+\begin_layout Subsection
+Software System Attributes
+\end_layout
+
+\begin_layout Subsubsection
+Reliability
+\end_layout
+
+\begin_layout Subsubsection
+Availability 
+\end_layout
+
+\begin_layout Subsubsection
+Security 
+\end_layout
+
+\begin_layout Subsubsection
+Maintainability 
+\end_layout
+
+\begin_layout Subsubsection
+Portability 
+\end_layout
+
+\begin_layout Subsection
+Other Requirements 
+\end_layout
+
+\end_body
+\end_document

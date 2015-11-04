@@ -1,0 +1,2193 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\begin_preamble
+\usepackage{pdflscape}
+\usepackage{framed}
+\usepackage{../settings}
+\end_preamble
+\use_default_options true
+\master ../RASD.lyx
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding default
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+In this section we provide an alloy model trying to capture the main features
+ of the entities affected by the TS system.
+ The model is built defining signatures according to the class diagram and
+ specifying the constraints that comes out from the requirements.
+\end_layout
+
+\begin_layout Subsection
+General model
+\end_layout
+
+\begin_layout Subsubsection
+Signatures, facts and functions
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "breaklines=true"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+module myTaxiService/model
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+//Auxiliary signatures 
+\end_layout
+
+\begin_layout Plain Layout
+
+sig Date{} 
+\end_layout
+
+\begin_layout Plain Layout
+
+sig Time{}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+sig Location{ 	
+\end_layout
+
+\begin_layout Plain Layout
+
+zone: lone Zone, 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+abstract sig Passenger{} 
+\end_layout
+
+\begin_layout Plain Layout
+
+sig UnregisteredPassenger extends Passenger{} 
+\end_layout
+
+\begin_layout Plain Layout
+
+sig RegisteredPassenger extends Passenger{}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+abstract sig TaxiState{} 
+\end_layout
+
+\begin_layout Plain Layout
+
+one sig OutOfService,Emergency extends TaxiState{} 
+\end_layout
+
+\begin_layout Plain Layout
+
+one sig Available, Busy, Moving extends TaxiState{}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+abstract sig Taxi { 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	driver: lone TaxiDriver, 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	state: one TaxiState, 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	numberOfSeats: one Int, 
+\end_layout
+
+\begin_layout Plain Layout
+
+}  
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+sig MinivanTaxi extends Taxi {} {numberOfSeats = 9} 
+\end_layout
+
+\begin_layout Plain Layout
+
+sig NormalTaxi extends Taxi {} {numberOfSeats = 4}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+sig TaxiDriver{}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+sig Request{ 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	passenger: one Passenger, 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	date: one Date, 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	time: one Time, 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	numberOfPassengers: one Int, 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	location: one Location, 
+\end_layout
+
+\begin_layout Plain Layout
+
+}  {numberOfPassengers>=1}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+sig ConfirmedRequest extends Request{ 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	waitingTime: one Time, 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	taxis: some Taxi, 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+sig Reservation{ 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	passenger: one RegisteredPassenger, 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	date: one Date, 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	time: one Time, 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	numberOfPassengers: one Int, 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	location: one Location, 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	associatedRequest: one Request, 
+\end_layout
+
+\begin_layout Plain Layout
+
+} 
+\end_layout
+
+\begin_layout Plain Layout
+
+{numberOfPassengers>=1 and associatedRequest.passenger = passenger}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+sig Zone{ 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	adjacentZones: some Zone, 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	requestsPerMinute: one Int, 
+\end_layout
+
+\begin_layout Plain Layout
+
+}{ requestsPerMinute>0}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+//A taxi driver drives one taxi at time 
+\end_layout
+
+\begin_layout Plain Layout
+
+fact oneTaxiForEachTaxiDriver { 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	all disj t1, t2 : Taxi | t1.driver != t2.driver 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+//Available taxis must have a driver 
+\end_layout
+
+\begin_layout Plain Layout
+
+fact allAvailableTaxiMustHaveADriver { 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	all t: Taxi | t.state in Available implies one t.driver 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+//Auxiliary predicate to check if two requests are simultaneous 
+\end_layout
+
+\begin_layout Plain Layout
+
+pred atTheSameTime[r1,r2 : Request]{ 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	r1.time = r2.time and r1.date = r2.date 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+//Each passenger can make at most one request at time 
+\end_layout
+
+\begin_layout Plain Layout
+
+fact noPassengerMakesMoreThanOneRequestAtTime { 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	all disj r1,r2 : Request | atTheSameTime[r1,r2] 
+\end_layout
+
+\begin_layout Plain Layout
+
+		implies r1.passenger != r2.passenger 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+//Each taxi can carry out at most one request at time 
+\end_layout
+
+\begin_layout Plain Layout
+
+fact noTaxiCarriesOutMoreThanOneRequestAtTime { 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	all disj r1, r2: ConfirmedRequest | atTheSameTime[r1,r2] 
+\end_layout
+
+\begin_layout Plain Layout
+
+		implies r1.taxis != r2.taxis 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+//Each request can be associated to at most one reservation 
+\end_layout
+
+\begin_layout Plain Layout
+
+fact eachRequestAssociatedToAtMostOneReservation { 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	all r: Request | lone re: Reservation | 
+\end_layout
+
+\begin_layout Plain Layout
+
+		re.associatedRequest = r 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+//In each request the number of seats must be sufficient wrt number of passenger
+s
+\end_layout
+
+\begin_layout Plain Layout
+
+fact numberOfSeatsSufficient { 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	all r: ConfirmedRequest | sum r.taxis.numberOfSeats 
+\end_layout
+
+\begin_layout Plain Layout
+
+		>= r.numberOfPassengers 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+//Returns the number of in service taxis
+\end_layout
+
+\begin_layout Plain Layout
+
+fun numberOfInServiceTaxis: Int { 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	#state.Available + #state.Busy + #state.Moving
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+//At least 50% of total number of taxis must be available
+\end_layout
+
+\begin_layout Plain Layout
+
+fact atLeast50PerCentOfTaxisAreNotOutOfService { 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	mul[numberOfInServiceTaxis[],2] >= #Taxi 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Predicates
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "breaklines=true,showstringspaces=false"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+//Just builds a world satisfying constraints
+\end_layout
+
+\begin_layout Plain Layout
+
+pred show{}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+run show for 4 but 5 Int, exactly 1 Zone, exactly 1 Reservation, exactly
+ 3 Request
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{framed}
+\end_layout
+
+\begin_layout Plain Layout
+
+Executing "Run show for 4 but 5 int, exactly 1 Zone, exactly 1 Reservation,
+ exactly 3 Request" 
+\end_layout
+
+\begin_layout Plain Layout
+
+Solver=sat4j Bitwidth=5 MaxSeq=4 SkolemDepth=1 Symmetry=20 
+\end_layout
+
+\begin_layout Plain Layout
+
+6397 vars.
+ 446 primary vars.
+ 16955 clauses.
+ 16ms.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+Instance found.
+ Predicate is consistent.
+ 15ms.
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{framed}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "breaklines=true,showstringspaces=false"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+//Predicate for sending a request: if the request is not already confirmed
+ and it is not already in the set it is added to the set 
+\end_layout
+
+\begin_layout Plain Layout
+
+pred sendRequest[setOfRequests,setOfRequests': set Request, request: Request]
+ { 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	no ((ConfirmedRequest + setOfRequests) & request)  implies  		
+\end_layout
+
+\begin_layout Plain Layout
+
+		setOfRequests' = setOfRequests + request 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+run sendRequest for 10 but 5 Int, 0 Zone, 0 Reservation, 6 Request,  2 Confirmed
+Request, 2 Passenger, 3 Taxi
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{framed}
+\end_layout
+
+\begin_layout Plain Layout
+
+Executing "Run sendRequest for 10 but 5 Int, 0 Zone, 0 Reservation, 6 Request,
+  2 ConfirmedRequest, 2 Passenger, 3 Taxi"    
+\end_layout
+
+\begin_layout Plain Layout
+
+Solver=sat4j Bitwidth=5 MaxSeq=10 SkolemDepth=1 Symmetry=20    
+\end_layout
+
+\begin_layout Plain Layout
+
+14458 vars.
+ 841 primary vars.
+ 37281 clauses.
+ 31ms.
+    
+\end_layout
+
+\begin_layout Plain Layout
+
+Instance found.
+ Predicate is consistent.
+ 63ms.
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{framed}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "breaklines=true,showstringspaces=false"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+//Predicate for sending a reservation: if the reservation is not already
+ in the set it is added  to the set and a corresponding request is generated
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+pred sendReservation[setOfReservations,setOfReservations': set Reservation,
+ reservation: Reservation] { 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	no (setOfReservations & reservation) implies
+\end_layout
+
+\begin_layout Plain Layout
+
+		setOfReservations' = setOfReservations + reservation and  		
+\end_layout
+
+\begin_layout Plain Layout
+
+		one request: Request | reservation.associatedRequest = request 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+run sendReservation for 10 but 5 Int, 0 Zone, 4 Reservation, 3 Request,
+ 2 Passenger, 3 Taxi
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{framed}
+\end_layout
+
+\begin_layout Plain Layout
+
+Executing "Run sendReservation for 10 but 5 int, 0 Zone, 4 Reservation,
+ 3 Request, 2 Passenger, 3 Taxi"    
+\end_layout
+
+\begin_layout Plain Layout
+
+Solver=sat4j Bitwidth=5 MaxSeq=10 SkolemDepth=1 Symmetry=20    
+\end_layout
+
+\begin_layout Plain Layout
+
+9021 vars.
+ 706 primary vars.
+ 22718 clauses.
+ 32ms.
+    
+\end_layout
+
+\begin_layout Plain Layout
+
+Instance found.
+ Predicate is consistent.
+ 15ms.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{framed}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "breaklines=true,showstringspaces=false"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+//Predicate for deleting a reservation: if reservation is present it is
+ removed and the corresponding request no longer exists 
+\end_layout
+
+\begin_layout Plain Layout
+
+pred cancelReservation[setOfReservations,setOfReservations': set Reservation,
+ reservation: Reservation]{
+\end_layout
+
+\begin_layout Plain Layout
+
+	one setOfReservations & reservation implies
+\end_layout
+
+\begin_layout Plain Layout
+
+		setOfReservations' = setOfReservations - reservation and
+\end_layout
+
+\begin_layout Plain Layout
+
+		no request: Request | reservation.associatedRequest = request  
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+run cancelReservation for 10 but 5 Int, 0 Zone, 4 Reservation, 3 Request,
+ 2 Passenger, 3 Taxi
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{framed}
+\end_layout
+
+\begin_layout Plain Layout
+
+Executing "Run cancelReservation for 10 but 5 int, 0 Zone, 4 Reservation,
+ 3 Request, 2 Passenger, 3 Taxi"    
+\end_layout
+
+\begin_layout Plain Layout
+
+Solver=sat4j Bitwidth=5 MaxSeq=10 SkolemDepth=1 Symmetry=20    
+\end_layout
+
+\begin_layout Plain Layout
+
+9023 vars.
+ 706 primary vars.
+ 22712 clauses.
+ 0ms.
+    
+\end_layout
+
+\begin_layout Plain Layout
+
+Instance found.
+ Predicate is consistent.
+ 15ms.
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{framed}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Assertions
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "breaklines=true,showstringspaces=false"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+//Verifies whether at least one taxi is in service 
+\end_layout
+
+\begin_layout Plain Layout
+
+assert ifOneTaxiExistsItIsInService { 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	one Taxi implies Taxi.state in (Available + Busy + Moving) 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+check ifOneTaxiExistsItIsInService
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{framed}
+\end_layout
+
+\begin_layout Plain Layout
+
+Executing "Check ifOneTaxiExistsItIsInService"    
+\end_layout
+
+\begin_layout Plain Layout
+
+Solver=sat4j Bitwidth=4 MaxSeq=4 SkolemDepth=1 Symmetry=20    
+\end_layout
+
+\begin_layout Plain Layout
+
+4735 vars.
+ 360 primary vars.
+ 10891 clauses.
+ 16ms.
+    
+\end_layout
+
+\begin_layout Plain Layout
+
+No counterexample found.
+ Assertion may be valid.
+ 0ms.
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{framed}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage clearpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{landscape}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Figure 22 is a world generated by predicate 
+\begin_inset listings
+inline true
+status open
+
+\begin_layout Plain Layout
+
+pred show
+\end_layout
+
+\end_inset
+
+.
+ It is shown in order to make the reader understand that the model is consistent
+, since it admits at least one instance satisfying the constraints.
+ In the following pages other worlds corresponding to the execution of the
+ predicates will be shown.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename instances/world1.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+World generated by predicate 
+\begin_inset listings
+inline true
+status open
+
+\begin_layout Plain Layout
+
+pred show
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{landscape}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage clearpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{landscape}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Figure 23 is a world generated by predicate 
+\begin_inset listings
+inline true
+status open
+
+\begin_layout Plain Layout
+
+pred sendRequest[setOfRequests,setOfRequests': set Request, request: Request]
+\end_layout
+
+\end_inset
+
+.
+ Before inserting Request2 the set of requests is composed of Request0 and
+ Request1; after the insertion also Request2 is in the set.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename instances/sendRequest.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+World generated by predicate 
+\begin_inset listings
+inline true
+status open
+
+\begin_layout Plain Layout
+
+pred sendRequest
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{landscape}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage clearpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{landscape}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Figure 23 is a world generated by predicate 
+\begin_inset listings
+inline true
+status open
+
+\begin_layout Plain Layout
+
+pred sendReservation[setOfReservations,setOfReservations': set Reservation,
+ reservation: Reservation]
+\end_layout
+
+\end_inset
+
+.
+ It is clear that before the execution the set of reservation contains only
+ Reservation1 and after it will contain also Reservation2 (Reservation0
+ does not belong to any of them).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename instances/sendReservation.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+World generated by predicate 
+\begin_inset listings
+inline true
+status open
+
+\begin_layout Plain Layout
+
+pred sendReservation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{landscape}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage clearpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{landscape}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Figure 23 is a world generated by predicate 
+\begin_inset listings
+inline true
+status open
+
+\begin_layout Plain Layout
+
+pred cancelReservation[setOfReservations,setOfReservations': set Reservation,
+ reservation: Reservation] 
+\end_layout
+
+\end_inset
+
+.
+ As you can see, before the execution Reservation1 belonged to the set of
+ reservation while after only Reservation0 is in that set.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename instances/cancelReservation.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+World generated by predicate 
+\begin_inset listings
+inline true
+status open
+
+\begin_layout Plain Layout
+
+pred cancelReservation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{landscape}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage clearpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Queue management model
+\end_layout
+
+\begin_layout Standard
+Since queue management is a relevant part of the TS system, in this subsection
+ we model the structure of a queue and the adjacency relation between zones.
+ We will focus on the important constraints imposed by the system but we
+ will not model the dynamical behavior of the queues.
+\end_layout
+
+\begin_layout Subsubsection
+Signatures, facts and functions
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "breaklines=true"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+module myTaxiService/queue
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+abstract sig TaxiState{} 
+\end_layout
+
+\begin_layout Plain Layout
+
+one sig OutOfService,Emergency extends TaxiState{} 
+\end_layout
+
+\begin_layout Plain Layout
+
+one sig Available, Busy, Moving extends TaxiState{}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+sig Taxi { 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	state: one TaxiState, 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+sig Zone{ 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	queue: one Queue, 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	adjacentZones: some Zone, 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+//Queue definition
+\end_layout
+
+\begin_layout Plain Layout
+
+sig Queue { 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	root: lone Node 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+sig Node { 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	taxi: one Taxi, 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	next: lone Node 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+//Structural properties 
+\end_layout
+
+\begin_layout Plain Layout
+
+fact queueStructuralProperties { 
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\end_layout
+
+\begin_layout Plain Layout
+
+	//Each node belongs to exactly one queue 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	all n: Node | one q: Queue | n in q.root.*next	
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	//No cycles
+\end_layout
+
+\begin_layout Plain Layout
+
+	no n: Node | n in n.^next									 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+//Each queue must belong to exactly one zone 
+\end_layout
+
+\begin_layout Plain Layout
+
+fact eachQueueBelongsToExactlyOneZone { 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	all q: Queue | one z: Zone | q in z.queue 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+//Adjacency relation between zones is simmetric but not reflexive 
+\end_layout
+
+\begin_layout Plain Layout
+
+fact adjacencySimmetricButNotReflexive 
+\end_layout
+
+\begin_layout Plain Layout
+
+{ 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	adjacentZones in ~adjacentZones 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	no adjacentZones & iden 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+//Returns the set of taxis belonging to the queue q 
+\end_layout
+
+\begin_layout Plain Layout
+
+fun getTaxisFromQueue[q: Queue] : set Taxi {
+\end_layout
+
+\begin_layout Plain Layout
+
+	q.root.*next.taxi 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+//Queues must store only available taxis 
+\end_layout
+
+\begin_layout Plain Layout
+
+fact allTaxisInQueueAreAvailable { 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	all q: Queue | getTaxisFromQueue[q].state in Available 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+//Each available taxi belongs to exactly one node  
+\end_layout
+
+\begin_layout Plain Layout
+
+	fact eachTaxiBelongsToExactlyOneNode { 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	all t: Taxi | t.state in Available implies (one n: Node | n.taxi = t) 
+\end_layout
+
+\begin_layout Plain Layout
+
+} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Predicates
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+//Builds a realistic world 	
+\end_layout
+
+\begin_layout Plain Layout
+
+pred showQueues{ 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	some q: Queue | #getTaxisFromQueue[q]>3 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	some t: Taxi | t.state in OutOfService 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	some t: Taxi | t.state in Busy 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+run showQueues for 10 but exactly 4 Zone, exactly 10 Taxi
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{framed}
+\end_layout
+
+\begin_layout Plain Layout
+
+Executing "Run show for 5 but exactly 4 Zone, exactly 10 Taxi" 
+\end_layout
+
+\begin_layout Plain Layout
+
+Solver=sat4j Bitwidth=0 MaxSeq=0 SkolemDepth=1 Symmetry=20 
+\end_layout
+
+\begin_layout Plain Layout
+
+3031 vars.
+ 176 primary vars.
+ 6646 clauses.
+ 15ms.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+Instance found.
+ Predicate is consistent.
+ 16ms.
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{framed}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Assertions
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "breaklines=true,showstringspaces=false"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+//No available taxi are not present any queue 
+\end_layout
+
+\begin_layout Plain Layout
+
+assert noAvailableTaxiNotInQueue { 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	no t: Taxi | t.state in Available and (no q:Queue | t in getTaxisFromQueue[q])
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+check noAvailableTaxiNotInQueue for 10
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{framed}
+\end_layout
+
+\begin_layout Plain Layout
+
+Executing "Check noAvailableTaxiNotInQueue for 10" 
+\end_layout
+
+\begin_layout Plain Layout
+
+Solver=sat4j Bitwidth=0 MaxSeq=0 SkolemDepth=1 Symmetry=20 
+\end_layout
+
+\begin_layout Plain Layout
+
+14039 vars.
+ 580 primary vars.
+ 36827 clauses.
+ 63ms.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+No counterexample found.
+ Assertion may be valid.
+ 31ms.
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{framed}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "breaklines=true"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+//There are no taxi that appear in more than one queue
+\end_layout
+
+\begin_layout Plain Layout
+
+assert noTaxiSharedBetweenQueus { 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	all disj q1,q2: Queue | no getTaxisFromQueue[q1] &  getTaxisFromQueue[q2]
+  
+\end_layout
+
+\begin_layout Plain Layout
+
+} 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+check noTaxiSharedBetweenQueus for 10
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{framed}
+\end_layout
+
+\begin_layout Plain Layout
+
+Executing "Check noTaxiSharedBetweenQueus for 10" 
+\end_layout
+
+\begin_layout Plain Layout
+
+Solver=sat4j Bitwidth=0 MaxSeq=0 SkolemDepth=1 Symmetry=20 
+\end_layout
+
+\begin_layout Plain Layout
+
+14642 vars.
+ 590 primary vars.
+ 37985 clauses.
+ 47ms.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+No counterexample found.
+ Assertion may be valid.
+ 531ms.
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{framed}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename instances/queues.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+World generated by the predicate 
+\begin_inset listings
+inline true
+status open
+
+\begin_layout Plain Layout
+
+pred showQueues
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Considerations about Alloy
+\end_layout
+
+\begin_layout Standard
+The process of modeling a complex system is always prone to many different
+ kinds of errors.
+ Even though you have correctly understood the requirements several conditions
+ often neglected because they seem to be obvious, but they are not.
+ Alloy is a very precious tool that allows requirement engineer to understand
+ and overcome those deficiencies in the model.
+ 
+\end_layout
+
+\end_body
+\end_document
