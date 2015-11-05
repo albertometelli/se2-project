@@ -203,7 +203,7 @@ Since user's geographic position needs to be shared within the application
 \end_layout
 
 \begin_layout Itemize
-Taxi drivers are obliged not to spread possible retrieved information about
+Taxi drivers are obliged not to spread possible collected information about
  passengers.
 \end_layout
 
@@ -216,8 +216,9 @@ The following hardware limitations has to be met.
 \end_layout
 
 \begin_layout Itemize
-Mobile passengers has to download the free application from the store (either
- PlayStore for Android users or AppStore for iPhone users).
+Mobile passengers has to download the free application from the store (PlayStore
+ for Android users, AppStore for iPhone users, Windows store for Windows
+ users).
  It is assumed that the mobile phones have enough primary memory to run
  the application.
 \end_layout
@@ -328,9 +329,8 @@ Considering the specific application domain and according to the information
 
 \begin_layout Labeling
 \labelwidthstring 00.00.0000
-[D15] Taxi drivers go into out of service state only at the end of their
- work-shift.
- They go in emergency only in case of car accident or similar events.
+[D15] Taxi drivers go in emergency state only in case of car accident or
+ similar events.
 \end_layout
 
 \begin_layout Labeling

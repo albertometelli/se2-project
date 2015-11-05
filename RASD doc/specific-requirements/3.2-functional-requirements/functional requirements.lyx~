@@ -91,7 +91,7 @@ Jackson Zave approach
 
 \begin_layout Labeling
 \labelwidthstring 00.00.0000
-[R1.2] TS shall retrive automatically passenger's position if GPS or browser
+[R1.2] TS shall retrieve automatically passenger's position if GPS or browser
  geolocalization is available, otherwise user has to specify his address.
 \end_layout
 
@@ -291,13 +291,13 @@ available
 \end_layout
 
 \begin_layout Subsubsection
-[G8] Ensure that availabe taxi queues enjoy the properties specified in
- subparagraph 1.6.2.
+[G8] Ensure that available taxi queues enjoy the properties specified in
+ sub paragraph 1.6.2.
 \end_layout
 
 \begin_layout Labeling
 \labelwidthstring 00.00.0000
-[R8.1] TS shall retrive the position w.r.t.
+[R8.1] TS shall retrieve the position w.r.t.
  the zones and the state of the taxi whenever the state of a taxi driver
  changes or a request comes or anyway periodically.
 \end_layout
@@ -313,8 +313,8 @@ available
 
 \begin_layout Labeling
 \labelwidthstring 00.00.0000
-[R8.3] For each queue laking of taxis, TS shall move to that zone several
- taxis minimizing the total cost (number of zones travelled).
+[R8.3] For each queue lacking of taxis, TS shall move to that zone several
+ taxis minimizing the total cost (number of zones traversed).
  
 \end_layout
 

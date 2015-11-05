@@ -93,7 +93,7 @@ Signatures, facts and functions
 
 \begin_layout Standard
 \begin_inset listings
-lstparams "breaklines=true,language={C++}"
+lstparams "breaklines=true"
 inline false
 status open
 
@@ -132,7 +132,7 @@ sig Location{
 
 \begin_layout Plain Layout
 
-zone: lone Zone, 
+	zone: one Zone, 
 \end_layout
 
 \begin_layout Plain Layout
@@ -334,12 +334,9 @@ sig Reservation{
 
 \begin_layout Plain Layout
 
-} 
-\end_layout
-
-\begin_layout Plain Layout
-
-{numberOfPassengers>=1 and associatedRequest.passenger = passenger}
+} {numberOfPassengers>=1 and associatedRequest.passenger = passenger and
+ associatedRequest.location = location and associatedRequest.numberOfPassengers
+ = numberOfPassengers}
 \end_layout
 
 \begin_layout Plain Layout
@@ -396,7 +393,7 @@ fact oneTaxiForEachTaxiDriver {
 
 \begin_layout Plain Layout
 
-//Available taxis must have a driver 
+//Non out of service taxis must have a driver 
 \end_layout
 
 \begin_layout Plain Layout
@@ -406,7 +403,32 @@ fact allAvailableTaxiMustHaveADriver {
 
 \begin_layout Plain Layout
 
-	all t: Taxi | t.state in Available implies one t.driver 
+	all t: Taxi | t.state in (Available + Moving + Busy) implies one t.driver
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+//All busy taxi must have at least a request associated 
+\end_layout
+
+\begin_layout Plain Layout
+
+fact allBusyTaxiMustHaveAtLeastARequestAssociated { 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	all t: Taxi | some r: Request | t.state in Busy implies t in r.taxis 
 \end_layout
 
 \begin_layout Plain Layout
@@ -561,6 +583,69 @@ fact numberOfSeatsSufficient {
 
 \begin_layout Plain Layout
 
+/* 
+\end_layout
+
+\begin_layout Plain Layout
+
+This is syntactically and semantically correct but it is writter in second
+ order logic so it cannot be executed 
+\end_layout
+
+\begin_layout Plain Layout
+
+fact numberOfSeatsAreTheMinimumRequired { 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	all r: ConfirmedRequest | no taxiSubset: set Taxi | taxiSubset in r.taxis
+ and taxiSubset != r.taxis and 		sum taxiSubset.numberOfSeats >= r.numberOfPassenge
+rs 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+*/
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+//The same fact rephrased in FOL: the number of taxis sent are the minimun
+ requested to pick up all passengers 
+\end_layout
+
+\begin_layout Plain Layout
+
+fact numberOfSeatsAreTheMinimumRequired { 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	all r: ConfirmedRequest | no t: Taxi | t in r.taxis and sum r.taxis.numberOfSeats
+ - t.numberOfSeats >= r.numberOfPassengers 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
 //Returns the number of in service taxis
 \end_layout
 
@@ -614,7 +699,7 @@ Predicates
 
 \begin_layout Standard
 \begin_inset listings
-lstparams "breaklines=true,language={C++},showstringspaces=false"
+lstparams "breaklines=true,showstringspaces=false"
 inline false
 status open
 
@@ -634,8 +719,7 @@ pred show{}
 
 \begin_layout Plain Layout
 
-run show for 4 but 5 Int, exactly 1 Zone, exactly 1 Reservation, exactly
- 3 Request
+run show for 4 but 5 Int, exactly 1 Zone, 1 Reservation, 3 Request
 \end_layout
 
 \end_inset
@@ -695,35 +779,40 @@ end{framed}
 
 \begin_layout Standard
 \begin_inset listings
-lstparams "breaklines=true,language={C++},showstringspaces=false"
+lstparams "breaklines=true,showstringspaces=false"
 inline false
 status open
 
 \begin_layout Plain Layout
 
 //Predicate for sending a request: if the request is not already confirmed
- and it is not already in the set it is added to the set 
+ and it is not already in the set it is added to the set  
 \end_layout
 
 \begin_layout Plain Layout
 
 pred sendRequest[setOfRequests,setOfRequests': set Request, request: Request]
- { 	
+ { 	 	
 \end_layout
 
 \begin_layout Plain Layout
 
-	no ((ConfirmedRequest + setOfRequests) & request)  implies  		
+	no ((ConfirmedRequest + setOfRequests) & request)  implies  		 		
 \end_layout
 
 \begin_layout Plain Layout
 
-		setOfRequests' = setOfRequests + request 
+		setOfRequests' = setOfRequests + request  	
 \end_layout
 
 \begin_layout Plain Layout
 
-}
+	else 		
+\end_layout
+
+\begin_layout Plain Layout
+
+		setOfRequests' = setOfRequests  }
 \end_layout
 
 \begin_layout Plain Layout
@@ -732,8 +821,8 @@ pred sendRequest[setOfRequests,setOfRequests': set Request, request: Request]
 
 \begin_layout Plain Layout
 
-run sendRequest for 10 but 5 Int, 0 Zone, 0 Reservation, 6 Request,  2 Confirmed
-Request, 2 Passenger, 3 Taxi
+run sendRequest for 10 but 5 Int, 1 Zone, 0 Reservation, exactly 4 Request,
+  1 ConfirmedRequest, 2 Passenger, 3 Taxi
 \end_layout
 
 \end_inset
@@ -754,8 +843,8 @@ begin{framed}
 
 \begin_layout Plain Layout
 
-Executing "Run sendRequest for 10 but 5 Int, 0 Zone, 0 Reservation, 6 Request,
-  2 ConfirmedRequest, 2 Passenger, 3 Taxi"    
+Executing "Run sendRequest for 10 but 5 Int, 1 Zone, 0 Reservation, exactly
+ 4 Request,  1 ConfirmedRequest, 2 Passenger, 3 Taxi"    
 \end_layout
 
 \begin_layout Plain Layout
@@ -793,36 +882,34 @@ end{framed}
 
 \begin_layout Standard
 \begin_inset listings
-lstparams "breaklines=true,language=PHP,showstringspaces=false"
+lstparams "breaklines=true,showstringspaces=false"
 inline false
 status open
 
 \begin_layout Plain Layout
 
-//Predicate for sending a reservation: if the reservation is not already
- in the set it is added  to the set and a corresponding request is generated
- 
-\end_layout
-
-\begin_layout Plain Layout
-
 pred sendReservation[setOfReservations,setOfReservations': set Reservation,
- reservation: Reservation] { 	
+ reservation: Reservation] { 	 	
 \end_layout
 
 \begin_layout Plain Layout
 
-	no (setOfReservations & reservation) implies
+	no (setOfReservations & reservation) implies ( 		
 \end_layout
 
 \begin_layout Plain Layout
 
-		setOfReservations' = setOfReservations + reservation and  		
+		setOfReservations' = setOfReservations + reservation and  		 		
 \end_layout
 
 \begin_layout Plain Layout
 
-		one request: Request | reservation.associatedRequest = request 
+		one request: Request | reservation.associatedRequest = request ) 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	else 		setOfReservations' = setOfReservations  
 \end_layout
 
 \begin_layout Plain Layout
@@ -836,8 +923,8 @@ pred sendReservation[setOfReservations,setOfReservations': set Reservation,
 
 \begin_layout Plain Layout
 
-run sendReservation for 10 but 5 Int, 0 Zone, 4 Reservation, 3 Request,
- 2 Passenger, 3 Taxi
+run sendReservation for 10 but 5 Int, 1 Zone, exactly 3 Reservation, 3 Request,
+ 3 Passenger, 3 Taxi
 \end_layout
 
 \end_inset
@@ -858,8 +945,8 @@ begin{framed}
 
 \begin_layout Plain Layout
 
-Executing "Run sendReservation for 10 but 5 int, 0 Zone, 4 Reservation,
- 3 Request, 2 Passenger, 3 Taxi"    
+Executing "Run sendReservation for 10 but 5 Int, 1 Zone, exactly 3 Reservation,
+ 3 Request, 3 Passenger, 3 Taxi"    
 \end_layout
 
 \begin_layout Plain Layout
@@ -898,20 +985,14 @@ end{framed}
 
 \begin_layout Standard
 \begin_inset listings
-lstparams "breaklines=true,language={C++},showstringspaces=false"
+lstparams "breaklines=true,showstringspaces=false"
 inline false
 status open
 
 \begin_layout Plain Layout
 
-//Predicate for deleting a reservation: if reservation is present it is
- removed and the corresponding request no longer exists 
-\end_layout
-
-\begin_layout Plain Layout
-
 pred cancelReservation[setOfReservations,setOfReservations': set Reservation,
- reservation: Reservation]{
+ reservation: Reservation]{ 	
 \end_layout
 
 \begin_layout Plain Layout
@@ -921,12 +1002,17 @@ pred cancelReservation[setOfReservations,setOfReservations': set Reservation,
 
 \begin_layout Plain Layout
 
-		setOfReservations' = setOfReservations - reservation and
+		setOfReservations' = setOfReservations - reservation  	
 \end_layout
 
 \begin_layout Plain Layout
 
-		no request: Request | reservation.associatedRequest = request  
+	else 		
+\end_layout
+
+\begin_layout Plain Layout
+
+		setOfReservations' = setOfReservations	 
 \end_layout
 
 \begin_layout Plain Layout
@@ -940,8 +1026,8 @@ pred cancelReservation[setOfReservations,setOfReservations': set Reservation,
 
 \begin_layout Plain Layout
 
-run cancelReservation for 10 but 5 Int, 0 Zone, 4 Reservation, 3 Request,
- 2 Passenger, 3 Taxi
+run cancelReservation for 10 but 5 Int, 1 Zone, exactly 2 Reservation, 2
+ Request, 2 Passenger, 3 Taxi
 \end_layout
 
 \end_inset
@@ -962,8 +1048,8 @@ begin{framed}
 
 \begin_layout Plain Layout
 
-Executing "Run cancelReservation for 10 but 5 int, 0 Zone, 4 Reservation,
- 3 Request, 2 Passenger, 3 Taxi"    
+Executing "Run cancelReservation for 10 but 5 Int, 1 Zone, exactly 2 Reservation
+, 2 Request, 2 Passenger, 3 Taxi"    
 \end_layout
 
 \begin_layout Plain Layout
@@ -1011,7 +1097,285 @@ status open
 
 \begin_layout Plain Layout
 
- //Verifies whether at least one taxi is in service 
+//Verifies whether at least one taxi is in service 
+\end_layout
+
+\begin_layout Plain Layout
+
+assert ifOneTaxiExistsItIsInService { 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	one Taxi implies Taxi.state in (Available + Busy + Moving) 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+check ifOneTaxiExistsItIsInService
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{framed}
+\end_layout
+
+\begin_layout Plain Layout
+
+Executing "Check ifOneTaxiExistsItIsInService for 10"    
+\end_layout
+
+\begin_layout Plain Layout
+
+Solver=sat4j Bitwidth=4 MaxSeq=7 SkolemDepth=1 Symmetry=20    
+\end_layout
+
+\begin_layout Plain Layout
+
+49010 vars.
+ 2308 primary vars.
+ 122421 clauses.
+ 172ms.
+    
+\end_layout
+
+\begin_layout Plain Layout
+
+No counterexample found.
+ Assertion may be valid.
+ 15ms.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{framed}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "breaklines=true,showstringspaces=false"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+//Verifies if number of seats is the minimun necessary 
+\end_layout
+
+\begin_layout Plain Layout
+
+assert numberOfSeatsAreTheMinimunNecessary { 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	all r: ConfirmedRequest | r.numberOfPassengers <= sum r.taxis.numberOfSeats
+ and r.numberOfPassengers <= plus[sum r.taxis.numberOfSeats ,MinivanTaxi.numberOfPas
+sengers] 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+check numberOfSeatsAreTheMinimunNecessary for 10
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{framed}
+\end_layout
+
+\begin_layout Plain Layout
+
+Executing "Check numberOfSeatsAreTheMinimunNecessary for 10"    
+\end_layout
+
+\begin_layout Plain Layout
+
+Solver=sat4j Bitwidth=4 MaxSeq=7 SkolemDepth=1 Symmetry=20    
+\end_layout
+
+\begin_layout Plain Layout
+
+49755 vars.
+ 2318 primary vars.
+ 124998 clauses.
+ 109ms.
+    
+\end_layout
+
+\begin_layout Plain Layout
+
+No counterexample found.
+ Assertion may be valid.
+ 313ms.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{framed}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "breaklines=true,showstringspaces=false"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+//Request carried out by the same taxi driver must be different in date
+ or time 
+\end_layout
+
+\begin_layout Plain Layout
+
+assert allRequestOfTheSameTaxiDriverDifferentInTime { 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	all td: TaxiDriver | all disj r1,r2: ConfirmedRequest | td in (r1.taxis.driver
+ & r2.taxis.driver) implies not atTheSameTime[r1,r2] 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+check allRequestOfTheSameTaxiDriverDifferentInTime for 10
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{framed}
+\end_layout
+
+\begin_layout Plain Layout
+
+Executing "Check allRequestOfTheSameTaxiDriverDifferentInTime for 10"  
+  
+\end_layout
+
+\begin_layout Plain Layout
+
+Solver=sat4j Bitwidth=4 MaxSeq=7 SkolemDepth=1 Symmetry=20    
+\end_layout
+
+\begin_layout Plain Layout
+
+50129 vars.
+ 2338 primary vars.
+ 125356 clauses.
+ 109ms.
+    
+\end_layout
+
+\begin_layout Plain Layout
+
+No counterexample found.
+ Assertion may be valid.
+ 219ms.
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{framed}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "breaklines=true,showstringspaces=false"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+//Verifies whether at least one taxi is in service 
 \end_layout
 
 \begin_layout Plain Layout
@@ -1129,8 +1493,8 @@ pred show
 \end_inset
 
 .
- It is shown in order to make the reader understand that the model is consisten,
- since it admits at least one instance satisfyng the constraints.
+ It is shown in order to make the reader understand that the model is consistent
+, since it admits at least one instance satisfying the constraints.
  In the following pages other worlds corresponding to the execution of the
  predicates will be shown.
 \end_layout
@@ -1238,7 +1602,8 @@ pred sendRequest[setOfRequests,setOfRequests': set Request, request: Request]
 \end_inset
 
 .
- ?????????????
+ Before inserting Request2 the set of requests is composed of only ConfirmedRequ
+est; after the insertion also Request2 is in the set.
 \end_layout
 
 \begin_layout Standard
@@ -1416,13 +1781,6 @@ end{landscape}
 \end_layout
 
 \begin_layout Standard
-\begin_inset Newpage clearpage
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 \begin_inset ERT
 status open
 
@@ -1534,7 +1892,7 @@ Queue management model
 Since queue management is a relevant part of the TS system, in this subsection
  we model the structure of a queue and the adjacency relation between zones.
  We will focus on the important constraints imposed by the system but we
- will not model the dynamical beheviour of the queues.
+ will not model the dynamical behavior of the queues.
 \end_layout
 
 \begin_layout Subsubsection
@@ -2181,15 +2539,18 @@ pred showQueues
 
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection
 Considerations about Alloy
 \end_layout
 
 \begin_layout Standard
-Due to the complexity of an infomation system, like TS, in requirement specifica
-tion one often tends to overlook some aspects which are artlessly negletted.
+The process of modeling a complex system is always prone to many different
+ kinds of errors.
+ Even though you have correctly understood the requirements several conditions
+ often neglected because they seem to be obvious, but they are not.
  Alloy is a very precious tool that allows requirement engineer to understand
- those deficiencies in the model and to remedy that.
+ and overcome those deficiencies in the model.
+ 
 \end_layout
 
 \end_body

@@ -168,11 +168,11 @@ traditional
  ways to call for a taxi, like a phone call or stopping the taxi along the
  road, will be still available and integrated into the system to-be.
  The software will make the procedure of calling a taxi simpler (by using
- GPS information passenger has not to know the address if the taxi is needed
- for the current position) and more usable (passenger will be provided with
- information about the waiting time).
+ GPS information passenger doesn't need to know the address if the taxi
+ is needed for the current position) and more usable (passenger will be
+ provided with information about the waiting time).
  Moreover, by means of the application, the passenger can reserve a taxi
- for a specific date and time, specifying the origin and the destination
+ for a certain date and time, specifying the origin and the destination
  of the ride.
 \end_layout
 

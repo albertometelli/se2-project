@@ -332,10 +332,6 @@ filename "alloy/alloy-specification.lyx"
 
 \end_layout
 
-\begin_layout Section*
-Appendix
-\end_layout
-
 \begin_layout Standard
 \begin_inset ERT
 status open
@@ -344,7 +340,7 @@ status open
 
 
 \backslash
-thispagestyle{empty}
+appendix
 \end_layout
 
 \end_inset
@@ -353,74 +349,13 @@ thispagestyle{empty}
 \end_layout
 
 \begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-addcontentsline{toc}{section}{Appendix}
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-markboth{Appendix}{Appendix}
-\end_layout
+\begin_inset CommandInset include
+LatexCommand input
+filename "appendix/appendix.lyx"
 
 \end_inset
 
 
-\end_layout
-
-\begin_layout Subsection*
-Used tools
-\end_layout
-
-\begin_layout Enumerate
-LyX visual editor for LaTeX (http://www.lyx.org/) to write this document.
-\end_layout
-
-\begin_layout Enumerate
-Star UML (http://staruml.io/) for use case diagram, class diagram, sequence
- diagram, activity diagram and state chart diagram.
-\end_layout
-
-\begin_layout Enumerate
-Alloy Analyser 4.2 (http://alloy.mit.edu/alloy/) to build the model and prove
- its consistency.
-\end_layout
-
-\begin_layout Enumerate
-Balsamiq Mockup (http://balsamiq.com/products/mockups/) for user inferface
- mockup generation.
-\end_layout
-
-\begin_layout Subsection*
-Hours of works
-\end_layout
-
-\begin_layout Standard
-Time spent by each group member:
-\end_layout
-
-\begin_layout Itemize
-Alberto Maria Metelli: 33 h
-\end_layout
-
-\begin_layout Itemize
-Riccardo Mologni: 33 h
-\end_layout
-
-\begin_layout Subsection*
-Versions
-\end_layout
-
-\begin_layout Labeling
-\labelwidthstring 00.00.0000
-1.0.0 6th November 2015: Initial deliverable
 \end_layout
 
 \begin_layout Section*

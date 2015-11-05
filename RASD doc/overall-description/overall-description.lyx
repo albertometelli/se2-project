@@ -203,7 +203,7 @@ Since user's geographic position needs to be shared within the application
 \end_layout
 
 \begin_layout Itemize
-Taxi drivers are obliged not to spread possible retrieved information about
+Taxi drivers are obliged not to spread possible collected information about
  passengers.
 \end_layout
 
@@ -216,8 +216,9 @@ The following hardware limitations has to be met.
 \end_layout
 
 \begin_layout Itemize
-Mobile passengers has to download the free application from the store (either
- PlayStore for Android users or AppStore for iPhone users).
+Mobile passengers has to download the free application from the store (PlayStore
+ for Android users, AppStore for iPhone users, Windows store for Windows
+ users).
  It is assumed that the mobile phones have enough primary memory to run
  the application.
 \end_layout
@@ -372,7 +373,9 @@ temporally
 \end_layout
 
 \begin_layout Itemize
-Online payments can be implemented within TS system.
+At the moment TS system does not handle payments, since users are expected
+ to pay the ride cash or with credit card to the taxi driver; online payments
+ can be implemented within TS system.
  Both PWA and PMA should allow registered users to pay the price of the
  ride using credit card or paypal; cash payment should be still possible.
 \end_layout

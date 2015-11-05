@@ -69,11 +69,11 @@
 \begin_body
 
 \begin_layout Standard
-In order to clirify the expected functionaity of the system, in this subsection
- we propose several possible scenarions.
- In each scenario we enphatise several specific interactions between the
+In order to clarify the expected functionality of the system, in this subsection
+ we propose several possible scenarios.
+ In each scenario we emphasize several specific interactions between the
  users and the system, but, in some of them, we do not describe the entire
- process carried out interacting with TS to avoid usless repetitions.
+ process carried out interacting with TS to avoid useless repetitions.
 \end_layout
 
 \begin_layout Subsubsection
@@ -94,7 +94,7 @@ on.
  The taxi driver, Tom, after having received the request on his smartphone
  via TMA, he confirms it.
  Tom visualizes the request information details and leaves from his location
- to get to the address speciefied by Bob.
+ to get to the address specified by Bob.
  TS system calculates the waiting time and shows it to Bob.
  When Tom arrives to Bob's, he picks up him and brings him to his friend.
  Before leaving Bob pays Tom for the service and Tom informs the system
@@ -109,7 +109,7 @@ Scenario 2
 As soon as Alice left the theater it started raining, so she decided to
  try TS service for the first time.
  She uses her 3G connection to download the PMA and starts it.
- After that she accepts terms and conditions of TS, the system retrives
+ After that she accepts terms and conditions of TS, the system retrieves
  Alice’s current position by means of her GPS.
  She confirms the requests and the system contacts the first taxi available
  in her zone.
@@ -127,10 +127,10 @@ Scenario 3
 
 \begin_layout Standard
 Robb needs to reach the university campus because he has to addend Software
- Engineering 2 morning class, so he reachs the bus stop but he notices a
- sign informing that an unexpected public transportation strike is going
+ Engineering 2 morning class, so he reaches the bus stop but he notices
+ a sign informing that an unexpected public transportation strike is going
  on.
- Unfourtunately this happens quite often, that's why Robb is a registered
+ Unfortunately this happens quite often, that's why Robb is a registered
  passenger of TS.
  He logs in the PMA and requests a taxi.
  Due to the strike a large number of requests has been forwarded the system
@@ -138,7 +138,7 @@ Robb needs to reach the university campus because he has to addend Software
  Therefore the first taxi in the queue of an adjacent zone is contacted.
  The taxi driver, Taylor, accepts the request.
  The system shows the expected waiting time on Rob's smartphone.
- After 15 minitues Taylor picks up Robb who will get to university, in time
+ After 15 minutes Taylor picks up Robb who will get to university, in time
  for the class.
 \end_layout
 
@@ -153,7 +153,7 @@ Arya booked a low cost flight to Marrakesh but the plane leaves early in
  accepting terms and conditions.
  The system sends her a confirmation e-mail.
  A few days before the departure she logs in her personal area on the PWA
- and reserves a taxi, specifing her address and the meeting time.
+ and reserves a taxi, specifying her address and the meeting time.
  The leaving day she hasn't heard the alarm clock and she hasn't woken up.
  When Takashi, the taxi driver, arrives at Arya’s place he doesn’t find
  anyone so he waits for 10 minutes and then informs the system.
@@ -172,7 +172,7 @@ In the city a huge sporting event has been organized for today so the city
  a mess so he decides to take a taxi.
  He sends a request using his PMA but all the taxis in all the zones are
  busy due to the unexpected number of people coming to attend the event.
- The system informs Jon about the situation and provieds Jon with the expected
+ The system informs Jon about the situation and provides Jon with the expected
  waiting time: one hour, too much for Jon.
  So he decides to ask one of his colleagues for a lift.
 \end_layout

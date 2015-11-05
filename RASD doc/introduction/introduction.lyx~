@@ -89,13 +89,13 @@ myTaxiService
 \emph on
 goals
 \emph default
- coming from stakeholders' expectations, the characterstics of the application
+ coming from stakeholders' expectations, the characteristics of the application
  domain and the 
 \emph on
 assumptions
 \emph default
  made to solve ambiguity and incompleteness.
- Starting from goals and domain propertis, 
+ Starting from goals and domain properties, 
 \emph on
 requirements
 \emph default
@@ -118,7 +118,7 @@ customers
 \emph default
 , in particular explaining both the application domain and the system to-be;
  it is also aimed to be a solid base for project planning, software evaluation
- and possible future manteinance activities.
+ and possible future maintenance activities.
  Therefore this document is primarily intended to be proposed to the stakeholder
 s for their approval, to the analysts and programmers for the development
  of the project and to the testing team the validation of the first version
@@ -130,7 +130,7 @@ Present system
 \end_layout
 
 \begin_layout Standard
-At the moment taxi service is entierly managed by phone calls.
+At the moment taxi service is entirely managed by phone calls.
  A passenger who wants to request or reserve a taxi has to contact the call
  center.
  In case of request, the call center operator moves the call to the first
@@ -149,7 +149,7 @@ The
 \emph on
 myTaxyService
 \emph default
- is an appliation intended to optimize taxi service in a large city, making
+ is an application intended to optimize taxi service in a large city, making
  the access to service simpler for the passengers and ensuring a fair management
  of the taxi queues.
  
@@ -168,21 +168,21 @@ traditional
  ways to call for a taxi, like a phone call or stopping the taxi along the
  road, will be still available and integrated into the system to-be.
  The software will make the procedure of calling a taxi simpler (by using
- GPS information passenger has not to know the address if the taxi is needed
- for the current position) and more usable (passenger will be provided with
- information about the waiting time).
+ GPS information passenger doesn't need to know the address if the taxi
+ is needed for the current position) and more usable (passenger will be
+ provided with information about the waiting time).
  Moreover, by means of the application, the passenger can reserve a taxi
  for a specific date and time, specifying the origin and the destination
  of the ride.
 \end_layout
 
 \begin_layout Standard
-Taxi drivers will use a mobile app to inform the system about their avilability
+Taxi drivers will use a mobile app to inform the system about their availability
  and to confirm that they are going to take care of a call (or to reject
  it for any reason).
  The software will make the taxi management more efficient: the system will
  be able to identify the position of each taxi by using GPS; the city will
- be divided in virtual zones and a suitable distribuction of the taxi among
+ be divided in virtual zones and a suitable distribution of the taxi among
  the zones will automatically be computed.
 \end_layout
 
@@ -239,7 +239,7 @@ Waiting time
 \emph on
 Taxi code
 \emph default
-: a unique alfanumerical identifier of the taxi.
+: a unique alphanumerical identifier of the taxi.
 \end_layout
 
 \begin_layout Itemize
@@ -330,7 +330,7 @@ Actors
 \end_layout
 
 \begin_layout Standard
-In this paragraph a breif description of the various actors affected by
+In this paragraph a brief description of the various actors affected by
  myTaxiService system is provided.
 \end_layout
 
@@ -340,7 +340,7 @@ In this paragraph a breif description of the various actors affected by
 Passenger
 \emph default
 : a person that interacts with myTaxiService to request or reserve a taxi.
- The interaction with the system may occure by means of either PMA (mobile
+ The interaction with the system may occur by means of either PMA (mobile
  passenger) or PWA (web passenger).
  Each passenger can be either a registered passenger or an unregistered
  passenger.
@@ -390,8 +390,8 @@ Requirement engineering approach
 \end_layout
 
 \begin_layout Standard
-In order to ensure a sound and complete requirement engineering acritivty,
- we decided to follow a sistematic technique for requirements formulation
+In order to ensure a sound and complete requirement engineering activity,
+ we decided to follow a systematic technique for requirements formulation
  proposed by Jackson and Zave.
  This approach is based on the distinction between the 
 \emph on
@@ -405,13 +405,13 @@ world
 , the portion of the real world interacting with the machine.
  Machine and world are tipically non disjoint, some phenomena may affect
  both of them, they are known as shared phenomena.
- From this viewpoint, requirement engineering consists in identifing phenomena
+ From this viewpoint, requirement engineering consists in identifying phenomena
  shared between world and machine, according to a set of 
 \series bold
 goals 
 \series default
-(which express the desired behiviour of world phenomena, shared or not)
- and a set of 
+(which express the desired behavior of world phenomena, shared or not) and
+ a set of 
 \series bold
 domain assumptions
 \series default
@@ -428,7 +428,7 @@ Goals
 \end_layout
 
 \begin_layout Standard
-Starting from the available documentation, integrated with some inteviews
+Starting from the available documentation, integrated with some interviews
  with the stakeholders, the following minimal goals has been identified.
 \end_layout
 
@@ -473,8 +473,8 @@ Starting from the available documentation, integrated with some inteviews
 
 \begin_layout Labeling
 \labelwidthstring 00.00.0000
-[G8] Ensure that availabe taxi queues enjoy the properties specified in
- subparagraph 1.6.2.
+[G8] Ensure that available taxi queues enjoy the properties specified in
+ sub paragraph 1.6.2.
 \end_layout
 
 \begin_layout Subsubsection
@@ -494,12 +494,12 @@ fair management
 \end_layout
 
 \begin_layout Standard
-The city is diveded into several zones, to each zone a taxi queue is assigned.
+The city is divided into several zones, to each zone a taxi queue is assigned.
  Each zone is characterized by a different load of requests 
 \begin_inset Formula $n_{i}$
 \end_inset
 
- mesured in request/minute.
+ measured in request/minute.
  Let 
 \begin_inset Formula $N$
 \end_inset
@@ -509,7 +509,7 @@ The city is diveded into several zones, to each zone a taxi queue is assigned.
 \begin_inset Formula $q_{i}$
 \end_inset
 
- of taxis avalable in the zone 
+ of taxis available in the zone 
 \begin_inset Formula $i$
 \end_inset
 
@@ -522,8 +522,8 @@ The city is diveded into several zones, to each zone a taxi queue is assigned.
 \end_inset
 
 .
- Every time one taxi turns from availabe to busy or out of service or viceversa
- a new distribuction of the taxies has to be computed; the taxis to be moved
+ Every time one taxi turns from available to busy or out of service or viceversa
+ a new distribution of the taxis has to be computed; the taxis to be moved
  have to minimize the cost of movement calculated as number of zones passed
  through.
  To prevent too many movements, a fluctuating between -30% and 30% from
@@ -575,11 +575,11 @@ This document is drawn up in accordance to the IEEE Std 830-1998 for Software
 
 \begin_layout Itemize
 The first, this one, section gives a general description of the document
- and breif information about the actors and the purposes of the software.
+ and brief information about the actors and the purposes of the software.
 \end_layout
 
 \begin_layout Itemize
-The second section provides an overview of the software, highliting the
+The second section provides an overview of the software, highlighting the
  interaction with external system interfaces and explaining the main functions
  carried out.
  It also focuses on constraints and domain assumptions.
@@ -588,13 +588,13 @@ The second section provides an overview of the software, highliting the
 \begin_layout Itemize
 The third section is entirely dedicated to the derivation and specification
  of the requirements.
- Several scenatios expressed in natural language will be provided.
- A generalation of the set of scenarios will be specified as a set of use
- cases that will be expressed both in natural language and using UML use
- case diagram.
- For some groups of use cases a dynamical descrition will be provided mainly
+ Several scenarios expressed in natural language will be provided.
+ A generalization of the set of scenarios will be specified as a set of
+ use cases that will be expressed both in natural language and using UML
+ use case diagram.
+ For some groups of use cases a dynamical description will be provided mainly
  using UML sequence diagram.
- A high level conceptual decription of the classes affected by the system
+ A high level conceptual description of the classes affected by the system
  will be given using UML class diagram.
  For some of the objects involved, we will design a UML state chart diagram
  showing the evolution of its state.
@@ -602,12 +602,12 @@ The third section is entirely dedicated to the derivation and specification
 \end_layout
 
 \begin_layout Itemize
-The fourth section presents a formalization of a subset of the requiremenst
+The fourth section presents a formalization of a subset of the requirements
  using Alloy; some significant instances will be shown.
 \end_layout
 
 \begin_layout Itemize
-The appendix contains a breif description of the tools used to produce this
+The appendix contains a brief description of the tools used to produce this
  documents and the number of hours each group member has worked towards
  the fulfillment of this deadline.
 \end_layout

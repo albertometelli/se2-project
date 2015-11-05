@@ -4,27 +4,14 @@
 \begin_header
 \textclass article
 \begin_preamble
-\usepackage{fancyhdr}
-\usepackage{framed}
-\usepackage{settings}
-\usepackage{lscape}
 \usepackage{pdflscape}
-\usepackage{color}   %May be necessary if you want to color links
-\usepackage{hyperref}
-
-%Set up settings
-\setcounter{secnumdepth}{4}
-\usepackage{hyperref}
-\hypersetup{
-    linktoc=all,     %set to all if you want both sections and subsections linked
-}
 \end_preamble
 \use_default_options true
 \maintain_unincluded_children false
 \language english
 \language_package default
 \inputencoding auto
-\fontencoding default
+\fontencoding global
 \font_roman default
 \font_sans default
 \font_typewriter default
@@ -40,12 +27,11 @@
 \output_sync 0
 \bibtex_command default
 \index_command default
-\float_placement H
 \paperfontsize default
 \spacing single
 \use_hyperref false
-\papersize a4paper
-\use_geometry true
+\papersize default
+\use_geometry false
 \use_package amsmath 1
 \use_package amssymb 1
 \use_package cancel 1
@@ -69,14 +55,10 @@
 \shortcut idx
 \color #008000
 \end_index
-\leftmargin 3cm
-\topmargin 3.5cm
-\rightmargin 3cm
-\bottommargin 3cm
 \secnumdepth 3
 \tocdepth 3
-\paragraph_separation skip
-\defskip medskip
+\paragraph_separation indent
+\paragraph_indentation default
 \quotes_language english
 \papercolumns 1
 \papersides 1
@@ -98,242 +80,79 @@ status open
 
 
 \backslash
-pagestyle{empty}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset include
-LatexCommand input
-filename "title-page/title-page.lyx"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Newpage clearpage
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
+section{i* modeling} 
 \backslash
-pagestyle{fancy}
+label{sec:Appendix1}
 \end_layout
 
-\begin_layout Plain Layout
-
-
-\backslash
-thispagestyle{empty}
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-pagenumbering{roman}
-\end_layout
-
-\end_inset
-
-
-\begin_inset CommandInset toc
-LatexCommand tableofcontents
-
-\end_inset
-
-
-\begin_inset FloatList figure
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Newpage clearpage
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-pagenumbering{arabic}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-thispagestyle{empty}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Section
-Introduction
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset include
-LatexCommand input
-filename "introduction/introduction.lyx"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Newpage clearpage
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-thispagestyle{empty}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Section
-Overall description
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset include
-LatexCommand input
-filename "overall-description/overall-description.lyx"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Newpage clearpage
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-thispagestyle{empty}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Section
-Specific Requirements 
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset include
-LatexCommand input
-filename "specific-requirements/specific-requirements.lyx"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Newpage clearpage
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-thispagestyle{empty}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Section
-Alloy model
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset include
-LatexCommand input
-filename "alloy/alloy-specification.lyx"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Newpage clearpage
 \end_inset
 
 
 \end_layout
 
 \begin_layout Section*
-Appendix
+i* modeling
+\end_layout
+
+\begin_layout Standard
+The i* framework was developed for modelling and reasoning about organizational
+ environments and their information systems [2].
+ It consists of two main modelling components.
+ TheStrategic Dependency (SD) model is used to describe the dependency relations
+hips among various actors in an organizational context.
+ The Strategic Rationale (SR) model is used to describe stakeholder interests
+ and concerns, and how they might be addressed by various configurations
+ of systems and environments [1].
+ We think that such a model can be a useful instrument for requirement engineeri
+ng because it is able to highlight relationships between different levels
+ of abstraction showing how 
+\emph on
+tasks
+\emph default
+ cooperates to fullfil 
+\emph on
+goals
+\emph default
+ and how non functional requirements (known ad 
+\emph on
+soft goals
+\emph default
+ in the model) are affacted.
+ In this section we provide a simple model (Strategic Rationale model) of
+ a part of the TS system by using i* notation.
+\end_layout
+
+\begin_layout Standard
+For further details and a exhaustive description of the notation refer to:
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[1] E.
+ Yu, Modelling Strategic Relationships for Process Reengineering, Ph.D.
+ thesis, also Tech.
+ Report DKBS-TR- 94-6, Dept.
+ of Computer Science, University of Toronto, 1995.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[2] E.
+ Yu `Towards Modelling and Reasoning Support for Early-Phase Requirements
+ Engineering' Proceedings of the 3rd IEEE Int.
+ Symp.
+ on Requirements Engineering (RE'97) Jan.
+ 6-8, 1997, Washington D.C., USA.
+ pp.
+ 226-235.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage clearpage
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -344,7 +163,40 @@ status open
 
 
 \backslash
-thispagestyle{empty}
+begin{landscape}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename istarmodeling.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+i* model
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -360,14 +212,32 @@ status open
 
 
 \backslash
-addcontentsline{toc}{section}{Appendix}
+end{landscape}
 \end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage clearpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
 
 \begin_layout Plain Layout
 
 
 \backslash
-markboth{Appendix}{Appendix}
+section{Appendix} 
+\backslash
+label{sec:Appendix1}
 \end_layout
 
 \end_inset
@@ -398,6 +268,11 @@ Balsamiq Mockup (http://balsamiq.com/products/mockups/) for user inferface
  mockup generation.
 \end_layout
 
+\begin_layout Enumerate
+OpenOME (http://www.cs.toronto.edu/km/openome/OpenOME.html), an open-source
+ requirements engineering tool for the i* model.
+\end_layout
+
 \begin_layout Subsection*
 Hours of works
 \end_layout
@@ -421,13 +296,6 @@ Versions
 \begin_layout Labeling
 \labelwidthstring 00.00.0000
 1.0.0 6th November 2015: Initial deliverable
-\end_layout
-
-\begin_layout Section*
-\begin_inset Newpage clearpage
-\end_inset
-
-
 \end_layout
 
 \end_body
