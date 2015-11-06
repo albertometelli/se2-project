@@ -172,7 +172,7 @@ traditional
  is needed for the current position) and more usable (passenger will be
  provided with information about the waiting time).
  Moreover, by means of the application, the passenger can reserve a taxi
- for a specific date and time, specifying the origin and the destination
+ for a certain date and time, specifying the origin and the destination
  of the ride.
 \end_layout
 
@@ -395,9 +395,9 @@ In order to ensure a sound and complete requirement engineering activity,
  proposed by Jackson and Zave.
  This approach is based on the distinction between the 
 \emph on
-mac
+machine
 \emph default
-hine, the portion of the system to be developed (myTaxiService in our case),
+, the portion of the system to be developed (myTaxiService in our case),
  and the 
 \emph on
 world
@@ -415,7 +415,7 @@ goals
 \series bold
 domain assumptions
 \series default
- (assertion supposed to be always valid in the world).
+ (assertions supposed to be always valid in the world).
  Formally a set of 
 \series bold
 requirements 

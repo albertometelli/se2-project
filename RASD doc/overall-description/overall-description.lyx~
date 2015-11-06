@@ -228,6 +228,11 @@ The browser used by web passengers to access the system must have cookies
  enabled.
 \end_layout
 
+\begin_layout Itemize
+Each taxi driver is provided with a smartphone and the application TMA must
+ be installed.
+\end_layout
+
 \begin_layout Subsection
 Domain assumptions
 \end_layout
@@ -242,7 +247,7 @@ Considering the specific application domain and according to the information
 \labelwidthstring 00.00.0000
 [D1] A taxi driver always executes indications communicated by the system
  (e.g.
- move notifications).
+ move notifications), except in case of emergency.
 \end_layout
 
 \begin_layout Labeling
@@ -339,6 +344,14 @@ Considering the specific application domain and according to the information
  but they cannot change the zone without a notification from the system.
 \end_layout
 
+\begin_layout Standard
+Note that also taxi drivers are identified by the system but registration
+ of the taxi driver is not part of the TS system since it reasonably involves
+ contractual issues (taxi driver has to make an agreement with the company)
+ that cannot be directly managed by the system.
+ Therefore registration is not performed by taxi driver.
+\end_layout
+
 \begin_layout Subsection
 Possible future extensions
 \end_layout
@@ -373,7 +386,9 @@ temporally
 \end_layout
 
 \begin_layout Itemize
-Online payments can be implemented within TS system.
+At the moment TS system does not handle payments, since users are expected
+ to pay the ride cash or with credit card to the taxi driver; online payments
+ can be implemented within TS system.
  Both PWA and PMA should allow registered users to pay the price of the
  ride using credit card or paypal; cash payment should be still possible.
 \end_layout

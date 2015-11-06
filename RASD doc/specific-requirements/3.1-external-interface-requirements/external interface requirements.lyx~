@@ -75,7 +75,7 @@
 This section provides a description of the interaction between TS system
  and users (passengers and taxi drivers) and external systems (GPS system,
  browser geolocalization and Google Maps).
- We will put the accent on the carachteristics of each interface.
+ We will put the accent on the characteristics of each interface.
 \end_layout
 
 \begin_layout Subsubsection
@@ -283,14 +283,14 @@ browser geolocalization for web passengers;
 \end_layout
 
 \begin_layout Itemize
-Google Maps for the estimatation of the waiting time and the specification
- of the address when geolocalization or GPS are anavailable.
+Google Maps for the estimation of the waiting time and the specification
+ of the address when geolocalization or GPS are unavailable.
 \end_layout
 
 \begin_layout Standard
 Moreover, TS offers a set of APIs to enable the development of additional
  services (e.g., taxi sharing).
- Those APIs allows developers to have access the basic functionalitis of
+ Those APIs allows developers to have access the basic functionalists of
  TS.
 \end_layout
 

@@ -1,0 +1,229 @@
+
+\subsection{Purpose}
+
+The purpose of the RASD \emph{(Requirements Analysis and Specification
+Document}) is to give a detailed description, analysis and specification
+of the requirements for the \emph{myTaxiService} software. This document
+will explain the \emph{goals} coming from stakeholders' expectations,
+the characteristics of the application domain and the \emph{assumptions}
+made to solve ambiguity and incompleteness. Starting from goals and
+domain properties, \emph{requirements} will be formulated according
+to a specific systematic methodology and then specified using both
+informal and formal notations. However this document should not be
+considered the final draft for the software specifications since in
+the following phases several fixing may be necessary. 
+
+The main objective of the RASD is to achieve good understanding among
+\emph{analysts, developers, testers} and \emph{customers}, in particular
+explaining both the application domain and the system to-be; it is
+also aimed to be a solid base for project planning, software evaluation
+and possible future maintenance activities. Therefore this document
+is primarily intended to be proposed to the stakeholders for their
+approval, to the analysts and programmers for the development of the
+project and to the testing team the validation of the first version
+of the software.
+
+
+\subsection{Present system}
+
+At the moment taxi service is entirely managed by phone calls. A passenger
+who wants to request or reserve a taxi has to contact the call center.
+In case of request, the call center operator moves the call to the
+first available taxi, otherwise, in case of reservation, a taxi is
+booked for the specific date, time and address provided by the passenger.
+No available taxi queues management is implemented at the moment. 
+
+
+\subsection{Scope}
+
+The \emph{myTaxyService} is an application intended to optimize taxi
+service in a large city, making the access to service simpler for
+the passengers and ensuring a fair management of the taxi queues. 
+
+Passengers will be able to request a taxi either through a web application
+or a mobile app; of course the ``traditional'' ways to call for
+a taxi, like a phone call or stopping the taxi along the road, will
+be still available and integrated into the system to-be. The software
+will make the procedure of calling a taxi simpler (by using GPS information
+passenger doesn't need to know the address if the taxi is needed for
+the current position) and more usable (passenger will be provided
+with information about the waiting time). Moreover, by means of the
+application, the passenger can reserve a taxi for a certain date and
+time, specifying the origin and the destination of the ride.
+
+Taxi drivers will use a mobile app to inform the system about their
+availability and to confirm that they are going to take care of a
+call (or to reject it for any reason). The software will make the
+taxi management more efficient: the system will be able to identify
+the position of each taxi by using GPS; the city will be divided in
+virtual zones and a suitable distribution of the taxi among the zones
+will automatically be computed.
+
+
+\subsection{Definitions, acronyms, abbreviations }
+
+In this paragraph all the terms, acronyms and abbreviations used in
+the following sections are listed.
+
+
+\subsubsection{Definitions}
+\begin{itemize}
+\item \emph{Request}: the action performed by the passenger of calling a
+taxi for the current position.
+\item \emph{Confirmed request}: a request that has been accepted by a taxi
+driver.
+\item \emph{Reservation}: the action performed by the passenger of booking
+a taxi for a specific address and specific date and time.
+\item \emph{Waiting time}: an estimation of the time required to taxi driver
+to get to passenger's position.
+\item \emph{Taxi code}: a unique alphanumerical identifier of the taxi.
+\item \emph{Available taxi queues}: data structures used to store the references
+of the available taxis, also used to select the taxis to which forward
+a request.
+\item \emph{Automatic geolocalization}: a system that provides the geographic
+coordinates of the user. For this document it can be either a GPS
+system or browser geolocalization.
+\item \emph{Passengers' application}: the applications used by passengers
+to access to TS system. For this document it can be either PMA or
+PWA (see 1.4.2).
+\item \emph{Login credentials}: username and password.
+\item \textit{Notification}: communication from TS to taxi driver to move
+to a specific zone.
+\end{itemize}
+
+\subsubsection{Acronyms}
+\begin{itemize}
+\item TS: myTaxiService.
+\item PMA: Passenger mobile application.
+\item PWA: Passenger web application.
+\item TMA: Taxi driver mobile application.
+\item QMS: Queue management system.
+\end{itemize}
+
+\subsubsection{Abbreviations}
+\begin{itemize}
+\item {[}Gn{]} n-th goal.
+\item {[}Dn{]} n-th domain assumption.
+\item {[}Rn.m{]} m-th requirement related to goal {[}Gn{]}.
+\end{itemize}
+
+\subsection{Actors}
+
+In this paragraph a brief description of the various actors affected
+by myTaxiService system is provided.
+\begin{itemize}
+\item \emph{Passenger}: a person that interacts with myTaxiService to request
+or reserve a taxi. The interaction with the system may occur by means
+of either PMA (mobile passenger) or PWA (web passenger). Each passenger
+can be either a registered passenger or an unregistered passenger.
+\item \emph{Registered passenger}: specific case of passenger that has already
+registered to the system. He/She can login, request, reserve a taxi
+and also visualize and modify the previous reservations.
+\item \emph{Unregistered passenger}: specific case of passenger that hasn't
+registered to the system. He/She can only request a taxi.
+\item \emph{Taxi driver}: a person that drives a taxi and is associated
+with myTaxiService. He/She interacts with the system confirming or
+rejecting requests and informing the system about his/her availability
+by means of TMA.
+\item \emph{Call center operator}: a person working at the call center that
+interacts with the system inserting taxi requests coming from phone
+calls. 
+\end{itemize}
+
+\subsection{Requirement engineering approach}
+
+In order to ensure a sound and complete requirement engineering activity,
+we decided to follow a systematic technique for requirements formulation
+proposed by Jackson and Zave. This approach is based on the distinction
+between the \emph{machine}, the portion of the system to be developed
+(myTaxiService in our case), and the \emph{world}, the portion of
+the real world interacting with the machine. Machine and world are
+tipically non disjoint, some phenomena may affect both of them, they
+are known as shared phenomena. From this viewpoint, requirement engineering
+consists in identifying phenomena shared between world and machine,
+according to a set of \textbf{goals }(which express the desired behavior
+of world phenomena, shared or not) and a set of \textbf{domain assumptions}
+(assertions supposed to be always valid in the world). Formally a
+set of \textbf{requirements }is complete if together with domain assumption
+it ensures the goals.
+
+
+\subsubsection{Goals}
+
+Starting from the available documentation, integrated with some interviews
+with the stakeholders, the following minimal goals has been identified.
+\begin{lyxlist}{00.00.0000}
+\item [{{[}G1{]}}] Allow a passenger to request a taxi for its current
+position without registration.
+\item [{{[}G2{]}}] Allow the passenger to visualize the waiting time and
+the code of the incoming taxi for confirmed requests.
+\item [{{[}G3{]}}] Allow a registered passenger to have a personal area.
+\item [{{[}G4{]}}] Allow a registered passenger to reserve a taxi.
+\item [{{[}G5{]}}] Allow a registered passenger to cancel or modify a previous
+reservation. 
+\item [{{[}G6{]}}] Allow a taxi driver to either accept or reject a request
+coming from the system.
+\item [{{[}G7{]}}] Allow a taxi driver to inform the system about his/her
+availability.
+\item [{{[}G8{]}}] Ensure that available taxi queues enjoy the properties
+specified in sub paragraph 1.6.2.
+\end{lyxlist}
+
+\subsubsection{Queue management}
+
+This paragraph is aimed to give a more precise definition of ``fair
+management'' of the available taxi queues.
+
+The city is divided into several zones, to each zone a taxi queue
+is assigned. Each zone is characterized by a different load of requests
+$n_{i}$ measured in request/minute. Let $N$ be the total number
+of taxis available at a certain moment, the number $q_{i}$ of taxis
+available in the zone $i$ has to be proportional to $n_{i}$, in
+particular $q_{i}=Nn_{i}/\sum_{i}n_{i}$. Every time one taxi turns
+from available to busy or out of service or viceversa a new distribution
+of the taxis has to be computed; the taxis to be moved have to minimize
+the cost of movement calculated as number of zones passed through.
+To prevent too many movements, a fluctuation between -30\% and 30\%
+from the value $q_{i}$ is accepted without performing taxi movements.
+
+
+\subsection{Reference documents }
+\begin{lyxlist}{00.00.0000}
+\item [{{[}1{]}}] IEEE Software Engineering Standards Committee, “IEEE
+Std 830-1998, IEEE Recommended Practice for Software Requirements
+Specifications”, October 20, 1998. 
+\item [{{[}2{]}}] P, Zave, M. Jackson, Four dark corners of requirements
+engineering, TOSEM 1997.
+\item [{{[}3{]}}] Software Abstractions: Logic, Language, and Analysis,
+revised edition Edition by Daniel Jackson, MIT Press.
+\item [{{[}4{]}}] Software Engineering 2 course slides.
+\end{lyxlist}
+
+\subsection{Overview}
+
+This document is drawn up in accordance to the IEEE Std 830-1998 for
+Software Requirements Specifications and it is composed of four sections
+and an appendix.
+\begin{itemize}
+\item The first, this one, section gives a general description of the document
+and brief information about the actors and the purposes of the software.
+\item The second section provides an overview of the software, highlighting
+the interaction with external system interfaces and explaining the
+main functions carried out. It also focuses on constraints and domain
+assumptions.
+\item The third section is entirely dedicated to the derivation and specification
+of the requirements. Several scenarios expressed in natural language
+will be provided. A generalization of the set of scenarios will be
+specified as a set of use cases that will be expressed both in natural
+language and using UML use case diagram. For some groups of use cases
+a dynamical description will be provided mainly using UML sequence
+diagram. A high level conceptual description of the classes affected
+by the system will be given using UML class diagram. For some of the
+objects involved, we will design a UML state chart diagram showing
+the evolution of its state. 
+\item The fourth section presents a formalization of a subset of the requirements
+using Alloy; some significant instances will be shown.
+\item The appendix contains an interesting model of the goals, a brief description
+of the tools used to produce this documents and the number of hours
+each group member has worked towards the fulfillment of this deadline.\end{itemize}
+

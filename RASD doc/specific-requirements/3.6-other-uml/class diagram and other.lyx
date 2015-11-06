@@ -155,24 +155,6 @@ State chart diagram
 \begin_layout Standard
 In this subsection a state chart diagram is shown to make clear how the
  state of a taxi changes according to the events occuring.
- The substats inside 
-\begin_inset Quotes eld
-\end_inset
-
-available
-\begin_inset Quotes erd
-\end_inset
-
- and 
-\begin_inset Quotes eld
-\end_inset
-
-busy
-\begin_inset Quotes erd
-\end_inset
-
- are only of conceptual interest but they are not going to be explicitally
- represented in the system.
 \end_layout
 
 \begin_layout Standard

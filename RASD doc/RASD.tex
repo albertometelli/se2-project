@@ -1,0 +1,122 @@
+%% LyX 2.1.1 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[twoside,english]{article}
+\usepackage[utf8]{luainputenc}
+\usepackage[a4paper]{geometry}
+\geometry{verbose,tmargin=3.5cm,bmargin=3cm,lmargin=3cm,rmargin=3cm}
+\setlength{\parskip}{\medskipamount}
+\setlength{\parindent}{0pt}
+\usepackage{array}
+\usepackage{float}
+\usepackage{url}
+\usepackage{graphicx}
+
+\makeatletter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
+\providecommand{\LyX}{L\kern-.1667em\lower.25em\hbox{Y}\kern-.125emX\@}
+%% Because html converters don't know tabularnewline
+\providecommand{\tabularnewline}{\\}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+\newenvironment{lyxlist}[1]
+{\begin{list}{}
+{\settowidth{\labelwidth}{#1}
+ \setlength{\leftmargin}{\labelwidth}
+ \addtolength{\leftmargin}{\labelsep}
+ \renewcommand{\makelabel}[1]{##1\hfil}}}
+{\end{list}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\usepackage{fancyhdr}
+\usepackage{afterpage}
+\usepackage{framed}
+\usepackage{settings}
+\usepackage{lscape}
+\usepackage{pdflscape}
+\usepackage{color}   %May be necessary if you want to color links
+\usepackage{hyperref}
+
+%Set up settings
+\setcounter{secnumdepth}{4}
+\usepackage{hyperref}
+\hypersetup{
+    linktoc=all,     %set to all if you want both sections and subsections linked
+}
+
+\makeatother
+
+\usepackage{babel}
+\usepackage{listings}
+\renewcommand{\lstlistingname}{Listing}
+
+\begin{document}
+\pagestyle{empty}
+
+\input{title-page/title-page.tex}
+
+\clearpage{}
+
+\afterpage{\null\newpage}
+
+\clearpage{}
+
+\pagestyle{fancy}
+\fancypagestyle{plain}
+\fancyhf{}
+\fancyfoot{}
+\fancyhead[LE,RO]{\thepage} 
+\fancyhead[LO]{\slshape \rightmark} 
+\fancyhead[RE]{\slshape \leftmark} 
+
+\thispagestyle{empty}
+\pagenumbering{roman}\tableofcontents{}\listoffigures
+
+
+\clearpage{}
+
+\pagenumbering{arabic}
+
+\thispagestyle{empty}
+
+
+\section{Introduction}
+
+\input{introduction/introduction.tex}
+
+\clearpage{}
+
+\thispagestyle{empty}
+
+
+\section{Overall description}
+
+\input{overall-description/overall-description.tex}
+
+\clearpage{}
+
+\thispagestyle{empty}
+
+
+\section{Specific Requirements }
+
+\input{specific-requirements/specific-requirements.tex}
+
+\clearpage{}
+
+\thispagestyle{empty}
+
+
+\section{Alloy model}
+
+\input{alloy/alloy-specification.tex}
+
+\clearpage{}
+
+\appendix
+
+\input{appendix/appendix.tex}
+
+
+\section*{\clearpage{}}
+\end{document}

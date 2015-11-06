@@ -193,7 +193,8 @@ status collapsed
 
 \end_inset
 
-Corso di Laurea Magistrale in Ingegneria Informatica
+M.Sc.
+ in Computer Science and Engineering
 \begin_inset ERT
 status collapsed
 
@@ -276,7 +277,7 @@ status open
 \end_inset
 
 
-\begin_inset VSpace 0.5cm
+\begin_inset VSpace 0.4cm
 \end_inset
 
 
@@ -374,7 +375,7 @@ status collapsed
 
 \begin_layout Standard
 \align center
-\begin_inset VSpace 1cm
+\begin_inset VSpace 0.9cm
 \end_inset
 
 
@@ -465,6 +466,16 @@ status open
 \end_layout
 
 \begin_layout Standard
+\align center
+version 1.0
+\end_layout
+
+\begin_layout Standard
+\align center
+6th November 2015
+\end_layout
+
+\begin_layout Standard
 \align left
 \begin_inset VSpace 0.5cm
 \end_inset
@@ -546,6 +557,10 @@ Matr.
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+\align left
 \begin_inset VSpace 2cm
 \end_inset
 

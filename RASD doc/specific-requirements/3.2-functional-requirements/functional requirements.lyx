@@ -188,13 +188,7 @@ Jackson Zave approach
 
 \begin_layout Labeling
 \labelwidthstring 00.00.0000
-[R4.3] TS shall verify if the reservation is made at least two hours before
- the ride.
-\end_layout
-
-\begin_layout Labeling
-\labelwidthstring 00.00.0000
-[R4.4] TS shall store the reservation, allocate a request 10 minutes before
+[R4.3] TS shall store the reservation, allocate a request 10 minutes before
  the meeting time.
 \end_layout
 

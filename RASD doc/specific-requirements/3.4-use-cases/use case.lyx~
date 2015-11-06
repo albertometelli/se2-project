@@ -63,7 +63,7 @@
 \paragraph_indentation default
 \quotes_language english
 \papercolumns 1
-\papersides 1
+\papersides 2
 \paperpagestyle default
 \tracking_changes false
 \output_changes false
@@ -412,6 +412,13 @@ Nothing.
 \end_layout
 
 \begin_layout Standard
+\begin_inset Newpage clearpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset ERT
 status open
 
@@ -477,6 +484,13 @@ status open
 end{landscape}
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage clearpage
 \end_inset
 
 
@@ -967,6 +981,13 @@ Nothing.
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset Newpage clearpage
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsubsection
 Request with automatic geolocalization
 \end_layout
@@ -1276,6 +1297,13 @@ end{landscape}
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset Newpage clearpage
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsubsection
 Login
 \end_layout
@@ -1500,6 +1528,13 @@ Nothing.
 \end_layout
 
 \begin_layout Standard
+\begin_inset Newpage clearpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset ERT
 status open
 
@@ -1561,6 +1596,13 @@ status open
 end{landscape}
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage clearpage
 \end_inset
 
 
@@ -1888,6 +1930,13 @@ Nothing.
 \end_layout
 
 \begin_layout Standard
+\begin_inset Newpage clearpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset ERT
 status open
 
@@ -1949,6 +1998,13 @@ status open
 end{landscape}
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage clearpage
 \end_inset
 
 
@@ -2177,6 +2233,13 @@ Nothing.
 \end_layout
 
 \begin_layout Standard
+\begin_inset Newpage clearpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset ERT
 status open
 
@@ -2203,7 +2266,7 @@ status open
 \begin_inset Graphics
 	filename image/cancel reserv.pdf
 	scale 70
-	BoundingBox 0bp 200bp 842bp 595bp
+	BoundingBox 0bp 80bp 842bp 595bp
 
 \end_inset
 
@@ -2238,6 +2301,13 @@ status open
 end{landscape}
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage clearpage
 \end_inset
 
 
@@ -2535,6 +2605,13 @@ Nothing.
 \end_layout
 
 \begin_layout Standard
+\begin_inset Newpage clearpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
@@ -2563,6 +2640,13 @@ Modify reservation - UML sequence diagram
 
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage clearpage
 \end_inset
 
 
@@ -2806,6 +2890,13 @@ Nothing.
 \end_layout
 
 \begin_layout Standard
+\begin_inset Newpage clearpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
@@ -2834,6 +2925,13 @@ Queue Management - UML sequence diagram
 
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage clearpage
 \end_inset
 
 
@@ -3057,6 +3155,13 @@ Nothing.
 \end_layout
 
 \begin_layout Standard
+\begin_inset Newpage clearpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset ERT
 status open
 
@@ -3117,6 +3222,13 @@ status open
 end{landscape}
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage clearpage
 \end_inset
 
 
@@ -3634,6 +3746,13 @@ Nothing.
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset Newpage clearpage
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsubsection
 Request rejection
 \end_layout
@@ -3869,6 +3988,13 @@ Nothing.
 \end_layout
 
 \begin_layout Standard
+\begin_inset Newpage clearpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset ERT
 status open
 
@@ -3929,6 +4055,13 @@ status open
 end{landscape}
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage clearpage
 \end_inset
 
 
@@ -4156,6 +4289,13 @@ Nothing.
 \end_layout
 
 \begin_layout Standard
+\begin_inset Newpage clearpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset ERT
 status open
 
@@ -4216,6 +4356,13 @@ status open
 end{landscape}
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage clearpage
 \end_inset
 
 
@@ -4430,6 +4577,13 @@ Request and Visualize request info are performed.
 </row>
 </lyxtabular>
 
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage clearpage
 \end_inset
 
 

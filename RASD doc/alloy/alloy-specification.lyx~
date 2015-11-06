@@ -670,12 +670,12 @@ fun numberOfInServiceTaxis: Int {
 
 \begin_layout Plain Layout
 
-//At least 50% of total number of taxis must be available
+//At least 20% of total number of taxis must be in service
 \end_layout
 
 \begin_layout Plain Layout
 
-fact atLeast50PerCentOfTaxisAreNotOutOfService { 	
+fact atLeast20PerCentOfTaxisAreNotOutOfService { 	
 \end_layout
 
 \begin_layout Plain Layout
@@ -888,6 +888,13 @@ status open
 
 \begin_layout Plain Layout
 
+//Predicate for sending a reservation: if the reservation is not already
+ in the set it is added  to the set and a corresponding request is generated
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
 pred sendReservation[setOfReservations,setOfReservations': set Reservation,
  reservation: Reservation] { 	 	
 \end_layout
@@ -988,6 +995,12 @@ end{framed}
 lstparams "breaklines=true,showstringspaces=false"
 inline false
 status open
+
+\begin_layout Plain Layout
+
+//Predicate for deleting a reservation: if reservation is present it is
+ removed and the corresponding request no longer exists 
+\end_layout
 
 \begin_layout Plain Layout
 
@@ -1812,7 +1825,7 @@ pred cancelReservation[setOfReservations,setOfReservations': set Reservation,
 
 .
  As you can see, before the execution Reservation1 belonged to the set of
- reservation while after only Reservation0 is in that set.
+ reservation while reservation set is empty.
 \end_layout
 
 \begin_layout Standard

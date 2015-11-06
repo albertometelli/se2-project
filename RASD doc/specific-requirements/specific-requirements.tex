@@ -1,0 +1,112 @@
+
+\subsection{External Interface Requirements }
+
+\input{\string"specific-requirements/3.1-external-interface-requirements/external interface requirements.tex\string"}
+
+\clearpage{}
+
+
+\subsection{Functional Requirements }
+
+\input{\string"specific-requirements/3.2-functional-requirements/functional requirements.tex\string"}
+
+\clearpage{}
+
+
+\subsection{Scenarios}
+
+\input{specific-requirements/3.3-scenarios/scenarios.tex}
+
+\clearpage{}
+
+\input{\string"specific-requirements/3.4-use-cases/use case.tex\string"}
+
+\clearpage{}
+
+\input{\string"specific-requirements/3.6-other-uml/class diagram and other.tex\string"}
+
+\clearpage{}
+
+
+\subsection{Non functional requirements}
+
+Since TS system is intended to increase the degree of usability of
+the taxi service and perform improvements in the available taxi queue
+management, according to stackeholders' expectations we identified
+the following non functional requirements.
+
+
+\subsubsection{Performance}
+\begin{itemize}
+\item All internal elaborations carried out by QMA must have a response
+time of 100 ms in 99\% of times.
+\item TMA, PMA and PWA must have a response time of 10 ms in 99\% of times
+for local elaborations (not involving Internet connection).
+\item Remote interaction (via Internet) within TS system must least at most
+2 seconds otherwise the connection is closed.
+\item TS system shall support at least 500 simultaneous connections.
+\end{itemize}
+
+\subsubsection{Reliability}
+\begin{itemize}
+\item TS system shall ensure that every operation coming from TMA, PMA and
+PWA is correctly processed.
+\item All the user inputs are verified by the local application before being
+sent to the TS system .
+\item TS system shall be a transactional system (both operations generated
+by users and internal operations carried out by TS system are transactions).
+\end{itemize}
+
+\subsubsection{Availability }
+\begin{itemize}
+\item The TS system must be available 99.9\%. 
+\item A hardware duplicate must be ready to be activated when maintenance
+is performed or failure occurs to ensure continuity of the service.
+\item A backup of data should be performed every week to prevent any loss
+of data in the TS system.
+\end{itemize}
+
+\subsubsection{Security }
+\begin{itemize}
+\item All sensitive data collected from users must be stored in safe devices
+accessible only by authorized users to prevent loss, manipulation
+or stealing.
+\item All data flowing between system and users must be encrypted to ensure
+confidentiality.
+\item Registered passenger's password must be changed every three months.
+\end{itemize}
+
+\subsubsection{Maintainability }
+\begin{itemize}
+\item TS system shall be developed in order to reduce the maintenance cost,
+trying to anticipate and preventing future interventions (corrective
+and adaptive maintenance) by means of standard patterns (in particular
+the architecture must follow the MVC pattern).
+\item TS system shall expose a set of APIs in order to allow future functionalists
+extensions (perfective maintenance).
+\item Thanks to hardware duplication, hardware maintenance interventions
+will be performed without service interruption.
+\end{itemize}
+
+\subsubsection{Portability }
+\begin{itemize}
+\item TMA and PMA shall be installable in both iOS, Android and Windows
+mobile.
+\item PWA shall be accessible by means of all up to date browsers having
+cookies enabled.
+\end{itemize}
+
+\subsubsection{Documentation}
+\begin{itemize}
+\item An accurate user guide must be available online.
+\item All the documents produced during the design and development of the
+TS shall be available for specialized personnel.
+\end{itemize}
+
+\subsubsection{User interface and human factors }
+\begin{itemize}
+\item TS is meant for user without any particular knowledge or experience
+in the field of IT so the application must be intuitive and easy to
+master.
+\item Every functionality shall be reached surfing no more than 4 pages.\end{itemize}
+

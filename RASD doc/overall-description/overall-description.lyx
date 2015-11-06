@@ -228,6 +228,11 @@ The browser used by web passengers to access the system must have cookies
  enabled.
 \end_layout
 
+\begin_layout Itemize
+Each taxi driver is provided with a smartphone and the application TMA must
+ be installed.
+\end_layout
+
 \begin_layout Subsection
 Domain assumptions
 \end_layout
@@ -242,7 +247,7 @@ Considering the specific application domain and according to the information
 \labelwidthstring 00.00.0000
 [D1] A taxi driver always executes indications communicated by the system
  (e.g.
- move notifications).
+ move notifications), except in case of emergency.
 \end_layout
 
 \begin_layout Labeling
@@ -324,7 +329,7 @@ Considering the specific application domain and according to the information
 \labelwidthstring 00.00.0000
 [D14] Taxi drivers' work-shifts are managed in order to ensure that at each
  moment the number of in service taxis is at least 50% of the total number
- of taxis.
+ of taxis during the day and 20% during the night.
 \end_layout
 
 \begin_layout Labeling
@@ -337,6 +342,14 @@ Considering the specific application domain and according to the information
 \labelwidthstring 00.00.0000
 [D16] Taxi can move without limitations inside the zone assigned by TS system
  but they cannot change the zone without a notification from the system.
+\end_layout
+
+\begin_layout Standard
+Note that also taxi drivers are identified by the system but registration
+ of the taxi driver is not part of the TS system since it reasonably involves
+ contractual issues (taxi driver has to make an agreement with the company)
+ that cannot be directly managed by the system.
+ Therefore registration is not performed by taxi driver.
 \end_layout
 
 \begin_layout Subsection

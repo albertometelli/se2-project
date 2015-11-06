@@ -1,0 +1,122 @@
+In this section, according to the \emph{Jackson Zave approach}, we
+derive the requirements for TS system. Each requirement is related
+to the goal it is intended to satisfy to make the reading simpler.
+
+
+\subsubsection{{[}G1{]} Allow a passenger to request a taxi for its current position
+without registration.}
+\begin{lyxlist}{00.00.0000}
+\item [{{[}R1.1{]}}] TS shall provide the passenger with a form in which
+he/she has to insert the total number of passengers and accept terms
+and conditions.
+\item [{{[}R1.2{]}}] TS shall retrieve automatically passenger's position
+if GPS or browser geolocalization is available, otherwise user has
+to specify his address.
+\item [{{[}R1.3{]}}] After confirmation, TS shall store the request and 
+
+\begin{lyxlist}{00.00.0000}
+\item [{{[}R.1.3.1{]}}] Assign it to the first available taxi in the queue
+of the zone. 
+\item [{{[}R.1.3.2{]}}] If the queue is empty, TS shall look for taxis
+in the queues of adjacent zones and, if necessary, repeat the process
+for the other adjacent zones.
+\item [{{[}R.1.3.3{]}}] If no taxi is found, TS shall inform passenger
+and put request on hold.
+\end{lyxlist}
+\end{lyxlist}
+
+\subsubsection{{[}G2{]} Allow the passenger to visualize the waiting time and the
+code of the incoming taxi for confirmed requests.}
+\begin{lyxlist}{00.00.0000}
+\item [{{[}R2.1{]}}] TS shall compute the expected waiting time for a confirmed
+request.
+\item [{{[}R2.2{]}}] TS shall provide the user with a form showing the
+waiting time and the code of the incoming taxi.
+\end{lyxlist}
+
+\subsubsection{{[}G3{]} Allow a registered passenger to have a personal area.}
+\begin{lyxlist}{00.00.0000}
+\item [{{[}R3.1{]}}] TS shall provide the user with a registration form
+in which he/she has to insert firstname, lastname, email and address
+and choose a username and a password.
+\item [{{[}R3.2{]}}] TS shall verify if the user is not already registered,
+if not TS shall send a confirmation mail, otherwise cancel the process.
+\item [{{[}R3.3{]}}] TS shall provide the user with a login form in which
+he/she has to insert username and password.
+\item [{{[}R3.4{]}}] TS shall verify if username and password are correct,
+if so TS shall show the passenger's home page, otherwise report the
+login failure.
+\item [{{[}R3.5{]}}] TS shall provide a procedure to recover the password.
+\end{lyxlist}
+
+\subsubsection{{[}G4{]} Allow a registered passenger to reserve a taxi.}
+\begin{lyxlist}{00.00.0000}
+\item [{{[}R4.1{]}}] TS shall provide the registered passenger with a form
+in which he/she has to insert the total number of passengers, the
+origin and the destination of the ride, the date and time of the meeting.
+\item [{{[}R4.2{]}}] TS shall accept only reservations made at least two
+hours in advance.
+\item [{{[}R4.3{]}}] TS shall store the reservation, allocate a request
+10 minutes before the meeting time.
+\end{lyxlist}
+
+\subsubsection{{[}G5{]} Allow a registered passenger to cancel or modify a previous
+reservation. }
+\begin{lyxlist}{00.00.0000}
+\item [{{[}R5.1{]}}] TS shall provide the registered passenger with a table
+containing all previous reservations.
+\item [{{[}R5.2{]}}] TS shall provide for each of them a cancellation and
+modification procedure.
+\item [{{[}R5.3{]}}] TS shall verify after modification the correctness
+of the new data.
+\end{lyxlist}
+
+\subsubsection{{[}G6{]} Allow a taxi driver to either accept or reject a request
+coming from the system.}
+\begin{lyxlist}{00.00.0000}
+\item [{{[}R6.1{]}}] TS shall show to the chosen taxi driver the request
+indicating coordinates of the passenger and total number of passengers.
+\item [{{[}R6.2{]}}] TS shall provide the taxi driver with a form allowing
+him to choose if accept or reject the request.
+\item [{{[}R6.3{]}}] TS prevents taxi driver to reject twice the same request.
+\item [{{[}R6.4{]}}] In case of acceptance, TS shall put the taxi driver
+into state \emph{busy}, otherwise put taxi driver at the end of the
+queue and repeat {[}R1.3{]}. If no answer from the taxi driver in
+one minute it is interpreted as a rejection.
+\end{lyxlist}
+
+\subsubsection{{[}G7{]} Allow a taxi driver to inform the system about his/her availability.}
+\begin{lyxlist}{00.00.0000}
+\item [{{[}R7.1{]}}] TS shall provide the taxi driver with the possibility
+to set the state to \emph{busy} if the current state is \emph{available}
+and he/she is picking up a passenger along the road and viceversa
+when the passenger gets out or the passenger isn't there.
+\item [{{[}R7.2{]}}] TS shall provide the taxi driver with the possibility
+to set the state to \emph{out of service} if the current state is
+\emph{available} and viceversa.
+\item [{{[}R7.3{]}}] Whenever a taxi goes into \emph{available} it is put
+at the end of the queue of the zone it is currently located.
+\end{lyxlist}
+
+\subsubsection{{[}G8{]} Ensure that available taxi queues enjoy the properties specified
+in sub paragraph 1.6.2.}
+\begin{lyxlist}{00.00.0000}
+\item [{{[}R8.1{]}}] TS shall retrieve the position w.r.t. the zones and
+the state of the taxi whenever the state of a taxi driver changes
+or a request comes or anyway periodically.
+\item [{{[}R8.2{]}}] TS shall insert in each queue all \emph{available}
+taxis currently located in each zone.
+\item [{{[}R8.3{]}}] For each queue lacking of taxis, TS shall move to
+that zone several taxis minimizing the total cost (number of zones
+traversed). 
+\item [{{[}R8.4{]}}] TS shall inform the taxi driver to move to a certain
+zone (if needed for queue management) by means of notification. That
+taxi is put in \emph{moving} state%
+\footnote{\emph{Moving} state from the outside is equivalent to \emph{available}
+state, it is just used by TS to remember that the taxi is moving to
+a specific zone and avoid to move other taxis. In particular, that
+taxi during the movement is added at the end of the destination zone
+queue.%
+} and it goes back to \emph{available }when arrives to the specified
+zone.\end{lyxlist}
+

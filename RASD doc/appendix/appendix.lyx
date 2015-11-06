@@ -250,27 +250,79 @@ Used tools
 \end_layout
 
 \begin_layout Enumerate
-LyX visual editor for LaTeX (http://www.lyx.org/) to write this document.
+LyX visual editor for LaTeX (
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+http://www.lyx.org/
+\end_layout
+
+\end_inset
+
+) to write this document.
 \end_layout
 
 \begin_layout Enumerate
-Star UML (http://staruml.io/) for use case diagram, class diagram, sequence
- diagram, activity diagram and state chart diagram.
+Star UML 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+(http://staruml.io/
+\end_layout
+
+\end_inset
+
+) for use case diagram, class diagram, sequence diagram, activity diagram
+ and state chart diagram.
 \end_layout
 
 \begin_layout Enumerate
-Alloy Analyser 4.2 (http://alloy.mit.edu/alloy/) to build the model and prove
- its consistency.
+Alloy Analyser 4.2 (
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+http://alloy.mit.edu/alloy/)
+\end_layout
+
+\end_inset
+
+ to build the model and prove its consistency.
 \end_layout
 
 \begin_layout Enumerate
-Balsamiq Mockup (http://balsamiq.com/products/mockups/) for user inferface
- mockup generation.
+Balsamiq Mockup (
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+http://balsamiq.com/products/mockups/
+\end_layout
+
+\end_inset
+
+) for user inferface mockup generation.
 \end_layout
 
 \begin_layout Enumerate
-OpenOME (http://www.cs.toronto.edu/km/openome/OpenOME.html), an open-source
- requirements engineering tool for the i* model.
+OpenOME (
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+http://www.cs.toronto.edu/km/openome/OpenOME.html
+\end_layout
+
+\end_inset
+
+), an open-source requirements engineering tool for the i* model.
 \end_layout
 
 \begin_layout Subsection*
@@ -290,12 +342,145 @@ Riccardo Mologni: 33 h
 \end_layout
 
 \begin_layout Subsection*
-Versions
+Revision history
 \end_layout
 
 \begin_layout Labeling
 \labelwidthstring 00.00.0000
-1.0.0 6th November 2015: Initial deliverable
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="4">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="left" valignment="top" width="1.5cm">
+<column alignment="left" valignment="top" width="2cm">
+<column alignment="left" valignment="top" width="3.5cm">
+<column alignment="left" valignment="top" width="5cm">
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\emph on
+Version
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\emph on
+Date
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\emph on
+Revision description
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\emph on
+Revision notes
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1-11-2015
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Initial draft
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6-11-2015
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Final draft
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
 \end_layout
 
 \end_body

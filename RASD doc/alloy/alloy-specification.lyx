@@ -670,12 +670,12 @@ fun numberOfInServiceTaxis: Int {
 
 \begin_layout Plain Layout
 
-//At least 50% of total number of taxis must be available
+//At least 20% of total number of taxis must be in service
 \end_layout
 
 \begin_layout Plain Layout
 
-fact atLeast50PerCentOfTaxisAreNotOutOfService { 	
+fact atLeast20PerCentOfTaxisAreNotOutOfService { 	
 \end_layout
 
 \begin_layout Plain Layout
@@ -888,6 +888,13 @@ status open
 
 \begin_layout Plain Layout
 
+//Predicate for sending a reservation: if the reservation is not already
+ in the set it is added  to the set and a corresponding request is generated
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
 pred sendReservation[setOfReservations,setOfReservations': set Reservation,
  reservation: Reservation] { 	 	
 \end_layout
@@ -988,6 +995,12 @@ end{framed}
 lstparams "breaklines=true,showstringspaces=false"
 inline false
 status open
+
+\begin_layout Plain Layout
+
+//Predicate for deleting a reservation: if reservation is present it is
+ removed and the corresponding request no longer exists 
+\end_layout
 
 \begin_layout Plain Layout
 
@@ -1353,95 +1366,6 @@ No counterexample found.
 
 \begin_layout Plain Layout
 
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-end{framed}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset listings
-lstparams "breaklines=true,showstringspaces=false"
-inline false
-status open
-
-\begin_layout Plain Layout
-
-//Verifies whether at least one taxi is in service 
-\end_layout
-
-\begin_layout Plain Layout
-
-assert ifOneTaxiExistsItIsInService { 	
-\end_layout
-
-\begin_layout Plain Layout
-
-	one Taxi implies Taxi.state in (Available + Busy + Moving) 
-\end_layout
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-check ifOneTaxiExistsItIsInService
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-begin{framed}
-\end_layout
-
-\begin_layout Plain Layout
-
-Executing "Check ifOneTaxiExistsItIsInService"    
-\end_layout
-
-\begin_layout Plain Layout
-
-Solver=sat4j Bitwidth=4 MaxSeq=4 SkolemDepth=1 Symmetry=20    
-\end_layout
-
-\begin_layout Plain Layout
-
-4735 vars.
- 360 primary vars.
- 10891 clauses.
- 16ms.
-    
-\end_layout
-
-\begin_layout Plain Layout
-
-No counterexample found.
- Assertion may be valid.
- 0ms.
 \end_layout
 
 \begin_layout Plain Layout

@@ -5,6 +5,7 @@
 \textclass article
 \begin_preamble
 \usepackage{fancyhdr}
+\usepackage{afterpage}
 \usepackage{framed}
 \usepackage{settings}
 \usepackage{lscape}
@@ -79,7 +80,7 @@
 \defskip medskip
 \quotes_language english
 \papercolumns 1
-\papersides 1
+\papersides 2
 \paperpagestyle default
 \tracking_changes false
 \output_changes false
@@ -131,7 +132,90 @@ status open
 
 
 \backslash
+afterpage{
+\backslash
+null
+\backslash
+newpage}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage clearpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
 pagestyle{fancy}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+fancypagestyle{plain}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+fancyhf{}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+fancyfoot{}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+fancyhead[LE,RO]{
+\backslash
+thepage} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+fancyhead[LO]{
+\backslash
+slshape 
+\backslash
+rightmark} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+fancyhead[RE]{
+\backslash
+slshape 
+\backslash
+leftmark} 
+\end_layout
+
+\begin_layout Plain Layout
+
 \end_layout
 
 \begin_layout Plain Layout
@@ -169,6 +253,9 @@ LatexCommand tableofcontents
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
 \begin_inset ERT
 status open
 
