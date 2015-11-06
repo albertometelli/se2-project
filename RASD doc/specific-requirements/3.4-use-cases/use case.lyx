@@ -1757,7 +1757,8 @@ Passenger accesses to the reservation area.
 \uwave off
 \noun off
 \color none
-Passenger inserts the required data (address, date, time, number of passengers).
+Passenger inserts the required data (origin, destination, date, time, number
+ of passengers).
 \end_layout
 
 \begin_layout Enumerate
@@ -2443,7 +2444,8 @@ Passenger selects the reservation to be modified.
 
 \begin_layout Enumerate
 \align left
-Passenger modifies data related to reservation (address, date time, 
+Passenger modifies data related to reservation (origin, destination, date
+ time, 
 \family roman
 \series medium
 \shape up

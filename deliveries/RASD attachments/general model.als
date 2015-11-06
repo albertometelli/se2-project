@@ -45,12 +45,12 @@ sig Reservation{
 	date: one Date, 	
 	time: one Time, 	
 	numberOfPassengers: one Int, 	
-	location: one Location, 	
+	origin: one Location, 
+	destination: one Location,	
 	associatedRequest: one Request, 
-} 
-{numberOfPassengers>=1 and associatedRequest.passenger = passenger and associatedRequest.location = location and associatedRequest.numberOfPassengers = numberOfPassengers}
+} {numberOfPassengers>=1 and associatedRequest.passenger = passenger and associatedRequest.location = origin and associatedRequest.numberOfPassengers = numberOfPassengers}
 
-sig Zone{ 		
+sig Zone{ 	
 	requestsPerMinute: one Int, 
 }{ requestsPerMinute>0}
 
@@ -59,14 +59,14 @@ fact oneTaxiForEachTaxiDriver {
 	all disj t1, t2 : Taxi | t1.driver != t2.driver 
 }
 
-//Non out of service taxis must have a driver
-fact allAvailableTaxiMustHaveADriver {
-	all t: Taxi | t.state in (Available + Moving + Busy) implies one t.driver
+//Non out of service taxis must have a driver 
+fact allAvailableTaxiMustHaveADriver { 	
+	all t: Taxi | t.state in (Available + Moving + Busy) implies one t.driver 
 }
 
-//All busy taxi must have at least a request associated
-fact allBusyTaxiMustHaveAtLeastARequestAssociated {
-	all t: Taxi | some r: Request | t.state in Busy implies t in r.taxis
+//All busy taxi must have at least a request associated 
+fact allBusyTaxiMustHaveAtLeastARequestAssociated { 	
+	all t: Taxi | some r: Request | t.state in Busy implies t in r.taxis 
 }
 
 //Auxiliary predicate to check if two requests are simultaneous 
@@ -83,33 +83,41 @@ fact noPassengerMakesMoreThanOneRequestAtTime {
 //Each taxi can carry out at most one request at time 
 fact noTaxiCarriesOutMoreThanOneRequestAtTime { 	
 	all disj r1, r2: ConfirmedRequest | atTheSameTime[r1,r2] 
-		implies no (r1.taxis & r2.taxis)
+		implies r1.taxis != r2.taxis 
 }
 
 //Each request can be associated to at most one reservation 
 fact eachRequestAssociatedToAtMostOneReservation { 	
-	all r: Request | lone re: Reservation | re.associatedRequest = r 
+	all r: Request | lone re: Reservation | 
+		re.associatedRequest = r 
 }
 
-/* This is syntactically and semantically correct but it is writter in second order logic so it cannot be executed
-fact numberOfSeatsAreTheMinimumRequired {
-	all r: ConfirmedRequest | no taxiSubset: set Taxi | taxiSubset in r.taxis and taxiSubset != r.taxis and
-		sum taxiSubset.numberOfSeats >= r.numberOfPassengers
-}*/
-
-//The same fact rephrased in FOL: the number of taxis sent are the minimun requested to pick up all passengers
-fact numberOfSeatsAreTheMinimumRequired {
-	all r: ConfirmedRequest | no t: Taxi | t in r.taxis and sum r.taxis.numberOfSeats - t.numberOfSeats >= r.numberOfPassengers
+//Origin and destination for each request must be different
+fact originAndDestinationDifferent {
+	all r: Reservation | r.origin != r.destination
 }
 
 //In each request the number of seats must be sufficient wrt number of passengers
 fact numberOfSeatsSufficient { 	
-	all r: ConfirmedRequest | sum r.taxis.numberOfSeats >= r.numberOfPassengers 
+	all r: ConfirmedRequest | sum r.taxis.numberOfSeats 
+		>= r.numberOfPassengers 
+}
+
+/* 
+This is syntactically and semantically correct but it is writter in second order logic so it cannot be executed 
+fact numberOfSeatsAreTheMinimumRequired { 	
+	all r: ConfirmedRequest | no taxiSubset: set Taxi | taxiSubset in r.taxis and taxiSubset != r.taxis and 		sum taxiSubset.numberOfSeats >= r.numberOfPassengers 
+}
+*/
+
+//The same fact rephrased in FOL: the number of taxis sent are the minimun requested to pick up all passengers 
+fact numberOfSeatsAreTheMinimumRequired { 	
+	all r: ConfirmedRequest | no t: Taxi | t in r.taxis and sum r.taxis.numberOfSeats - t.numberOfSeats >= r.numberOfPassengers 
 }
 
 //Returns the number of in service taxis
 fun numberOfInServiceTaxis: Int { 	
-	plus[plus[#state.Available, #state.Busy], #state.Moving]
+	#state.Available + #state.Busy + #state.Moving
 }
 
 //At least 20% of total number of taxis must be in service
@@ -120,7 +128,7 @@ fact atLeast20PerCentOfTaxisAreNotOutOfService {
 //Just builds a world satisfying constraints
 pred show{}
 
-//run show for 4 but 5 Int, exactly 1 Zone, exactly 1 Reservation, exactly 2 Request,  exactly 1 ConfirmedRequest, exactly 1 NormalTaxi, exactly 1 MinivanTaxi, exactly 1 Location, exactly 1 Date, exactly 1 Time, exactly 1 RegisteredPassenger, exactly 1 UnregisteredPassenger
+//run show for 4 but 5 Int, exactly 1 Zone, exactly 1 Reservation, exactly 2 Request,  exactly 1 ConfirmedRequest, exactly 1 NormalTaxi, exactly 1 MinivanTaxi, exactly 2 Location, exactly 1 Date, exactly 1 Time, exactly 1 RegisteredPassenger, exactly 1 UnregisteredPassenger
 
 //Predicate for sending a request: if the request is not already confirmed and it is not already in the set it is added to the set 
 pred sendRequest[setOfRequests,setOfRequests': set Request, request: Request] { 	
@@ -151,7 +159,7 @@ pred cancelReservation[setOfReservations,setOfReservations': set Reservation, re
 		setOfReservations' = setOfReservations
 }
 
-//run cancelReservation for 10 but 5 Int, 1 Zone, exactly 2 Reservation, 2 Request, 2 Passenger, 3 Taxi, exactly 1 TaxiDriver, exactly 1 Date, exactly 1 Time, exactly 1 Location
+//run cancelReservation for 10 but 5 Int, 1 Zone, exactly 2 Reservation, 2 Request, 2 Passenger, 3 Taxi, exactly 1 TaxiDriver, exactly 1 Date, exactly 1 Time, exactly 2 Location
 
 //Verifies whether at least one taxi is in service 
 assert ifOneTaxiExistsItIsInService { 	
@@ -172,8 +180,14 @@ assert allRequestOfTheSameTaxiDriverDifferentInTime {
 	all td: TaxiDriver | all disj r1,r2: ConfirmedRequest | td in (r1.taxis.driver & r2.taxis.driver) implies not atTheSameTime[r1,r2]
 }
 
-check allRequestOfTheSameTaxiDriverDifferentInTime for 10
+//check allRequestOfTheSameTaxiDriverDifferentInTime for 10
 
+//Each reservation has a request associated with the same origin
+assert eachReservationHasARequestWithSameOrigin {
+	all r: Reservation | some re: Request | r.origin = re.location
+}
+
+//check eachReservationHasARequestWithSameOrigin for 10
 
 
 

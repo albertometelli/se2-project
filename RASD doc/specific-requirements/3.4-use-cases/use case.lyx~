@@ -1757,7 +1757,8 @@ Passenger accesses to the reservation area.
 \uwave off
 \noun off
 \color none
-Passenger inserts the required data (address, date, time, number of passengers).
+Passenger inserts the required data (origin, destination, date, time, number
+ of passengers).
 \end_layout
 
 \begin_layout Enumerate
@@ -3492,6 +3493,13 @@ Nothing.
 </row>
 </lyxtabular>
 
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage clearpage
 \end_inset
 
 

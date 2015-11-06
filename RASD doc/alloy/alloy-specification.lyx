@@ -324,7 +324,12 @@ sig Reservation{
 
 \begin_layout Plain Layout
 
-	location: one Location, 	
+	origin: one Location, 
+\end_layout
+
+\begin_layout Plain Layout
+
+	destination: one Location,	
 \end_layout
 
 \begin_layout Plain Layout
@@ -335,7 +340,7 @@ sig Reservation{
 \begin_layout Plain Layout
 
 } {numberOfPassengers>=1 and associatedRequest.passenger = passenger and
- associatedRequest.location = location and associatedRequest.numberOfPassengers
+ associatedRequest.location = origin and associatedRequest.numberOfPassengers
  = numberOfPassengers}
 \end_layout
 
@@ -346,11 +351,6 @@ sig Reservation{
 \begin_layout Plain Layout
 
 sig Zone{ 	
-\end_layout
-
-\begin_layout Plain Layout
-
-	adjacentZones: some Zone, 	
 \end_layout
 
 \begin_layout Plain Layout
@@ -540,6 +540,30 @@ fact eachRequestAssociatedToAtMostOneReservation {
 \begin_layout Plain Layout
 
 		re.associatedRequest = r 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+//Origin and destination for each request must be different
+\end_layout
+
+\begin_layout Plain Layout
+
+fact originAndDestinationDifferent {
+\end_layout
+
+\begin_layout Plain Layout
+
+	all r: Reservation | r.origin != r.destination
 \end_layout
 
 \begin_layout Plain Layout
@@ -1366,6 +1390,92 @@ No counterexample found.
 
 \begin_layout Plain Layout
 
+
+\backslash
+end{framed}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "breaklines=true,showstringspaces=false"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+//Each reservation has a request associated with the same origin
+\end_layout
+
+\begin_layout Plain Layout
+
+assert eachReservationHasARequestWithSameOrigin {
+\end_layout
+
+\begin_layout Plain Layout
+
+	all r: Reservation | some re: Request | r.origin = re.location
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+check eachReservationHasARequestWithSameOrigin for 10
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{framed}
+\end_layout
+
+\begin_layout Plain Layout
+
+Executing "Check eachReservationHasARequestWithSameOrigin for 10"    
+\end_layout
+
+\begin_layout Plain Layout
+
+Solver=sat4j Bitwidth=4 MaxSeq=7 SkolemDepth=1 Symmetry=20    
+\end_layout
+
+\begin_layout Plain Layout
+
+53009 vars.
+ 2420 primary vars.
+ 133925 clauses.
+ 391ms.
+    
+\end_layout
+
+\begin_layout Plain Layout
+
+No counterexample found.
+ Assertion may be valid.
+ 224ms.
+ 
 \end_layout
 
 \begin_layout Plain Layout

@@ -324,7 +324,12 @@ sig Reservation{
 
 \begin_layout Plain Layout
 
-	location: one Location, 	
+	origin: one Location, 
+\end_layout
+
+\begin_layout Plain Layout
+
+	destination: one Location,	
 \end_layout
 
 \begin_layout Plain Layout
@@ -335,7 +340,7 @@ sig Reservation{
 \begin_layout Plain Layout
 
 } {numberOfPassengers>=1 and associatedRequest.passenger = passenger and
- associatedRequest.location = location and associatedRequest.numberOfPassengers
+ associatedRequest.location = origin and associatedRequest.numberOfPassengers
  = numberOfPassengers}
 \end_layout
 
@@ -540,6 +545,30 @@ fact eachRequestAssociatedToAtMostOneReservation {
 \begin_layout Plain Layout
 
 		re.associatedRequest = r 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+//Origin and destination for each request must be different
+\end_layout
+
+\begin_layout Plain Layout
+
+fact originAndDestinationDifferent {
+\end_layout
+
+\begin_layout Plain Layout
+
+	all r: Reservation | r.origin != r.destination
 \end_layout
 
 \begin_layout Plain Layout
@@ -1366,10 +1395,6 @@ No counterexample found.
 
 \begin_layout Plain Layout
 
-\end_layout
-
-\begin_layout Plain Layout
-
 
 \backslash
 end{framed}
@@ -1388,17 +1413,17 @@ status open
 
 \begin_layout Plain Layout
 
-//Verifies whether at least one taxi is in service 
+//Each reservation has a request associated with the same origin
 \end_layout
 
 \begin_layout Plain Layout
 
-assert ifOneTaxiExistsItIsInService { 	
+assert eachReservationHasARequestWithSameOrigin {
 \end_layout
 
 \begin_layout Plain Layout
 
-	one Taxi implies Taxi.state in (Available + Busy + Moving) 
+	all r: Reservation | some re: Request | r.origin = re.location
 \end_layout
 
 \begin_layout Plain Layout
@@ -1412,7 +1437,7 @@ assert ifOneTaxiExistsItIsInService {
 
 \begin_layout Plain Layout
 
-check ifOneTaxiExistsItIsInService
+check eachReservationHasARequestWithSameOrigin for 10
 \end_layout
 
 \end_inset
@@ -1433,20 +1458,20 @@ begin{framed}
 
 \begin_layout Plain Layout
 
-Executing "Check ifOneTaxiExistsItIsInService"    
+Executing "Check eachReservationHasARequestWithSameOrigin for 10"    
 \end_layout
 
 \begin_layout Plain Layout
 
-Solver=sat4j Bitwidth=4 MaxSeq=4 SkolemDepth=1 Symmetry=20    
+Solver=sat4j Bitwidth=4 MaxSeq=7 SkolemDepth=1 Symmetry=20    
 \end_layout
 
 \begin_layout Plain Layout
 
-4735 vars.
- 360 primary vars.
- 10891 clauses.
- 16ms.
+53009 vars.
+ 2420 primary vars.
+ 133925 clauses.
+ 391ms.
     
 \end_layout
 
@@ -1454,7 +1479,8 @@ Solver=sat4j Bitwidth=4 MaxSeq=4 SkolemDepth=1 Symmetry=20
 
 No counterexample found.
  Assertion may be valid.
- 0ms.
+ 224ms.
+ 
 \end_layout
 
 \begin_layout Plain Layout

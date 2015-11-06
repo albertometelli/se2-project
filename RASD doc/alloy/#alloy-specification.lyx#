@@ -324,7 +324,12 @@ sig Reservation{
 
 \begin_layout Plain Layout
 
-	location: one Location, 	
+	origin: one Location, 
+\end_layout
+
+\begin_layout Plain Layout
+
+	destination: one Location,	
 \end_layout
 
 \begin_layout Plain Layout
@@ -335,7 +340,7 @@ sig Reservation{
 \begin_layout Plain Layout
 
 } {numberOfPassengers>=1 and associatedRequest.passenger = passenger and
- associatedRequest.location = location and associatedRequest.numberOfPassengers
+ associatedRequest.location = origin and associatedRequest.numberOfPassengers
  = numberOfPassengers}
 \end_layout
 
@@ -553,6 +558,30 @@ fact eachRequestAssociatedToAtMostOneReservation {
 
 \begin_layout Plain Layout
 
+//Origin and destination for each request must be different
+\end_layout
+
+\begin_layout Plain Layout
+
+fact originAndDestinationDifferent {
+\end_layout
+
+\begin_layout Plain Layout
+
+	all r: Reservation | r.origin != r.destination
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
 //In each request the number of seats must be sufficient wrt number of passenger
 s
 \end_layout
@@ -670,12 +699,12 @@ fun numberOfInServiceTaxis: Int {
 
 \begin_layout Plain Layout
 
-//At least 50% of total number of taxis must be available
+//At least 20% of total number of taxis must be in service
 \end_layout
 
 \begin_layout Plain Layout
 
-fact atLeast50PerCentOfTaxisAreNotOutOfService { 	
+fact atLeast20PerCentOfTaxisAreNotOutOfService { 	
 \end_layout
 
 \begin_layout Plain Layout
@@ -896,22 +925,27 @@ status open
 \begin_layout Plain Layout
 
 pred sendReservation[setOfReservations,setOfReservations': set Reservation,
- reservation: Reservation] { 	
+ reservation: Reservation] { 	 	
 \end_layout
 
 \begin_layout Plain Layout
 
-	no (setOfReservations & reservation) implies
+	no (setOfReservations & reservation) implies ( 		
 \end_layout
 
 \begin_layout Plain Layout
 
-		setOfReservations' = setOfReservations + reservation and  		
+		setOfReservations' = setOfReservations + reservation and  		 		
 \end_layout
 
 \begin_layout Plain Layout
 
-		one request: Request | reservation.associatedRequest = request 
+		one request: Request | reservation.associatedRequest = request ) 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	else 		setOfReservations' = setOfReservations  
 \end_layout
 
 \begin_layout Plain Layout
@@ -925,8 +959,8 @@ pred sendReservation[setOfReservations,setOfReservations': set Reservation,
 
 \begin_layout Plain Layout
 
-run sendReservation for 10 but 5 Int, 0 Zone, 4 Reservation, 3 Request,
- 2 Passenger, 3 Taxi
+run sendReservation for 10 but 5 Int, 1 Zone, exactly 3 Reservation, 3 Request,
+ 3 Passenger, 3 Taxi
 \end_layout
 
 \end_inset
@@ -947,8 +981,8 @@ begin{framed}
 
 \begin_layout Plain Layout
 
-Executing "Run sendReservation for 10 but 5 int, 0 Zone, 4 Reservation,
- 3 Request, 2 Passenger, 3 Taxi"    
+Executing "Run sendReservation for 10 but 5 Int, 1 Zone, exactly 3 Reservation,
+ 3 Request, 3 Passenger, 3 Taxi"    
 \end_layout
 
 \begin_layout Plain Layout
@@ -1000,7 +1034,7 @@ status open
 \begin_layout Plain Layout
 
 pred cancelReservation[setOfReservations,setOfReservations': set Reservation,
- reservation: Reservation]{
+ reservation: Reservation]{ 	
 \end_layout
 
 \begin_layout Plain Layout
@@ -1010,12 +1044,17 @@ pred cancelReservation[setOfReservations,setOfReservations': set Reservation,
 
 \begin_layout Plain Layout
 
-		setOfReservations' = setOfReservations - reservation and
+		setOfReservations' = setOfReservations - reservation  	
 \end_layout
 
 \begin_layout Plain Layout
 
-		no request: Request | reservation.associatedRequest = request  
+	else 		
+\end_layout
+
+\begin_layout Plain Layout
+
+		setOfReservations' = setOfReservations	 
 \end_layout
 
 \begin_layout Plain Layout
@@ -1029,8 +1068,8 @@ pred cancelReservation[setOfReservations,setOfReservations': set Reservation,
 
 \begin_layout Plain Layout
 
-run cancelReservation for 10 but 5 Int, 0 Zone, 4 Reservation, 3 Request,
- 2 Passenger, 3 Taxi
+run cancelReservation for 10 but 5 Int, 1 Zone, exactly 2 Reservation, 2
+ Request, 2 Passenger, 3 Taxi
 \end_layout
 
 \end_inset
@@ -1051,8 +1090,8 @@ begin{framed}
 
 \begin_layout Plain Layout
 
-Executing "Run cancelReservation for 10 but 5 int, 0 Zone, 4 Reservation,
- 3 Request, 2 Passenger, 3 Taxi"    
+Executing "Run cancelReservation for 10 but 5 Int, 1 Zone, exactly 2 Reservation
+, 2 Request, 2 Passenger, 3 Taxi"    
 \end_layout
 
 \begin_layout Plain Layout
@@ -1356,95 +1395,6 @@ No counterexample found.
 
 \begin_layout Plain Layout
 
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-end{framed}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset listings
-lstparams "breaklines=true,showstringspaces=false"
-inline false
-status open
-
-\begin_layout Plain Layout
-
-//Verifies whether at least one taxi is in service 
-\end_layout
-
-\begin_layout Plain Layout
-
-assert ifOneTaxiExistsItIsInService { 	
-\end_layout
-
-\begin_layout Plain Layout
-
-	one Taxi implies Taxi.state in (Available + Busy + Moving) 
-\end_layout
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-check ifOneTaxiExistsItIsInService
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-begin{framed}
-\end_layout
-
-\begin_layout Plain Layout
-
-Executing "Check ifOneTaxiExistsItIsInService"    
-\end_layout
-
-\begin_layout Plain Layout
-
-Solver=sat4j Bitwidth=4 MaxSeq=4 SkolemDepth=1 Symmetry=20    
-\end_layout
-
-\begin_layout Plain Layout
-
-4735 vars.
- 360 primary vars.
- 10891 clauses.
- 16ms.
-    
-\end_layout
-
-\begin_layout Plain Layout
-
-No counterexample found.
- Assertion may be valid.
- 0ms.
 \end_layout
 
 \begin_layout Plain Layout
@@ -1815,7 +1765,7 @@ pred cancelReservation[setOfReservations,setOfReservations': set Reservation,
 
 .
  As you can see, before the execution Reservation1 belonged to the set of
- reservation while after only Reservation0 is in that set.
+ reservation while reservation set is empty.
 \end_layout
 
 \begin_layout Standard
