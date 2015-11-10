@@ -1861,7 +1861,7 @@ If passenger does not confirm the operation is not performed.
 
 \begin_layout Itemize
 \align left
-If the data are not valid (address, 
+If the data are not valid (origin, destination, 
 \family roman
 \series medium
 \shape up

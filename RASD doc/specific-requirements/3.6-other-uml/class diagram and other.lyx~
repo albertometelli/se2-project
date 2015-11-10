@@ -116,7 +116,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename image/class.pdf
-	scale 70
+	scale 65
 	BoundingBox 25bp 100bp 842bp 580bp
 
 \end_inset
@@ -260,7 +260,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename image/activity.pdf
-	scale 75
+	scale 70
 	BoundingBox 20bp 60bp 580bp 815bp
 
 \end_inset
