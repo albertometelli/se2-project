@@ -513,7 +513,7 @@ The city is divided into several zones, to each zone a taxi queue is assigned.
 \begin_inset Formula $i$
 \end_inset
 
- has to be proportional and also periodically to 
+ has to be proportional to 
 \begin_inset Formula $n_{i}$
 \end_inset
 
@@ -526,7 +526,7 @@ The city is divided into several zones, to each zone a taxi queue is assigned.
  a new distribution of the taxis has to be computed; the taxis to be moved
  have to minimize the cost of movement calculated as number of zones passed
  through.
- To prevent too many movements, a fluctuating between -30% and 30% from
+ To prevent too many movements, a fluctuation between -30% and 30% from
  the value 
 \begin_inset Formula $q_{i}$
 \end_inset
@@ -607,9 +607,9 @@ The fourth section presents a formalization of a subset of the requirements
 \end_layout
 
 \begin_layout Itemize
-The appendix contains a brief description of the tools used to produce this
- documents and the number of hours each group member has worked towards
- the fulfillment of this deadline.
+The appendix contains an interesting model of the goals, a brief description
+ of the tools used to produce this documents and the number of hours each
+ group member has worked towards the fulfillment of this deadline.
 \end_layout
 
 \end_body

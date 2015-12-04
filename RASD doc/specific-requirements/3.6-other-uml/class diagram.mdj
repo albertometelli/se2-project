@@ -5182,9 +5182,9 @@
 									"showShadow": true,
 									"containerChangeable": false,
 									"containerExtending": false,
-									"left": 362,
+									"left": 361,
 									"top": 488,
-									"width": 19.5126953125,
+									"width": 21.68359375,
 									"height": 13,
 									"autoResize": false,
 									"alpha": 0.9827933386320431,
@@ -5194,7 +5194,7 @@
 									},
 									"edgePosition": 2,
 									"underline": false,
-									"text": "0..*",
+									"text": "0..1",
 									"horizontalAlignment": 2,
 									"verticalAlignment": 5
 								},
@@ -13501,7 +13501,7 @@
 								"visibility": "public",
 								"navigable": true,
 								"aggregation": "none",
-								"multiplicity": "0..*",
+								"multiplicity": "0..1",
 								"isReadOnly": false,
 								"isOrdered": false,
 								"isUnique": false,
@@ -13865,58 +13865,6 @@
 							},
 							"name": "address",
 							"visibility": "private",
-							"isStatic": false,
-							"isLeaf": false,
-							"type": "",
-							"isReadOnly": false,
-							"isOrdered": false,
-							"isUnique": false,
-							"isDerived": false,
-							"aggregation": "none",
-							"isID": false
-						}
-					],
-					"isAbstract": false,
-					"isFinalSpecialization": false,
-					"isLeaf": false,
-					"isActive": false
-				},
-				{
-					"_type": "UMLClass",
-					"_id": "AAAAAAFQmqnOpZQq81w=",
-					"_parent": {
-						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
-					},
-					"name": "TaxiState",
-					"stereotype": "enum",
-					"visibility": "public",
-					"attributes": [
-						{
-							"_type": "UMLAttribute",
-							"_id": "AAAAAAFQmqoceJV2fkQ=",
-							"_parent": {
-								"$ref": "AAAAAAFQmqnOpZQq81w="
-							},
-							"name": "STATIONARY",
-							"visibility": "public",
-							"isStatic": false,
-							"isLeaf": false,
-							"type": "",
-							"isReadOnly": false,
-							"isOrdered": false,
-							"isUnique": false,
-							"isDerived": false,
-							"aggregation": "none",
-							"isID": false
-						},
-						{
-							"_type": "UMLAttribute",
-							"_id": "AAAAAAFQmqr2F5ZVvUE=",
-							"_parent": {
-								"$ref": "AAAAAAFQmqnOpZQq81w="
-							},
-							"name": "Attribute1",
-							"visibility": "public",
 							"isStatic": false,
 							"isLeaf": false,
 							"type": "",

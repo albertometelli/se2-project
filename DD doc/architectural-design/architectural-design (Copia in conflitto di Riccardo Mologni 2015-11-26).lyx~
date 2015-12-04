@@ -1,0 +1,3471 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\begin_preamble
+\usepackage{lscape}
+\usepackage{pdflscape}
+\end_preamble
+\use_default_options true
+\master ../DD.lyx
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize a4paper
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2.5cm
+\topmargin 2.5cm
+\rightmargin 2.5cm
+\bottommargin 2.5cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Subsection
+Overview
+\end_layout
+
+\begin_layout Standard
+The choice of the architectural styles and patterns suitable to meet stakeholder
+’s functional and non requirements is typically one of the key steps of
+ the design phase, therefore we will expose the process discussing, in order
+ of decreasing level of abstraction, the following aspects.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Architectural pattern
+\emph default
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Some authors tend to consider the phrases 
+\begin_inset Quotes eld
+\end_inset
+
+architectural pattern
+\begin_inset Quotes erd
+\end_inset
+
+ and 
+\begin_inset Quotes eld
+\end_inset
+
+architectural style
+\begin_inset Quotes erd
+\end_inset
+
+ as synonyms, but we prefer to keep them separatly in order to enfathise
+ the different level of abstraction.
+ Our definitions are taken from [3].
+\end_layout
+
+\end_inset
+
+: is a named collection of architectural design decisions that are applicable
+ to a recurring design 
+\emph on
+problem
+\emph default
+ parametrized to account for different software development contexts in
+ which that problem appears.
+ 
+\series bold
+Our architectural pattern will be MVC.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Architectural style
+\emph default
+: is a named collection of architectural design decisions that are applicable
+ in a given development 
+\emph on
+context
+\emph default
+, constrain architectural design decisions that are specific to a particular
+ system within that context, and elicit beneficial qualities in each resulting
+ system.
+ 
+\series bold
+Our architectural style will be client/server.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Architectural style flavour
+\emph default
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset Quotes eld
+\end_inset
+
+Architectural style flavour
+\begin_inset Quotes erd
+\end_inset
+
+ is not a term used in the literature but we decided to use it do distinguish
+ among different specializions of the same architectural style
+\end_layout
+
+\end_inset
+
+: is a named collection of architectural design decisions that are applicable
+ within a specific architectural style defining new constraints not present
+ in the architectural style definition.
+
+\series bold
+ Our architectural style flavour will be three-tier.
+\end_layout
+
+\begin_layout Standard
+Now for each of the aspects defined above we will briefly describe their
+ main characteristics and focus on the most relevant motivations that have
+ driven our choices.
+\end_layout
+
+\begin_layout Subsubsection
+Architectural pattern: MVC
+\end_layout
+
+\begin_layout Standard
+MVC (
+\emph on
+Model View Controller
+\emph default
+) is an architectural pattern which is widely used to implement application
+ requiring a user interface (the 
+\emph on
+problem
+\emph default
+ solved by the pattern) and it prescribes a separation between:
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+model
+\emph default
+: the part of the application that handles the logic of the application
+ data, tipically interacting with a database;
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+view
+\emph default
+: the part of the application that handles the display of the data, typically
+ coming from the model;
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+controller: 
+\emph default
+the part of the application that handles user interaction, typically controllers
+ read data from a view, control user input, and send input data to the model.
+\end_layout
+
+\begin_layout Standard
+Since 
+\emph on
+myTaxiService
+\emph default
+ is a system that involves different actors with different needs, MVC is
+ the suitable architectural pattern becuse it allows to focus to one aspect
+ of the application at time.
+ For instance, different actors interact with the system by means of different
+ user interfaces which can be implemented as different views (eg.
+ taxi driver and passengers but also between mobile and web passengers).
+ This developing strategy perfectly meets the 
+\emph on
+design and conquer
+\emph default
+ principle (giving the possibility of a team development) and also favours
+ the 
+\emph on
+cohesion
+\emph default
+ within each subsystem and reduces the 
+\emph on
+coupling
+\emph default
+ among them.
+ MVC helps also maintainability since each subsystem is rather autonomus
+ and can be modified without affecting the other parts.
+\end_layout
+
+\begin_layout Subsubsection
+Architectural style: Client/Server
+\end_layout
+
+\begin_layout Standard
+C/S (
+\emph on
+Client/Server
+\emph default
+) is the most widely adopted architectural style for 
+\emph on
+distributed applications
+\emph default
+ (the 
+\emph on
+context
+\emph default
+ where the architectural style is applied) in which two 
+\begin_inset Quotes eld
+\end_inset
+
+roles
+\begin_inset Quotes erd
+\end_inset
+
+ are defined:
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+server
+\emph default
+: the component (or process) that provides a function or a service to the
+ clients;
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+client
+\emph default
+: the component (or process) that instantiate the communication with the
+ server and uses the function or service provided by the server.
+\end_layout
+
+\begin_layout Standard
+Tipically the interaction takes place through messages of remote invocations.
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+myTaxiService
+\emph default
+ is a very distributed system, since actors are tipically mobile or web
+ and interact with the system by means of their devices.
+ Most of the relevant elaborations (eg.
+ request storing, reservation evaluation, queue management) has to be carried
+ out in a central point, since a global view of current scenario needed,
+ while the information needed to perform those elaboration is tipically
+ provided by a large number of actors (taxi drivers and passengers).
+ Considering the fact that actors ask the system for a service and tacking
+ into account the distributed nature of the system, C/S architectural style
+ turns out to be a good solution.
+ C/S style also enhances the maintainability being nowadays an established
+ style.
+\end_layout
+
+\begin_layout Standard
+P2P (
+\emph on
+Pear to pear
+\emph default
+) style seems to be inappropriate in this context since a 
+\begin_inset Quotes eld
+\end_inset
+
+well-defined
+\begin_inset Quotes erd
+\end_inset
+
+ distrinction between roles is present; while 
+\emph on
+cloud computing
+\emph default
+ can be taken into consideration to solve some of the problems described
+ in the following sections.
+\end_layout
+
+\begin_layout Subsubsection
+Architectural style flavour: three-tier
+\end_layout
+
+\begin_layout Standard
+The C/S model does not inpose any constraint neither about how 
+\emph on
+logical layers
+\emph default
+ (presentation, application or business logic, data) has to be distributed
+ among the deployment units nor about the number of 
+\emph on
+tiers
+\emph default
+ (phisical deployment units) has to be designed.
+ Infact this style does not dictate that server-hosts must have more resources
+ than client-hosts, however according to carachteristics of the context
+ different 
+\begin_inset Quotes eld
+\end_inset
+
+flavours
+\begin_inset Quotes erd
+\end_inset
+
+ can be defined.
+ We will relay on the 
+\emph on
+three tier architecture 
+\emph default
+that allows a systematic decomposition of the system in logical layers and
+ a suitable distribution among tiers.
+ In our specifi case the application layer is hosted for the largest part
+ in thee middle tier however some business functionalities are also carried
+ out by the presentation and the data layer.
+\end_layout
+
+\begin_layout Standard
+Analysing the features of 
+\emph on
+myTaxiService 
+\emph default
+we realize that at least different conceptual blocks functioalities are
+ performed; they are directly mapped to tiers.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Tier 1
+\emph default
+ (presentation + application) The interaction with the user has to be dealt
+ with by the presenation layer installed into mobile and web applications.
+ Those application are also in charge of some simple validations of the
+ data and has to realize the interaction with external systems (eg.
+ GPS, GoogleMaps) therefore a part of the business logic has to be hosted
+ here.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Tier 2
+\emph default
+ (application) Information has to be collected from users, further validated
+ and processed in a centralized way (since also information related to previous
+ events is needed) and possibly the results of the elaboration might be
+ sent to the user.
+ This is a pure application tier, containing the largest part of the business
+ logic.
+ As it will be shown later, it can be further splitted into the level in
+ charge of the 
+\emph on
+visualization
+\emph default
+ (web tier) and the level in charge of the information 
+\emph on
+processing
+\emph default
+ (business tier).
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Tier 3
+\emph default
+ (data) Data has to be stored in persisten memory devices and retrieved;
+ this tier is devoted to the database management.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage clearpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{landscape}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+High level components and their interaction 
+\end_layout
+
+\begin_layout Standard
+In the previous section, navigating from top to down the different levels
+ of abstraction in architectural design we have exposed and motivated our
+ architectural choices.
+ Now we will discuss the decomposition of the system into components.
+
+\emph on
+ myTaxiService
+\emph default
+ can be decomposed into different high level components that are going to
+ be located into different devices.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/dd1.3.pdf
+	scale 70
+	BoundingBox 0bp 80bp 792bp 580bp
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+High level component view (informal representation)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{landscape}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage clearpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Commercial architectural system breif description
+\end_layout
+
+\begin_layout Standard
+Since we would like to design a modular, reliable, secure and portable system
+ we will relay on the JEE technology.
+ JEE (
+\emph on
+Java Enterprise Edition
+\emph default
+) is a Java specification mainly addressed to business applications with
+ lots of users and lots of requirements.
+ Applications developed with JEE are tipically web applications; the platform
+ includes facilites for implementation of network and web services, multi-tiered
+, scalable, reliable, and secure network applications.
+ The main objective of JEE is to enable developers to concentrate on business
+ logic and to neglect implementative issues related to network communication.
+ We will also adopt specific libraries to develop the mobile application
+ for passengers and taxi drivers for the different platforms.
+\end_layout
+
+\begin_layout Standard
+We will provide an overall description of the architecture with rispect
+ to our system; this must not be considered an implementation constraint
+ but just a suggestion about the principles that have drivern the design.
+ The Java EE platform uses a distributed multitiered application model for
+ enterprise applications.
+ Application logic is divided into components according to function, and
+ the application components that make up a Java EE application are installed
+ on various machines depending on the tier in the multitiered Java EE environmen
+t to which the application component belongs.
+\end_layout
+
+\begin_layout Standard
+Java EE applications divided into the tiers described in the following list.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Client-tier
+\emph default
+: components run on the client machine, a Java EE client is usually of two
+ types.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\emph on
+Web clients
+\emph default
+: they are composed of dynamic web pages, which are generated by web components
+ running in the web tier and a web browser, which renders the pages received
+ from the server.
+ A web client is sometimes called a 
+\emph on
+thin client
+\emph default
+ since usually do not query databases, execute complex business rules, or
+ connect to legacy applications.
+ In 
+\emph on
+myTaxiService
+\emph default
+ the passengers that use the system by means of the web portal are considered
+ web clients, also mobile users can be considered web clients since we assume
+ to estblish a communication by means of an XML message format.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Application clients
+\emph default
+: runs on a client machine and provides a way for users to handle tasks
+ that require a richer user interface than web clients.
+ An application client typically has a graphical user interface created
+ and interacts directly with the business layer or with a servlet in the
+ web tier.
+ No direct application clients are present in 
+\emph on
+myTaxiService.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\emph on
+Web-tier
+\emph default
+: components run on the Java EE server that are in charge of the visualization
+ of output and handling the input; they can be either JSP (Java Server Pages),
+ JSF (Java Server Faces) or Servlets.
+ We will suggest to use JSF to develop the web portal and manage the interaction
+ (input insetion and output visualization), while communication with mobile
+ users will be performed by means of servlets (with an XML formatted messages).
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Business-tier
+\emph default
+:
+\emph on
+ 
+\emph default
+components run on the Java EE server devoted to the implementation of the
+ business logic, computing and interaction with the database.
+ In 
+\emph on
+myTaxiService
+\emph default
+ this tier is devoted to all logical elaborations (eg.
+ request/reservation handling, queue management, account managerment).
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Enterprise information system (EIS)-tier
+\emph default
+: software runs on the EIS server mainly devoted to data management.
+ For our system it not exaxtly an EIS (that may also include sophisticated
+ business functionalitis, like ERP or CMR), but just a DBMS.
+\end_layout
+
+\begin_layout Standard
+Although a Java EE application can consist of all tiers as shown in the
+ figure, Java EE multitiered applications are generally considered to be
+ three-tiered applications because they are distributed over three locations:
+ client machines, the Java EE server machine, and the database or legacy
+ machines at the back end.
+ Three-tiered applications that run in this way extend the standard two-tiered
+ client-and-server model by placing a multithreaded application server between
+ the client application and back-end storage.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/JEEarchSpecific.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+JEE architecture
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage clearpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{landscape}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Component view
+\end_layout
+
+\begin_layout Standard
+In this section we propose a representation of the system in terms of components
+ and connectors by means of the UML Component Diagram.
+ First we will provide a 
+\begin_inset Quotes eld
+\end_inset
+
+high level
+\begin_inset Quotes erd
+\end_inset
+
+ component diagram and then for each 
+\emph on
+subsystem
+\emph default
+ a specific component diagram will be provided.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/HighLevelComponents.pdf
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+UML 
+\begin_inset Quotes eld
+\end_inset
+
+high level
+\begin_inset Quotes erd
+\end_inset
+
+ component diagram
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{landscape}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The diagram is totally indepentent of the technology used to implement the
+ system, since it is obtained by identifying the functional units in the
+ system.
+ Note that almost each component can be mapped into a class, but not all
+ classes are represented as components.
+ A breif description of each 
+\emph on
+subsystem
+\emph default
+ is now provided.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+TMA
+\emph default
+: it is the subsystem in charge of all communications between the taxi (also
+ the taxi driver) and the central system.
+ It allows taxi driver to inform about his/her availability, accept or reject
+ requests and allows the central system to send requests and notifications
+ to the taxi driver.
+ It is buit as a mobile application.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+PMA
+\emph default
+: it is the subsystem in charge of all communications between the passenger,
+ either registered or not, and the central system.
+ It allows the passenger to request a taxi, visualize waiting time and number
+ of the incoming taxi and register; it also allows registere passenger to
+ login, reserve a taxi and modify/cancel previous reservations.
+ It interfaces the GPS application for position retrival and GoogleMapsAPI
+ for address recognition.
+ It is bult as a mobile application.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+PWA
+\emph default
+: it is the subsystem in charge of the same functionality of PWA but it
+ is built as a web application.
+ It interfaces GoogleMapsAPI for position retrival and address recognition.
+\end_layout
+
+\begin_layout Standard
+The previous subsystems constitute the front end of the application therefore
+ is has to handle user interface, simple input validations, message formatting
+ and network communications.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Web Tier
+\emph default
+: it is the subsystem in charge of the visualization of the information
+ excanged between TMA, PMA, PWA and the Business Tier.
+ It has to be able to send and recieve messages in the proper format (HTML
+ for web clients and XML for mobile clients
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+We assume that all messages flowing from and to the mobile applications
+ are codified in XML by means of a protocol that we will not discuss since
+ it is an implementation concern as well as we will not discuss how specific
+ web services will be implemented (like servlets, JSF,...)
+\end_layout
+
+\end_inset
+
+), iterpret those message and invoke the suitable servicies on the Business
+ Tier.
+ It is in charge of the safe communications between the previous subsystems.****
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Business Tier
+\emph default
+: it is the core subsystem in charge af all logic operations.
+ It has to handle incoming requests and reservations, be able to correctly
+ process them and set up the suitable consequent modifications, like taxi
+ search, taxi allocation and modifications in available taxi queues.
+ It has also to deal with the registration and login procedures.
+ For taxi management it has to be able to retrive taxi position (interfacing
+ with GPS system of each taxi).
+ Finally it interfaces with the DBMS.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+DBMS
+\emph default
+: it is the subsystem in charge of the persistent data management.
+ It is accessed by the Business Tier to store and retrive information.
+\end_layout
+
+\begin_layout Standard
+Note that 
+\emph on
+DBMS 
+\emph default
+subsystem has not to be expanded more since the internal struture is not
+ relevant for our application; also
+\emph on
+ PWA 
+\emph default
+subsystem will not be expanded more since the only relevant component is
+ the browser; while all the other subsystem will be discussed in details
+ in the following.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage clearpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+TMA
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/TMA.pdf
+	scale 70
+	BoundingBox 0bp 200bp 650bp 578bp
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+UML component diagram - TMA
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+TMAUserInterface
+\emph default
+: it is in charge of showing to the taxi drivers messages coming from the
+ central system and enable taxi driver to insert proper information when
+ needed.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+InputValidator
+\emph default
+: it performs simple input validations (eg.
+ email correct format).
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Communicator
+\emph default
+: it provides the high level functions to send and recieve message on the
+ network and it manages the low level network concerns.
+ It is also able to notify the view when a message comes.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+MessageFormatter
+\emph default
+: it is in charge of formatting and deformatting commands into XML messages
+ to be sent to or recieved from the network, providing the suitable methods.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+TMAController
+\emph default
+: it is in charge of recieving commands from the TMAUserInterface and perform
+ all operation needed to carry out the command (like input validation, message
+ formatting, checking the applicability of a specific command), possibly
+ using the connected component.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage clearpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+PMA
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/PMA.pdf
+	scale 70
+	BoundingBox 0bp 200bp 650bp 578bp
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+UML component diagram - PMA
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+PMAUserInterface
+\emph default
+: it is in charge of showing to the passengers messages coming from the
+ central system and enable passenger to insert proper information when needed.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+InputValidator
+\emph default
+: it performs simple input validations (eg.
+ email correct format).
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Communicator
+\emph default
+: it provides the high level functions to send and recieve message on the
+ network and it manages the low level network concerns.
+ It is also able to notify the view when a message comes.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+MessageFormatter
+\emph default
+: it is in charge of formatting and deformatting commands into XML messages
+ to be sent to or recieved from the network, providing the suitable methods.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+PMAController
+\emph default
+: it is in charge of recieving commands from the TMAUserInterface and perform
+ all operation needed to carry out the command (like input validation, message
+ formatting, checking the applicability of a specific command), possibly
+ using the connected component.
+ It is also able to interface with GPS system to retrieve the current location
+ and to GoogleMapsAPI for address validation.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage clearpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{landscape}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+WebTier
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/WebTier.pdf
+	scale 70
+	BoundingBox 0bp 0bp 824bp 578bp
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+UML component diagram - WebTier
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{landscape}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage clearpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+SECURITY???? ENCRYPTION
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+MessageFormatter
+\emph default
+: it is the component devoted to the translation of events (typically informatio
+n to be desplayed or commands) coming from the BusinessTier into a proper
+ format, that can be sent on the network and interpreted by clients.
+ According to the type of client we have two different implementation of
+ this component:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\emph on
+HTMLMessageFormatter
+\emph default
+: it formats an HTML page containing the information related the event for
+ web clients;
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+XMLMessageFormatter
+\emph default
+: it formats an valid XML document containing the information related the
+ event for mobile clients.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\emph on
+MessageInterpreter
+\emph default
+: it is the component devoted to the reverse translation with respect to
+ MessageFormatter, it translates messages coming from the clients into commands
+ to be executed by the CommandEventDispatcher
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Note that in PMA and TMA no MessageInterpreter is present, since the message
+ is always XML formatted and has to be just desplayed in a graphical format
+ so no complex convertion is needed; in a way the UI represents a 
+\begin_inset Quotes eld
+\end_inset
+
+simple message interpreter
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+.
+ Symmetrically, according to the type of client we have two different implementa
+tion of this component:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\emph on
+HTMLMessageInterpreter
+\emph default
+: it converts HTML information (typically parameters passed by means of
+ POST or GET) into a command;
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+XMLMessageInterpreter
+\emph default
+: it converts an XML valid document into a command.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\emph on
+CommandEventDispatcher
+\emph default
+: (EX MESSAGE MANAGER) it recieves commands from the MessageInterpreter
+ and executes them by invoking methods of the BusinessTier and, in case,
+ sends the result to the MessageFormatter by means of an event.
+ It can also be directly invoked by the BusinessTier in case the client
+ has to be notified of an event (eg.
+ the taxi driver has to move to another zone).
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Communicator
+\emph default
+: it provides the high level functions to send and recieve message on the
+ network and it manages the low level network concerns.
+ It is also able to notify the view when a message comes.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage clearpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{landscape}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+BusinessTier
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/BusinessTier.pdf
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+UML component diagram - BusinessTier
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{landscape}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage clearpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+AccountManager
+\emph default
+: it is the componet devoted to all operations related to the management
+ of client personal information like registration, login, change of the
+ password, logout.
+ It is also in charge of verifying whether the data provided by passenger
+ at registration time are valid, whether the credentials are correct at
+ login time, possibly querying the database.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+RequestManager
+\emph default
+: it is the component in charge of all operations related to requests coming
+ from the passengers.
+ In particular it provieds interfaces to forward a request and to retrive
+ waiting time and number of incoming taxi and manages the validation of
+ the address (if not already done locally on the passengers' application)
+ and the computation of the waiting time interacting with the GoogleMapsCommunic
+ator ***, it invokes proper methods of the TaxiSelector in order to process
+ the request and assign the taxi and finally it also interacts with the
+ DBManager in order to store the request and in case transform the request
+ to a confirmed request.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+ReservationManager
+\emph default
+: it is the component in charge of all operations related to reservations
+ coming from registered passengers.
+ In particular it provieds interaces to forward, modify or cancel a reservation
+ and it manages the semantic chack of the reservation data (date, time and
+ addresses if not already performed locally), the allocation of the request
+ associated to the reservation interacting with RequestManager and the storage
+ of the reservation by means of the DBManager.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+GoogleMapsCommunicatior
+\emph default
+: it is in charge of the interaction between the system and GoogleMapsAPIs.
+ In particular it allows a higher level of abstraction elaborating routh
+ data coming from the APIs and providing interfaces for waiting time calculation
+ and address validation
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Notice that even though PMA and TMA use GoogleMapsAPI their interaction
+ is rather simple (just address validation is needed) so they do not include
+ a specific communicator service, in a sense this role is played by the
+ controller
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+TaxiManager
+\emph default
+: it is the component devoted to all operations related to taxi management.
+ Since a lot of operations are possibile and they can be rather complex,
+ it is represented as a subsystem splitted in four components:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\emph on
+TaxiSelector
+\emph default
+: it is in charge of the selection of a taxi whenever a request is processed.
+ It is basically interfaced with RequestManager and exploits the interfaces
+ provided by TaxiPositionFinderNO*** TaxiQueueManager to look for a taxi
+ to associate to the request and to TaxiStateChanger in order to modify
+ the state of the selected taxi.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+TaxiPositionFineder
+\emph default
+: it is the component in charge of the localization of each taxi.
+ It manages the interface with GPS system installed on the taxi, by means
+ of TaxiGPSInterface, and provides the interface for retriving the position
+ of a taxi.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+TaxiQueueManager
+\emph default
+: it is the component devoted to the management of taxi queues.
+ It proviedes the interface to get the current distribution of the taxis
+ in taxi queues and it handles the operations of redistribution of taxis
+ when needed.
+ It interacts with TaxiStateChanger to turn the taxi state from available
+ to moving or viceversa and with the interface TaxiCommunicatorI in order
+ to send notification messages to taxi drivers.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+TaxiStateChanger
+\emph default
+: it is the component in charge of handling the state transitions for taxi
+ drivers.
+ It provides the interface to change the state of a taxi and requires the
+ interface to DBManager in order to store the new state into the database,
+ eventually it performs transition validiy checks and, in case, sends messages
+ to the taxi application by means of TaxiCommunicatorI.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\emph on
+DBManager
+\emph default
+: it is the component in charge of the interaction between the system and
+ the DBMS.
+ In particular is manages the connection, by means of JDBC, and it is able
+ to formulates query to be executed against the database starting from the
+ information required by other components.
+ It provides other components with proper interfaces to***It handles the
+ persistence of data in the system by means of JPA.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage clearpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Deployment view
+\end_layout
+
+\begin_layout Standard
+Starting from the UML Component Diagram presented in the previous section,
+ we derive the UML Deployment Diagram in accordance to the depoloyment constrain
+ts imposed by the architectural style.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage clearpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Runtime view
+\end_layout
+
+\begin_layout Standard
+The component diagram gives just a static representation of the components,
+ their dependencies and their interfaces; in order to better understand
+ how those components work we propose in this section a few UML Sequence
+ Diagrams showing the dynamical interaction between components.
+ Note that the flow of actions represented is directly inspired from the
+ use cases (see RASD section???), but here the level of abstraction chosen
+ is lower.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage clearpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{landscape}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Component interfaces
+\end_layout
+
+\begin_layout Standard
+In this section for each component and for each provided interface we list
+ the main methods, with corresponding parameters and types.
+ Notice that they are just the minimal methods required, many other might
+ be added at implementation time.
+\end_layout
+
+\begin_layout Subsubsection
+BusinessTier
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="29" columns="3">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top" width="20cm">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\emph on
+Component
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\emph on
+Interface
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\emph on
+Method
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="left" valignment="middle" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+AccountManager
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="3" alignment="left" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+AccountManagerI
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+
+\family typewriter
+login(Username:String, Password:String) : RegusteredPassenger
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+
+\family typewriter
+forgotPassword(Username:String, email:String)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+
+\family typewriter
+register(Username:String, Password:String, Firstname:String, Lastname:String,
+ Address:String, email:String)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="left" valignment="middle" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+RequestManager
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="3" alignment="left" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+RequestManagerI
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+
+\family typewriter
+sendRequest(Location:Location, NumberOfPassengers:Integer, (RegisteredPassenger:
+passenger|Integer:applicationID)) : Request
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+
+\family typewriter
+getWaitingTime(Request:Request) : TimeInterval
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+
+\family typewriter
+getIncomingTaxiCode(Request:Request) : String
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="left" valignment="middle" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ReservationManager
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="3" alignment="left" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ReservationManagerI
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+
+\family typewriter
+sendReservation(Origin:Location, Destination:Location, Date: Date, Time:
+ Time, NumberOfPassengers:Integer, RegisteredPassenger:Passenger) : Reservation
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+
+\family typewriter
+getRequest(Reservation:Reservation, RegisteredPassenger:Passenge) : Request
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+
+\family typewriter
+deleteReservation(Reservation:Reservation, RegisteredPassenger:Passenger)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+
+\family typewriter
+modifyReservation(Reservation:Reservation, Origin:Location, Destination:Location
+, Date: Date, Time: Time, NumberOfPassengers:Integer, RegisteredPassenger:Passen
+ger) : Reservation
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+
+\family typewriter
+getReservations(RegisteredPassenger:Passenger) : Reservation[]
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="left" valignment="middle" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+GoogleMapsCommunicator
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+AddressValidator
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+
+\family typewriter
+validateAddress(Addrress:String) : Location or Error
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+TravellingTimeCalculator
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+
+\family typewriter
+getTravellingTime(Origin: Location, Destination:Location) : TimeInterval
+ 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+DBManager
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+DBManagerI
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+
+\family typewriter
+query(Query : Query) : Object[] 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+TaxiSelector
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+TaxiSelectorI
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+
+\family typewriter
+selectTaxi(Request: Request) : Taxi[]
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="left" valignment="middle" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+TaxiStateChanger
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="3" alignment="left" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+TaxiStateChangerI
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+
+\family typewriter
+changeState(TaxiState: TaxiState) : TaxiState
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+
+\family typewriter
+canChange(TaxiState: TaxiState) : boolean
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+TaxiPositionFinder
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+TaxiPositionFinderI
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+
+\family typewriter
+getTaxiPosition(Taxi: Taxi) : Location
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+TaxiQueueManager
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+TaxiQueueManagerI
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+
+\family typewriter
+getAvailableTaxis() : Taxi[]
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+
+\family typewriter
+getFirst(zone : Zone) : Taxi
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+
+\family typewriter
+getLast(zone : Zone) : Taxi
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+
+\family typewriter
+getPosition(zone: Zone, position : Integer) : Taxi
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+
+\family typewriter
+getTaxis(zone: Zone, position : Integer) : Taxi[]
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+
+\family typewriter
+move(taxi: Taxi, oldZone: Zone, newZone: Zone) //it is added at the end
+ of the queue
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+
+\family typewriter
+find(taxi : Taxi) : Zone
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+
+\family typewriter
+getZones() : Zone[]
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+getNumberOfAvailableTaxis() : Integer
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+getNumberOfTaxis(zone : Zone) : Integer
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{landscape}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{landscape}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+WebTier
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="7" columns="3">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top" width="20cm">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\emph on
+Component
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\emph on
+Interface
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\emph on
+Method
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="left" valignment="middle" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+SCommunicator
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+CommunicatorI
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+
+\family typewriter
+submit(message : Message)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+CommunicatorSender
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+
+\family typewriter
+send(message : Message)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+MessageFormatter
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+MessageFormatterI
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+
+\family typewriter
+formatEvent(event : Event) : Message
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+MessageInterpreter
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+MessageInterpreterI
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+
+\family typewriter
+interpretMessage(message : Message) : Command
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="left" valignment="middle" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+CommandEventDispatcher
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+CommandDispatcher
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+
+\family typewriter
+dispatchCommand(command : Command)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+EventDispatcher
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+
+\family typewriter
+dispatchEvent(event : Event)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+PMA
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="9" columns="3">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top" width="20cm">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\emph on
+Component
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\emph on
+Interface
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\emph on
+Method
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+PMAUserInterface
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+CommunicatorReciever
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+
+\family typewriter
+show(event : XMLMessage)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+PMAController
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+PMAControllerI
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+
+\family typewriter
+sendCommand(command : Command)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+MessageFormatter
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+MessageFormatterI
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+
+\family typewriter
+format(command : Command) : XMLMessage
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="left" valignment="middle" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+InputValidator
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="3" alignment="left" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+InputValidatorI
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+
+\family typewriter
+validateEmail(email : String) : boolean
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+
+\family typewriter
+validateDate(date : Date) : boolean
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+
+\family typewriter
+validateTime(time : Time) : boolean
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="left" valignment="middle" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Communicator
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+CommunicatorSender
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+
+\family typewriter
+send(message : XMLMessage)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+CommunicatorInterface
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+
+\family typewriter
+notify(event : XMLMessage)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+TMA
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="8" columns="3">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top" width="20cm">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\emph on
+Component
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\emph on
+Interface
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\emph on
+Method
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+TMAUserInterface
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+CommunicatorReciever
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+
+\family typewriter
+show(event : XMLMessage)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+TMAController
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+TMAControllerI
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+
+\family typewriter
+sendCommand(command : Command)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+MessageFormatter
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+MessageFormatterI
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+
+\family typewriter
+format(command : Command) : XMLMessage
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="left" valignment="middle" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+InputValidator
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="3" alignment="left" valignment="middle" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+InputValidatorI
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+
+\family typewriter
+validateEmail(email : String) : boolean
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+
+\family typewriter
+validateDate(date : Date) : boolean
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="4" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+
+\family typewriter
+validateTime(time : Time) : boolean
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Communicator
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+CommunicatorSender
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+
+\family typewriter
+sendMessage(message : XMLMessage)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Selected architectural styles
+\end_layout
+
+\begin_layout Standard
+As it was clarely stated in the initial part of this chapter the main architectu
+ral sty
+\end_layout
+
+\begin_layout Subsection
+Other design decisions
+\end_layout
+
+\end_body
+\end_document
