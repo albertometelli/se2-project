@@ -402,7 +402,11 @@ status open
 
 \end_inset
 
+
+\series bold
 DD
+\series default
+
 \begin_inset ERT
 status open
 
