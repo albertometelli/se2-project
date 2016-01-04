@@ -1,0 +1,409 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\begin_preamble
+\usepackage{lscape}
+\usepackage{pdflscape}
+\end_preamble
+\use_default_options true
+\master ../CI.lyx
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize a4paper
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 3cm
+\topmargin 3cm
+\rightmargin 3cm
+\bottommargin 3cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+This section it devoted to the description of the overall functionalists
+ of the class focusing in particular on the role of the methods.
+ Understanding the role of a module or some methods of that module is a
+ non trivial 
+\emph on
+reverse engineering
+\emph default
+ task, even more complex when the reference and the documentation is entirely
+ lacking.
+ Therefore we tried, as best as we could, to exploit the code, the few comments
+ present and a variety of online resources to extract at least the general
+ characteristics.
+ The description we provide below is a very high level explanation intended
+ to show the conceptual functionalists of the code assigned without going
+ into details that actually we were not be able to understand because of
+ the complexity and the bad documentation of this part of the project.
+\end_layout
+
+\begin_layout Standard
+The first subsection gives a general description of what JNDI and JNDI environme
+nt are in the context of Glassfish, this is necessary to understand the
+ role of the methods; if the reader already knows how they work, subsection
+ 3.1 can be skipped.
+\end_layout
+
+\begin_layout Subsection
+About JNDI (from Oracle doc)
+\end_layout
+
+\begin_layout Standard
+Mainly taken from [3].
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+By making calls to the JNDI API, applications locate resources and other
+ program objects.
+ A resource is a program object that provides connections to systems, such
+ as database servers and messaging systems.
+ Each resource object is identified by a unique, people-friendly name, called
+ the JNDI name.
+ A resource object and its JNDI name are bound together by the naming and
+ directory service, which is included with the GlassFish Server.
+ When a new name-object binding is entered into the JNDI, a new resource
+ is created.
+\end_layout
+
+\begin_layout Subsubsection
+Java EE Naming Environment 
+\end_layout
+
+\begin_layout Standard
+JNDI names are bound to their objects by the naming and directory service
+ that is provided by a Java EE server.
+ Because Java EE components access this service through the JNDI API, the
+ object usually uses its JNDI name.
+ 
+\end_layout
+
+\begin_layout Standard
+Java EE application clients, enterprise beans, and web components must have
+ access to a JNDI naming environment.
+\end_layout
+
+\begin_layout Standard
+The
+\series bold
+ 
+\series default
+\emph on
+application component's naming environment
+\emph default
+ is the mechanism that allows customization of the application component's
+ business logic during deployment or assembly.
+ This environment allows you to customize the application component without
+ needing to access or change the source code off the component.
+ A Java EE container implements the provides the environment to the application
+ component instance as a JNDI naming context.
+\end_layout
+
+\begin_layout Subsubsection
+How the Naming Environment and the Container Work Together 
+\end_layout
+
+\begin_layout Standard
+The application component's environment is used as follows:
+\end_layout
+
+\begin_layout Itemize
+The application component's business methods access the environment using
+ the JNDI interfaces.
+ In the deployment descriptor, the application component provider declares
+ all the environment entries that the application component expects to be
+ provided in its environment at runtime.
+\end_layout
+
+\begin_layout Itemize
+The container provides an implementation of the JNDI naming context that
+ stores the application component environment.
+ The container also provides the tools that allow the deployer to create
+ and manage the environment of each application component.
+\end_layout
+
+\begin_layout Itemize
+A deployer uses the tools provided by the container to initialize the environmen
+t entries that are declared in the application component's deployment descriptor.
+ The deployer sets and modifies the values of the environment entries.
+\end_layout
+
+\begin_layout Itemize
+The container makes the JNDI context available to the application component
+ instances at runtime.
+ These instances use the JNDI interfaces to obtain the values of the environment
+ entries.
+\end_layout
+
+\begin_layout Standard
+Each application component defines its own set of environment entries.
+ All instances of an application component within the same container share
+ the same environment entries.
+ Application component instances are not allowed to modify the environment
+ at runtime.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage clearpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{landscape}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Diagrams
+\end_layout
+
+\begin_layout Standard
+A class diagram showing the main methods and dependencies of the assigned
+ class is now provided.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename class.pdf
+	scale 75
+	BoundingBox 0bp 400bp 796bp 841bp
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+UML Class Diagram of the main methods and dependencies
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{landscape}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage clearpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Classes
+\end_layout
+
+\begin_layout Subsubsection
+ComponentEnvManagerImpl
+\end_layout
+
+\begin_layout Standard
+The class ComponentEnvManagerImpl implements the interface 
+\emph on
+ComponentEnvManager
+\emph default
+ that defines its public interface and is in charge of all the main operations
+ concerning the management of the application component's naming environment.
+ In particular it provides methods to bind/unbind a JNDI environment of
+ a component or an application to the JNDI service interacting with the
+ naming manager (these methods will be discussed further later), keeping
+ a local track of those bindings by means of the register/unregister methods.
+ It also provides interface methods to get the JNDI environment associated
+ to one component, the current JNDI environment, the current Application
+ environment and the string name of a JNDI environment.
+ Eventually it allows to modify properties of already bound JNDI environments.
+\end_layout
+
+\begin_layout Subsection
+Methods
+\end_layout
+
+\begin_layout Subsubsection
+getJndiNameEnvironment
+\end_layout
+
+\begin_layout Standard
+The 
+\emph on
+getJndiNameEnvironment
+\emph default
+ method returns the JNDI environment associated to the component whose string
+ name is passed as a parameter, if the name of the component is not bound
+ in any JNDI environment the method returns null.
+\end_layout
+
+\begin_layout Subsubsection
+bindToComponentNamespace
+\end_layout
+
+\begin_layout Standard
+The 
+\emph on
+bindToComponentNamespace
+\emph default
+ method is in charge of publishing in the JNDI server the name of the JNDI
+ environment passed as parameter.
+ It collects all JNDI bindings associated to the JNDI environment for both
+ component, module and application scope; then according to the type of
+ the JNDI environment (application or application client descriptor) uses
+ the methods provided by the naming manager to bind it and rebind all the
+ JNDI binding collected before within the context of the JNDI environment.
+ Eventually it registers locally the binding.
+ It propagates the possible NamingException generated by the naming manager.
+\end_layout
+
+\begin_layout Subsubsection
+addAllDescriptorBindings
+\end_layout
+
+\begin_layout Standard
+The 
+\emph on
+addAllDescriptorBindings
+\emph default
+ method is in charge of converting the resource descriptors associated to
+ the JNDI environment within a specific scope (application, component or
+ module) to JNDI bindings.
+ It receives as parameters the JNDI environment, the scope and the collection
+ of JNDI bindings and augments the latter with the newly generated JNDI
+ bindings.
+\end_layout
+
+\begin_layout Subsubsection
+unbindFromComponentNamespace
+\end_layout
+
+\begin_layout Standard
+The 
+\emph on
+unbindFromComponentNamespace
+\emph default
+ method plays the opposite role with respect to 
+\emph on
+bindToComponentNamespace
+\emph default
+.
+ It receives as parameter a JNDI environment and it undeploys all resources
+ descriptors associated; then uses the naming manager to unpublish all the
+ JNDI bindings associated to the JNDI environment.
+ Eventually it unregisters locally the binding.
+ It propagates the possible NamingException generated by the naming manager.
+\end_layout
+
+\end_body
+\end_document
