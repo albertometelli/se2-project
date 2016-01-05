@@ -11009,7 +11009,7 @@ Files
 
 \size scriptsize
 \emph on
-Total for class0method
+Total for class/method
 \end_layout
 
 \end_inset
@@ -11021,7 +11021,7 @@ Total for class0method
 
 \size scriptsize
 \emph on
-Total per class0method per KSLOC
+Total per class/method per KSLOC
 \end_layout
 
 \end_inset
