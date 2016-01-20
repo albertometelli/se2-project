@@ -1,0 +1,1204 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\begin_preamble
+\usepackage{lscape}
+\usepackage{pdflscape}
+\end_preamble
+\use_default_options true
+\master ../ITPD.lyx
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize a4paper
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 3cm
+\topmargin 3cm
+\rightmargin 3cm
+\bottommargin 3cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+This section is devoted to the explanation of the main choices related to
+ the integration testing plan mainly concerning the integration testing
+ strategies.
+\end_layout
+
+\begin_layout Subsection
+Entry criteria
+\end_layout
+
+\begin_layout Standard
+An entry criterion for the integration test is a precondition that is supposed
+ to hold when the integration test is initialized, if one of them is not
+ verified it can compromise or make even impossible the entire process.
+ According the the 
+\emph on
+software lifecycle
+\emph default
+, we identified the following as entry criteria.
+\end_layout
+
+\begin_layout Enumerate
+The implementation phase is terminated therefore the project is code-complete.
+\end_layout
+
+\begin_layout Enumerate
+Unit testing or at least sanity checking
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+
+\emph on
+Sanity checking,
+\emph default
+ sometimes called sanity test, consists in checking that a module/compoent
+ does not contain elementary mistakes or impossibilities, or is not based
+ on invalid assumptions.
+ It is typically a more shallow verification approach with respect to unit
+ testing since just evident mistakes can be manifested.
+ To clarify the distinction, checking that the result of a multiplication
+ of negative numbers is positive is typical of a sanity checking while comparing
+ the result against the one provided by an oracole is typical of unit testing.
+\end_layout
+
+\end_inset
+
+ for every module/component is complete (every test has been run).
+\end_layout
+
+\begin_layout Enumerate
+All High prioritized bugs fixed and closed (every test has been passed).
+\end_layout
+
+\begin_layout Enumerate
+The internal documentation has been updated to reflect the current state
+ of the product.
+\end_layout
+
+\begin_layout Enumerate
+The ITPD is complete and been approved by QA group.
+\end_layout
+
+\begin_layout Enumerate
+The integration teasing environment setup is completed and stable.
+\end_layout
+
+\begin_layout Subsection
+Elements to be integrated
+\end_layout
+
+\begin_layout Standard
+In this subsection we propose the structure of the designed system, starting
+ from what was described in the DD, in order to clarify the steps needed
+ for the integration testing plan.
+ We do not treat here the problem of integration with external system since
+ a part of section 5 is devoted to it, we assume that part of integration
+ has already been performed.
+\end_layout
+
+\begin_layout Subsubsection
+Preliminary considerations
+\end_layout
+
+\begin_layout Standard
+The integration test plan should be driven by the conceptual system decompositio
+n proposed in the DD, so we construct the plan starting from the components
+ represented there.
+ Although each component can be easily mapped into a programmatic class,
+ being a cohesive and coherent group of functionalists, it is very likely
+ that not all classes needed for the implementation of the application appear
+ as component, most of them will be probably auxiliary class; therefore
+ we assume that during the 
+\emph on
+unit test
+\emph default
+, which constitutes an entry condition for the integration test, the integration
+ 
+\emph on
+within
+\emph default
+ the component is performed.
+ If this assumption holds we can proceed to the integration test starting
+ from the components as depicted in the DD.
+\end_layout
+
+\begin_layout Subsubsection
+Levels of integration
+\end_layout
+
+\begin_layout Standard
+Considered the distributed nature and the clear modular structure of myTaxiServi
+ce application a two level approach of integration testing should be suitable.
+ In particular, the integration phase will be realized at:
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+component level
+\emph default
+: each component will be integrated and tested against every dependent component
+ in the contest of the subsystem to which it belongs;
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+subsystems
+\emph default
+ 
+\emph on
+level
+\emph default
+: once each subsystem is entirely integrated, all of them will be integrated
+ and tested.
+\end_layout
+
+\begin_layout Standard
+This approach is here just mentioned to understand the following representation
+ of the hierarchies
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+A hierarchy of the dependencies of components is a 
+\emph on
+DAG 
+\emph default
+(Directed Acyclic Graph) therefore a bottom-up strategy is actually an plan
+ where integration happens in reverse topological order while in the top-down
+ strategy integration occurs in topological order.
+ If a component A calls a method of another component B (namely A 
+\emph on
+depends
+\emph default
+ on B) then B belongs to the layer right below in the hierarchy with respect
+ to A.
+\end_layout
+
+\end_inset
+
+ of components/subsystems and will be further discussed in the dedicated
+ section 2.3.
+\end_layout
+
+\begin_layout Subsubsection
+Subsystems
+\end_layout
+
+\begin_layout Standard
+According to the DD the following diagram
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+The notation used here is a simplified version of UML Component Diagram
+ where just dependencies among modules are represented, while interfaces
+ are not.
+\end_layout
+
+\end_inset
+
+ describes the hierarchy of subsystems to be integrated.
+ The decomposition clearly reflects the JEE architecture, for a detailed
+ description refer to [3].
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/ComponentsSmall.pdf
+	scale 70
+	BoundingBox 0bp 100bp 500bp 578bp
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Integration testing plan - subsystem level hierarchy
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+For each subsystem we present the internal hierarchy of components, since
+ PWA is made of the browser no internal integration is needed, also for
+ the DBMS the internal structure is not known so it is not further specified.
+\end_layout
+
+\begin_layout Subsubsection
+PMA
+\end_layout
+
+\begin_layout Standard
+Notice that the hierarchy contains a cycle between PMAUserInterface, PMAControll
+er and CCommunicator (so it is not properly speaking a hierarchy) and this
+ is due to the usage of the pattern Observer-Observable where the CCommuncator
+ constitutes the model (actually the link to the remote model)
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+From an implementative point of view that cyclic dependency does not exist
+ since CCommunicator does not accesses directly to PMAUserInterface but
+ just sees the interface Observer.
+\end_layout
+
+\end_inset
+
+.
+ To break the cycle in order to perform the integration more stubs will
+ be needed.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/PMA.pdf
+	BoundingBox 0bp 250bp 350bp 578bp
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Integration testing plan - PMA
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+TMA
+\end_layout
+
+\begin_layout Standard
+Since TMA shares the same structure of PMA the same considerations explained
+ above are valid here.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/TMA.pdf
+	BoundingBox 0bp 250bp 350bp 578bp
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Integration testing plan - TMA
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Web subsystem
+\end_layout
+
+\begin_layout Standard
+Notice that the dependency graph is a cycle, this is due to the fact that
+ SCommunicator and CommandEventDispatcher manage the bidirectional flow
+ of messages between clients and Business subsystem.
+ However the interfaces involved in the exchange of messages in the two
+ direction are different (SCommunicator 
+\begin_inset Formula $\rightarrow$
+\end_inset
+
+ CommandDispatcher and EventDispatcher 
+\begin_inset Formula $\rightarrow$
+\end_inset
+
+ CommunicatorSender).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/WebTier.pdf
+	BoundingBox 0bp 300bp 400bp 578bp
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Integration testing plan - TMA
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Business subsystem
+\end_layout
+
+\begin_layout Standard
+As it is represented in the DD the business subsystem is in turn composed
+ of an internal macrocomponent TaxiManager, therefore the process of intergratio
+n will be performed integrating TaxiManager before and than completing the
+ integration with the other components.
+ So we present two different hierarchies.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/BusinessTier.pdf
+	scale 80
+	BoundingBox 20bp 0bp 700bp 578bp
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Integration testing plan - Business subsystem
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/TaxiManager.pdf
+	scale 90
+	BoundingBox 0bp 200bp 450bp 578bp
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Integration testing plan - Taxi manager
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Integration testing strategy
+\end_layout
+
+\begin_layout Standard
+In this section, starting from the scenario depicted in the previous ones,
+ we illustrate the integration strategy we have chosen providing the rational
+ behind that choice with reference to the software architecture.
+\end_layout
+
+\begin_layout Subsubsection
+Preliminary considerations
+\end_layout
+
+\begin_layout Standard
+Integration process in a client/server application is often a big issue.
+ Coherently with the design and conquer principle, as already mentioned
+ in section 2.2.1, we clearly distinguish between the integration stages at
+ 
+\emph on
+component level
+\emph default
+ and at
+\emph on
+ subsystem
+\emph default
+ 
+\emph on
+level
+\emph default
+.
+ This first choice has several advantages.
+\end_layout
+
+\begin_layout Itemize
+At the end of the first stage (integration at component level) it is guaranteed
+ that all subsystems are correctly working, obviously this activity requires
+ the usage of proper drivers and stubs to simulate the environment of the
+ other subsystems.
+\end_layout
+
+\begin_layout Itemize
+The integration at component level for each subsystem can be performed in
+ parallel since they are considered isolated, reducing the project overall
+ time and allowing working of differentiated integration test groups.
+\end_layout
+
+\begin_layout Itemize
+Different integration testing strategies can be selected for the two stages
+ according to the different needs.
+\end_layout
+
+\begin_layout Subsubsection
+Selected integration strategies
+\end_layout
+
+\begin_layout Standard
+Considered the different needs and characteristics of the two levels of
+ abstractions we think a proper solution should adopt different integration
+ testing strategies.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Bottom-up 
+\emph default
+strategy for the integration at component level within each subsystem.
+ The components in the lowest layer of the hierarchy are tested individually,
+ then components belonging to the layer above are integrated and tested
+ until the root of the hierarchy is reached.
+ The main advantages of this approach are the following:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+only test drivers are used to set up the testing environment and pass the
+ test case, no test stubs are needed;
+\end_layout
+
+\begin_layout Itemize
+it is suitable for object oriented design methodologies because it starts
+ from the low levels of hierarchies going up to the more abstract elements;
+\end_layout
+
+\begin_layout Itemize
+favors the evaluation of the performance requirements.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\emph on
+Sandwich 
+\emph default
+strategy for the integration at subsystem level.
+ It combines top-down strategy with bottom-up strategy, favoring parallel
+ testing.
+ The system is viewed as having three layers: a target layer in the middle,
+ a layer above the target and a layer below the target.
+ Testing converges at the target layer.
+ If there are more than three layers, as in myTaxiService, we can exploit
+ heuristics to minimize the number of stubs and drivers; for us it is clear
+ that we may converge towards the Business subsystem.
+ Sandwich strategy brings the following advantages:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+top and bottom layer tests can be done in parallel;
+\end_layout
+
+\begin_layout Itemize
+is suitable for large projects having several subprojects.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+Notice that the sandwich strategy per se does not prescribe an individual
+ testing strategy of any subsystems (which should be performed simultaneously
+ with the subsystem integration), but since we distinguished between component
+ level and subsystem level integration testing this is automatically implied.
+ This strategy is often referred as 
+\emph on
+modified sandwich
+\emph default
+ strategy that, however, does not define the specific approach to be adopted
+ within each subsystem, for us bottom-up.
+\end_layout
+
+\begin_layout Subsection
+Sequence of Component/Function Integration
+\end_layout
+
+\begin_layout Standard
+In this section, according to the hierarchies and integration testing strategies
+ described above we will provide the sequence of integration of components
+ and subsystems.
+ We will exploit the UML activity diagram in order to make the process more
+ clear and highlight the possible parallelizations.
+\end_layout
+
+\begin_layout Subsubsection
+Software Integration Sequence (component level)
+\end_layout
+
+\begin_layout Standard
+At component level the integration testing strategies can be applied in
+ a fully parallelized environment, since we assume to perform integration
+ testing within each subsystem in an isolated way; drivers and stubs for
+ the interacting component will be necessary.
+ Now for each subsystem we provide the sequence in which integration testing
+ will be performed.
+ Drivers will be necessary at each step (refer to section 4 for the detailed
+ description) since we are proceeding bottom-up but also 
+\begin_inset Quotes eld
+\end_inset
+
+external
+\begin_inset Quotes erd
+\end_inset
+
+ stubs are necessary
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Typically Bottom-up integration testing does not require any stub, however
+ since we adopt this strategy at level of components we need to model the
+ other subsystems, those models will be called 
+\emph on
+external stubs.
+
+\emph default
+ They can be real stubs or just the actual subsystems if already integrated.
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection
+PMA [S1]
+\end_layout
+
+\begin_layout Standard
+All leaves components are supposed to be individually tested with a suitable
+ drivers.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+S1I1 PMAController 
+\begin_inset Formula $\rightarrow$
+\end_inset
+
+ InputValidator 
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+S1I1 PMAController 
+\begin_inset Formula $\rightarrow$
+\end_inset
+
+ MessageFormatter
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+S1I1 PMAController 
+\begin_inset Formula $\rightarrow$
+\end_inset
+
+ CCommunicator 
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+S1I2 PMAUserInterface 
+\begin_inset Formula $\rightarrow$
+\end_inset
+
+ PMAController
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+S1I3 CCommunicator 
+\begin_inset Formula $\rightarrow$
+\end_inset
+
+ PMAUserInterface
+\end_layout
+
+\begin_layout Standard
+For test S1I1 PMAController 
+\begin_inset Formula $\rightarrow$
+\end_inset
+
+ CCommunicator an external stub for the Web subsystem is needed while, since
+ there is a cycle between PMAController, PMAUserInterface and CCommunicator
+ a stub for CCommunicator is needed when performing integration test S1I2
+ (we can actually use the same CCommunicator since it is already unit tested
+ and integrated).
+ 
+\end_layout
+
+\begin_layout Subsubsection
+TMA [S2]
+\end_layout
+
+\begin_layout Standard
+All leaves components are supposed to be individually tested with a suitable
+ drivers.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+S2I1 TMAController 
+\begin_inset Formula $\rightarrow$
+\end_inset
+
+ InputValidator 
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+S2I1 TMAController 
+\begin_inset Formula $\rightarrow$
+\end_inset
+
+ MessageFormatter
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+S2I1 TMAController 
+\begin_inset Formula $\rightarrow$
+\end_inset
+
+ CCommunicator 
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+S2I2 TMAUserInterface 
+\begin_inset Formula $\rightarrow$
+\end_inset
+
+ PMAController
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+S2I3 CCommunicator 
+\begin_inset Formula $\rightarrow$
+\end_inset
+
+ PMAUserInterface
+\end_layout
+
+\begin_layout Standard
+For test S2I1 TMAController 
+\begin_inset Formula $\rightarrow$
+\end_inset
+
+ CCommunicator an external stub for the Web subsystem is needed while, since
+ there is a cycle between TMAController, TMAUserInterface and CCommunicator
+ a stub for CCommunicator is needed when performing integration test S2I2
+ (we can actually use the same CCommunicator since it is already unit tested
+ and integrated).
+ 
+\end_layout
+
+\begin_layout Subsubsection
+Web subsystem [S3]
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+S3I1 MessageInterpreter 
+\begin_inset Formula $\rightarrow$
+\end_inset
+
+ CommandEventDispatcher 
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+S3I2 SCommunicator 
+\begin_inset Formula $\rightarrow$
+\end_inset
+
+ MessageInterpreter
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+S3I3 MessageFormatter 
+\begin_inset Formula $\rightarrow$
+\end_inset
+
+ SCommunicator
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+S3I4 CommandEventDispatcher 
+\begin_inset Formula $\rightarrow$
+\end_inset
+
+ MessageFormatter
+\end_layout
+
+\begin_layout Standard
+When performing all those integration test an external stub for the Business
+ Subsystem and the client is needed.
+\end_layout
+
+\begin_layout Subsubsection
+TaxiManager [S5]
+\end_layout
+
+\begin_layout Standard
+All leaves components are supposed to be individually tested with a suitable
+ drivers.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+S5I1 TaxiQueueManager 
+\begin_inset Formula $\rightarrow$
+\end_inset
+
+ TaxiStateChanger
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+S5I2 TaxiSelector 
+\begin_inset Formula $\rightarrow$
+\end_inset
+
+ TaxiStateChanger
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+S5I2 TaxiSelector 
+\begin_inset Formula $\rightarrow$
+\end_inset
+
+ TaxiPositionFinder 
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+S5I2 TaxiSelector 
+\begin_inset Formula $\rightarrow$
+\end_inset
+
+ TaxiStateChanger 
+\end_layout
+
+\begin_layout Standard
+When performing all those integration test an external stub for the Business
+ Subsystem is needed, since TaxiManager is one of its subcomponents.
+ 
+\end_layout
+
+\begin_layout Subsubsection
+Business subsystem [S4]
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+S4I1 TaxiManager 
+\begin_inset Formula $\rightarrow$
+\end_inset
+
+ DBManager 
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+S4I2 AccountManager 
+\begin_inset Formula $\rightarrow$
+\end_inset
+
+ DBManager 
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+S4I3 RequestManager 
+\begin_inset Formula $\rightarrow$
+\end_inset
+
+ GoogleMapsCommunicator 
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+S4I3 RequestManager 
+\begin_inset Formula $\rightarrow$
+\end_inset
+
+ TaxiManager 
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+S4I3 RequestManager 
+\begin_inset Formula $\rightarrow$
+\end_inset
+
+ DBManager
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+S4I4 ReservationManager 
+\begin_inset Formula $\rightarrow$
+\end_inset
+
+ GoogleMapsCommunicator 
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+S4I4 ReservationManager 
+\begin_inset Formula $\rightarrow$
+\end_inset
+
+ DBManager
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+S4I4 ReservationManager 
+\begin_inset Formula $\rightarrow$
+\end_inset
+
+ RequestManager 
+\end_layout
+
+\begin_layout Standard
+When performing all those integration test an external stub for the DBMS
+ is needed.
+\end_layout
+
+\begin_layout Subsubsection
+Subsystem Integration Sequence (subsystem level)
+\end_layout
+
+\begin_layout Standard
+At subsystem level the integration is performed based on the sandwich strategy.
+ We list the integration steps to be followed; notice that thanks to the
+ modified sandwich strategy SI1, SI2, SI3 and SI4 are to be performed in
+ parallel.
+ Moreover, SI1, SI2 and SI3 go top-down so they need a stub of Business
+ subsystem while SI4 goes bottom-up so it needs a driver of Web subsystem.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+SI1 PMA 
+\begin_inset Formula $\leftrightarrow$
+\end_inset
+
+ Web subsystem
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+SI2 TMA 
+\begin_inset Formula $\leftrightarrow$
+\end_inset
+
+ Web subsystem 
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+SI3 PWA 
+\begin_inset Formula $\leftrightarrow$
+\end_inset
+
+ Web subsystem
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+SI4 Business subsystem 
+\begin_inset Formula $\rightarrow$
+\end_inset
+
+ DBMS
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+SI5 Web subsystem 
+\begin_inset Formula $\leftrightarrow$
+\end_inset
+
+ Business subsystem
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{landscape}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/Testing activity.pdf
+	scale 70
+	BoundingBox 0bp 200bp 824bp 578bp
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Integration test plan - activity diagram
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{landscape}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

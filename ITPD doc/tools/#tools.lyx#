@@ -1,0 +1,263 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\begin_preamble
+\usepackage{pdflscape}
+\end_preamble
+\use_default_options true
+\master ../ITPD.lyx
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize a4paper
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 3cm
+\topmargin 3cm
+\rightmargin 3cm
+\bottommargin 3cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+In this section we present some tools that can be useful for the integration
+ tesing described in the previous sections.
+ Those do not represent a constraint for the integration test execution
+ phase but just a suggestion for the testing team.
+\end_layout
+
+\begin_layout Subsection
+Overview
+\end_layout
+
+\begin_layout Standard
+Whatever approach is chosen for the integration testing, either 
+\emph on
+manual testing
+\emph default
+ or 
+\emph on
+automated testing
+\emph default
+, it has to be at least compatible preferably suitable and simple for the
+ architecture chosen in the implementative phase.
+ As stated in the DD, the suggested architecture is JEE therefore we will
+ describe possible approaches to integration testing advised for JEE.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Manual integration tesing
+\emph default
+ refers to the testing process performed by hand.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Automated integration tesing
+\emph default
+ refers to the testing process performed using the facilites of ad hoc testing
+ tools, we will describe Arquillian that the main one adopted for JEE applicatio
+ns.
+\end_layout
+
+\begin_layout Standard
+Automated testing should be of course preferred for reliability, precision
+ and time saving (as it is done in unit testing) however for integration
+ testing it is usually not enought since automated tests cannot spot all
+ forms of unexpected error conditions which can manifest only by a direct
+ intervention of the developer who knows the dependency structure of the
+ application.
+ 
+\end_layout
+
+\begin_layout Subsection
+Possible approaches
+\end_layout
+
+\begin_layout Subsubsection
+Manual integration testing
+\end_layout
+
+\begin_layout Standard
+Manual integration testing consists in the process of discovering defects
+ in the interaction between components/subsystems by means of exercizing
+ the software with proper input from test cases and comparing the output
+ with the expected output.
+ Manual testing is typically slower and less reliable then automated testing
+ however the “100% Automation is not possible” expecially in integration
+ testing so manual testing plays an important role in this context.
+ Often there are not automatic tools to test the user interface therefore
+ manual testing can be exploited.
+\end_layout
+
+\begin_layout Subsubsection
+Automated integration testing: Arquillian
+\end_layout
+
+\begin_layout Standard
+Integration testing is very important in Java EE.
+ The reason is two-fold:
+\end_layout
+
+\begin_layout Itemize
+business components often interact with resources or sub-system provided
+ by the container;
+\end_layout
+
+\begin_layout Itemize
+many declarative services get applied to the business component at runtime.
+\end_layout
+
+\begin_layout Standard
+Therefore to do integration tests on a JEE application it requires that
+ you run them inside a JEE container.
+ 
+\end_layout
+
+\begin_layout Standard
+Fortunately this problem is solved by an open source project called Arquillian
+ (
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+http://www.jboss.org/arquillian
+\end_layout
+
+\end_inset
+
+) which boots the container, allows the injection of managed beans and EJB
+ beans into unit test classes.
+ Arquillian is a 
+\emph on
+container-oriented testing framework
+\emph default
+ developed in Java Enterprise that brings your test to the runtime rather
+ than requiring you to manage the runtime from the test.
+ This strategy eliminates setup code and allows the test to behave more
+ like the components it's testing.
+ The end result is that integration testing becomes no more complex than
+ unit testing.
+\end_layout
+
+\begin_layout Standard
+Arquillian combines a unit testing framework (JUnit or TestNG), ShrinkWrap,
+ and one or more supported target containers (Java EE container, servlet
+ container, Java SE CDI environment, etc) to provide a simple, flexible
+ and pluggable integration testing environment.
+ Beside Arquillian functionalities some JUnit features (like assertions,
+ annotations...) can be still exploited in order to write ad-hoc integration
+ testing procedures.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/arquillian.png
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Arquillian architecture.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Suggested process
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\end_body
+\end_document
