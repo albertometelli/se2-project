@@ -1,0 +1,21 @@
+\usepackage{listings}%
+\usepackage{xcolor}
+\usepackage[a4paper]{geometry}
+\definecolor{dark-green}{rgb}{0.0, 0.5, 0.0}
+\definecolor{dark-red}{rgb}{0.5, 0.0, 0.0}
+
+\lstset{%
+    backgroundcolor=\color{white},%
+    basicstyle=\small\ttfamily,%
+    numbers=left, numberstyle=\tiny\color{gray}\ttfamily, stepnumber=2, numbersep=5pt,%
+    commentstyle=\color{dark-green},
+    }%
+
+% Add your keywords here, and have this in a separate file
+% and include it in your preamble
+\lstset{emph={%  
+    one,some,abstract,all,and,as,assert,but,check,disj,else,exactly,extends,fact,for,fun,iden,iff,implies,in,Int,let,lone,module,no,none,not,one,open, or, pred, run,set, sig,	 some,	sum, univ
+    },emphstyle={\color{blue}\bf},%
+	morecomment=[l]{//},
+	morecomment=[s]{/*}{*/},
+}%

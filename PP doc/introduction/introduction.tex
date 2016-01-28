@@ -1,0 +1,146 @@
+
+\subsection{Purpose}
+
+\emph{Project management} represents a necessary condition for the
+success of any software project. Considered the intrinsic complexity
+of a software project, the difficulty in assessing the quality of
+the software and the organizational, economical, social and technical
+issues to be tackled in any enterprise environment, project management
+cannot be avoided. It comprises all the activities aimed to ensuring
+the delivering of the software on schedule and in accordance with
+context and requirements; in particular project planning, reporting,
+risk management and people management. The \emph{PP} (\emph{Project
+Planning}) is intended to be a trace of the myTaxiService project
+process. For academic reasons, this document is delivered as last
+assignment but it refers to both activities to be completed before
+the project initiation and activities to be performed during and at
+the end of the project. In particular this document is focused on
+\emph{project planning} (estimation and scheduling of the process
+development, assignment of resources),\emph{ risk management }(definitions,
+strategies to tackle risk) and \emph{cost estimation}. In an enterprise
+environment the first two are typically performed before the project
+starts while the latter is executed either after the requirement engineering
+or after the design phase.
+
+This document is intended to be read by stakeholders in order to show
+the devised organization of resources and time and to have a general
+overview of the effort needed to carry out the project useful for
+the evaluation of the founding.
+
+
+\subsection{Scope}
+
+The \emph{myTaxyService} is an application intended to optimize taxi
+service in a large city, making the access to service simpler for
+the passengers and ensuring a fair management of the taxi queues. 
+
+Passengers will be able to request a taxi either through a web application
+or a mobile app; of course the ``traditional'' ways to call for
+a taxi, like a phone call or stopping the taxi along the road, will
+be still available and integrated into the system to-be. The software
+will make the procedure of calling a taxi simpler (by using GPS information
+passenger doesn't need to know the address if the taxi is needed for
+the current position) and more usable (passenger will be provided
+with information about the waiting time). Moreover, by means of the
+application, the passenger can reserve a taxi for a certain date and
+time, specifying the origin and the destination of the ride.
+
+Taxi drivers will use a mobile app to inform the system about their
+availability and to confirm that they are going to take care of a
+call (or to reject it for any reason). The software will make the
+taxi management more efficient: the system will be able to identify
+the position of each taxi by using GPS; the city will be divided in
+virtual zones and a suitable distribution of the taxi among the zones
+will automatically be computed.
+
+
+\subsection{Definitions, Acronyms, Abbreviations}
+
+In this paragraph all the terms, acronyms and abbreviations used in
+the following sections are listed.
+
+
+\subsubsection{Definitions}
+\begin{itemize}
+\item \emph{Request}: the action performed by the passenger of calling a
+taxi for the current position.
+\item \emph{Confirmed request}: a request that has been accepted by a taxi
+driver.
+\item \emph{Reservation}: the action performed by the passenger of booking
+a taxi for a specific address and specific date and time.
+\item \emph{Waiting time}: an estimation of the time required to taxi driver
+to get to passenger's position.
+\item \emph{Taxi code}: a unique alphanumerical identifier of the taxi.
+\item \emph{Available taxi queues}: data structures used to store the references
+of the available taxis, also used to select the taxis to which forward
+a request.
+\item \emph{Automatic geolocalization}: a system that provides the geographic
+coordinates of the user. For this document it can be either a GPS
+system or browser geolocalization.
+\item \emph{Passengers' application}: the applications used by passengers
+to access to TS system. For this document it can be either PMA or
+PWA.
+\item \emph{Login credentials}: username and password.
+\item \textit{Notification}: communication from TS to taxi driver to move
+to a specific zone.
+\end{itemize}
+
+\subsubsection{Acronyms}
+\begin{itemize}
+\item TS: myTaxiService.
+\item PMA: Passenger mobile application.
+\item PWA: Passenger web application.
+\item TMA: Taxi driver mobile application.
+\item SLOC: Source Lines Of Code.
+\item FP(s): Function Point(s).
+\end{itemize}
+Other acronyms are explained in the corresponding sections.
+
+
+\subsection{Reference documents}
+\begin{lyxlist}{00.00.0000}
+\item [{{[}1{]}}] The assignment of the \emph{myTaxiService}.
+\item [{{[}2{]}}] RASD (Requirements Analysis and Specification Document)
+of the \emph{myTaxiService}.
+\item [{{[}3{]}}] DD (Design Document) of the \emph{myTaxiService}.
+\item [{{[}4{]}}] ITPD (Integration Testing Plan Document) of the \emph{myTaxiService}.
+\item [{{[}5{]}}] Software Engineering 2 course slides.
+\item [{{[}6{]}}] COCOMO II Model Definition Manual \url{http://csse.usc.edu/csse/research/COCOMOII/cocomo2000.0/CII_modelman2000.0.pdf}
+\item [{{[}7{]}}] Function Point Languages Table Version 5.0 \url{http://www.qsm.com/resources/ function-point-languages-table}
+\end{lyxlist}
+
+\subsection{Document Structure}
+
+This document is composed of six sections and an appendix.
+\begin{itemize}
+\item The first section, this one, is intended to define the goal of the
+document, a very high level description of the main functionalists
+of the \emph{myTaxiService} system and the resources used to draw
+up this document.
+\item The second section describes some preliminary results for cost estimation.
+A brief theoretical introduction about Function Points method will
+be provided and then it will be applied to the myTaxiService system
+in order to estimate the complexity of the project and derive the
+expected number of SLOC.
+\item The third section is devoted to cost estimation. A general method,
+called COCOMO, will be presented and applied to the specific case
+of myTaxiService in order to estimate the effort of the project, the
+estimated time needed for the fulfillment and the number of people
+required.
+\item In the fourth section we discuss project planning and in particular,
+according to the activities identified we propose a possible schedule,
+according to both the real deadlines and some reasonable considerations.
+We also provide a graphical representation of the schedule by means
+of a Gantt chart. 
+\item The fifth section is still devoted to project planning but the focus
+is on the resource allocation. Some general consideration will be
+given and the allocation strategy explained, we will also use a resource
+chart to clarify the results.
+\item The sixth section is devoted to risk management. The main risks affecting
+the myTaxiService project will be stated according to the traditional
+classification. Some consideration about the strategy adopted to tackle
+them will be given.
+\item The appendix contains a brief description of the tools used to produce
+this documents and the number of hours each group member has worked
+towards the fulfillment of this deadline and the revision history.\end{itemize}
+
