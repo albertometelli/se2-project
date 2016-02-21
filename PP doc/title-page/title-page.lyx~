@@ -404,7 +404,7 @@ status open
 
 
 \series bold
-FP
+PP
 \series default
 
 \begin_inset ERT
@@ -447,7 +447,7 @@ status open
 
 
 \series bold
-Function Points
+Project plan
 \begin_inset ERT
 status open
 
@@ -468,7 +468,7 @@ version 1.0
 
 \begin_layout Standard
 \align center
-30th January 2015
+2nd February 2016
 \end_layout
 
 \begin_layout Standard

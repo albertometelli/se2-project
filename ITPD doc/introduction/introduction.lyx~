@@ -85,20 +85,20 @@ Integration Test Plan Document
 myTaxyService 
 \emph default
 application.
- The integration test as a part of the V&V (Verification and Validation)
- process is executed after the unit test of the involved modules, which
+ The integration test, as a part of the V&V (Verification and Validation)
+ process, is executed after the unit test of the involved modules, which
  constitutes its main entry condition, and before the system and acceptance
  test.
  It is aimed to exercise the interaction between modules and the corresponding
  interfaces in order to check the compatibility against functional, performance
  and reliability requirements.
- The preferred approach for integration testing is the 
+ The preferred approach for integration testing is 
 \emph on
 black-box 
 \emph default
-one since single modules are supposed to be already tested isolated and
- no simple coverage criteria can be defined.
- Applications are often composed of many modules and the refashions among
+since single modules are supposed to be already tested isolated and no simple
+ coverage criteria can be defined.
+ Applications are often composed of many modules and the relations among
  them can be very intricate therefore an 
 \emph on
 integration test plan
@@ -280,19 +280,111 @@ Abbreviations
 \end_layout
 
 \begin_layout Itemize
-Sn n-th subsystem.
+S
+\emph on
+n
+\emph default
+ 
+\emph on
+n
+\emph default
+-th subsystem.
 \end_layout
 
 \begin_layout Itemize
-SnIm m-th integration test of the n-th subsystem.
+S
+\emph on
+n
+\emph default
+I
+\emph on
+m
+\emph default
+ 
+\emph on
+m
+\emph default
+-th integration test of the 
+\emph on
+n
+\emph default
+-th subsystem.
 \end_layout
 
 \begin_layout Itemize
-SIm m-th integration test of the full system.
+S
+\emph on
+n
+\emph default
+I
+\emph on
+m
+\emph default
+-T
+\emph on
+k
+\emph default
+ 
+\emph on
+k
+\emph default
+-the test case of 
+\emph on
+m
+\emph default
+-th integration test of the 
+\emph on
+n
+\emph default
+-th subsystem.
 \end_layout
 
 \begin_layout Itemize
-EIm m-th integration test with external subsystems.
+SI
+\emph on
+m
+\emph default
+ 
+\emph on
+m
+\emph default
+-th integration test of the full system.
+\end_layout
+
+\begin_layout Itemize
+SI
+\emph on
+m
+\emph default
+-T
+\emph on
+k
+\emph default
+ 
+\emph on
+k
+\emph default
+-the test case of 
+\emph on
+m
+\emph default
+-th integration test of the 
+\emph on
+n
+\emph default
+-th subsystem.
+\end_layout
+
+\begin_layout Itemize
+EI
+\emph on
+m
+\emph default
+ 
+\emph on
+m
+\emph default
+-th integration test with external subsystems.
  
 \end_layout
 
@@ -367,7 +459,7 @@ myTaxiService
 \end_layout
 
 \begin_layout Itemize
-The second constitutes the core of the test plan.
+The second section constitutes the core of the test plan.
  This section is devoted to the description of the integration test strategy:
  the preconditions required to start the integration test will be presented,
  the main rationals behind the chosen strategy will be discussed; the elements
@@ -379,7 +471,7 @@ The second constitutes the core of the test plan.
 \end_layout
 
 \begin_layout Itemize
-The third section contains the definition of the test sets.
+The third section contains the definition of the test sets and test cases.
  Each test will be presented with reference to the sequence explained in
  the second section, together with the hypothesis about the initial state
  of the system and the expected results.
@@ -393,9 +485,9 @@ The fourth section is dedicated to the test tools.
 \end_layout
 
 \begin_layout Itemize
-The fifth section is devoted to the description of the program stubs and
- the specific test data to accomplish the integration test in some particular
- scenarios.
+The fifth section is devoted to the description of the program stubs, drivers
+ and the specific test data to accomplish the integration test in some particula
+r scenarios such as external system integration.
 \end_layout
 
 \begin_layout Itemize

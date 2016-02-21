@@ -292,57 +292,6 @@ status open
 
 
 \backslash
-huge
-\end_layout
-
-\end_inset
-
-
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-{
-\end_layout
-
-\end_inset
-
-
-\series bold
-myTaxiService
-\series default
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset VSpace 0.2cm
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\align center
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
 Large
 \end_layout
 

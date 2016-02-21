@@ -329,7 +329,7 @@ Considering the specific application domain and according to the information
 \labelwidthstring 00.00.0000
 [D14] Taxi drivers' work-shifts are managed in order to ensure that at each
  moment the number of in service taxis is at least 50% of the total number
- of taxis.
+ of taxis during the day and 20% during the night.
 \end_layout
 
 \begin_layout Labeling

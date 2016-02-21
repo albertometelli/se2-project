@@ -339,7 +339,12 @@ Systems and software engineering - Architecture description
 
 \begin_layout Labeling
 \labelwidthstring 00.00.0000
-[5] RASD (Requirements Analysis and Specification Document) of the 
+[5] Federico Malucelli, Lecture notes.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[6] RASD (Requirements Analysis and Specification Document) of the 
 \emph on
 myTaxiService
 \emph default

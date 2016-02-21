@@ -251,7 +251,7 @@ TMA
 \begin_layout Plain Layout
 
 \size small
-WebTier
+WebSubsystem
 \end_layout
 
 \end_inset
@@ -289,7 +289,7 @@ WebTier
 \begin_layout Plain Layout
 
 \size small
-Business tier
+BusinessSubsystem
 \end_layout
 
 \end_inset
@@ -5720,7 +5720,7 @@ TMA
 \begin_layout Plain Layout
 
 \size small
-WebTier
+WebSubsystem
 \end_layout
 
 \end_inset
@@ -5758,7 +5758,7 @@ WebTier
 \begin_layout Plain Layout
 
 \size small
-Business tier
+BusinessSubsystem
 \end_layout
 
 \end_inset
@@ -7983,7 +7983,7 @@ TMA
 \begin_layout Plain Layout
 
 \size small
-WebTier
+WebSubsystem
 \end_layout
 
 \end_inset
@@ -8021,7 +8021,7 @@ WebTier
 \begin_layout Plain Layout
 
 \size small
-Business tier
+BusinessSubsystem
 \end_layout
 
 \end_inset

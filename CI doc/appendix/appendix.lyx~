@@ -94,6 +94,55 @@ label{sec:Appendix1}
 Used tools
 \end_layout
 
+\begin_layout Enumerate
+LyX visual editor for LaTeX (
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+http://www.lyx.org/
+\end_layout
+
+\end_inset
+
+) to write this document.
+\end_layout
+
+\begin_layout Enumerate
+Enterprise Architect 11 (
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+http://www.sparxsystems.com.au/products/ea/
+\end_layout
+
+\end_inset
+
+) for UML diagrams.
+\end_layout
+
+\begin_layout Enumerate
+NetBeans IDE 8.1 (
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://netbeans.org/
+\end_layout
+
+\end_inset
+
+) for code inspection.
+\end_layout
+
+\begin_layout Enumerate
+The automatic analysis tools listed in section 1.5.
+\end_layout
+
 \begin_layout Subsection*
 Hours of works
 \end_layout
@@ -107,7 +156,7 @@ Alberto Maria Metelli: 18 h
 \end_layout
 
 \begin_layout Itemize
-Riccardo Mologni:  h
+Riccardo Mologni: 15 h
 \end_layout
 
 \begin_layout Subsection*
@@ -183,7 +232,7 @@ Revision notes
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+1-1-2016
 \end_layout
 
 \end_inset

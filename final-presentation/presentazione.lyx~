@@ -1,0 +1,3207 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass beamer
+\begin_preamble
+\usetheme{Warsaw}
+
+\setbeamercovered{transparent}
+% or whatever (possibly just delete it)
+
+\usepackage{settings}
+\usepackage{framed}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usetikzlibrary{arrows}
+\end_preamble
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman times
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 2
+\use_package amssymb 2
+\use_package cancel 0
+\use_package esint 0
+\use_package mathdots 1
+\use_package mathtools 0
+\use_package mhchem 1
+\use_package stackrel 0
+\use_package stmaryrd 0
+\use_package undertilde 0
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 2
+\tocdepth 2
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+myTaxiService
+\end_layout
+
+\begin_layout Subtitle
+Software Engineering 2 -Project
+\end_layout
+
+\begin_layout Author
+Alberto Maria
+\begin_inset space ~
+\end_inset
+
+Metelli
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+and
+\end_layout
+
+\end_inset
+
+ Riccardo
+\begin_inset space ~
+\end_inset
+
+Mologni
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+A.M.
+ Metelli, R.
+ Mologni
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+- optional, use only with lots of authors
+\end_layout
+
+\begin_layout Plain Layout
+- if there are really lots of authors, use 
+\begin_inset Quotes eld
+\end_inset
+
+Author et al.
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Institute
+Politecnico di Milano
+\begin_inset Newline newline
+\end_inset
+
+M.
+ Sc.
+ in Computer Science and Engineering
+\end_layout
+
+\begin_layout Date
+Final Presentation, 22nd February 2016
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+TS 2016
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+optional, should be abbreviation of conference name
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+If you have a file called "institution-logo-filename.xxx", where xxx is a
+ graphic format that can be processed by latex or pdflatex, resp., then you
+ can add a logo by uncommenting the following:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+%
+\backslash
+pgfdeclareimage[height=1cm]{institution-logo}{logo}
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\backslash
+logo{
+\backslash
+pgfuseimage{institution-logo}}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+AtBeginSubsection[]{%
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+frame<beamer>{ 
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+frametitle{Outline}   
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+tableofcontents[currentsection,currentsubsection] 
+\end_layout
+
+\begin_layout Plain Layout
+
+  }
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+%
+\backslash
+beamerdefaultoverlayspecification{<+->}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Outline
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Section
+Requirement analysis and specification
+\end_layout
+
+\begin_layout Subsection
+Actors, goals and requirements
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Actors
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Passenger
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Registered passenger
+\end_layout
+
+\begin_layout Itemize
+Unregistered passenger
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Taxi driver
+\end_layout
+
+\begin_layout Itemize
+Call center operator
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Goals
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout FrameSubtitle
+Jackson Zave approach - 1
+\end_layout
+
+\begin_layout Itemize
+[G1] Allow a passenger to request a taxi for his/her current position without
+ registration.
+\end_layout
+
+\begin_layout Itemize
+[G2] Allow the passenger to visualize the waiting time and the code of the
+ incoming taxi for confirmed requests.
+\end_layout
+
+\begin_layout Itemize
+[G3] Allow a registered passenger to have a personal area.
+\end_layout
+
+\begin_layout Itemize
+[G4] Allow a registered passenger to reserve a taxi.
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Goals
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout FrameSubtitle
+Jackson Zave approach - 2
+\end_layout
+
+\begin_layout Itemize
+[G5] Allow a registered passenger to cancel or modify a previous reservation.
+ 
+\end_layout
+
+\begin_layout Itemize
+[G6] Allow a taxi driver to either accept or reject a request coming from
+ the system.
+\end_layout
+
+\begin_layout Itemize
+[G7] Allow a taxi driver to inform the system about his/her availability.
+\end_layout
+
+\begin_layout Itemize
+[G8] Ensure that available taxi queues enjoy 
+\begin_inset Quotes eld
+\end_inset
+
+fair properties
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+i* model
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Graphics
+	filename images/istarmodeling.png
+	scale 20
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+An example of functional requirement
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout FrameSubtitle
+Reservation
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+[G4] Allow a registered passenger to reserve a taxi.
+\end_layout
+
+\begin_layout Itemize
+[R4.1] TS shall provide the registered passenger with a form in which he/she
+ has to insert the total number of passengers, the origin and the destination
+ of the ride, the date and time of the meeting.
+\end_layout
+
+\begin_layout Itemize
+[R4.2] TS shall accept only reservations made at least two hours in advance.
+\end_layout
+
+\begin_layout Itemize
+[R4.3] TS shall store the reservation, allocate a request 10 minutes before
+ the meeting time.
+\end_layout
+
+\end_deeper
+\begin_layout Frame
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Subsection
+Use cases
+\end_layout
+
+\begin_layout Frame
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Use cases
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout FrameSubtitle
+UML Use Case diagram
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename images/use case.pdf
+	scale 40
+	BoundingBox 50bp 100bp 842bp 560bp
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Frame
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Reservation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout FrameSubtitle
+Use case description - 1
+\end_layout
+
+\begin_layout Standard
+\align left
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="2">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top" width="7cm">
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+\emph on
+Name
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+
+\size scriptsize
+Reservation
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+\emph on
+Related goals
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+
+\size scriptsize
+[G4]
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+\emph on
+Actors
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+
+\size scriptsize
+Registered passenger
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+\emph on
+Entry condition
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+
+\size scriptsize
+Passenger is logged in.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+\emph on
+Flow of events
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Enumerate
+
+\size scriptsize
+Passenger accesses to the reservation area.
+\end_layout
+
+\begin_layout Enumerate
+
+\size scriptsize
+Passenger inserts the required data (origin, destination, date, time, number
+ of passengers).
+\end_layout
+
+\begin_layout Enumerate
+
+\size scriptsize
+Passenger confirms the reservation.
+\end_layout
+
+\begin_layout Enumerate
+
+\size scriptsize
+TS system whether data are valid.
+ 
+\end_layout
+
+\begin_layout Enumerate
+
+\size scriptsize
+QMA creates a new reservation and the related request is allocated.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Reservation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout FrameSubtitle
+Use case description - 2
+\end_layout
+
+\begin_layout Standard
+\align left
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="2">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top" width="7cm">
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+\emph on
+Exit condition
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+
+\size scriptsize
+The reservation is added to the TS system.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+\emph on
+Exceptions
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Itemize
+\paragraph_spacing single
+
+\size scriptsize
+If passenger does not confirm the operation is not performed.
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing single
+
+\size scriptsize
+If the data are not valid (origin, destination, number of passengers) an
+ error message is shown to passenger and the operation is not performed.
+ Passenger can repeat the process.
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing single
+
+\size scriptsize
+If the date and time are such that the reservation is not made at least
+ two hour in advance an error message is shown to user and the operation
+ is not performed.
+ Passenger can repeat the process.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Reservation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout FrameSubtitle
+Sequence diagram - 1
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename images/serquence1.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Frame
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Reservation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout FrameSubtitle
+Sequence diagram - 2
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename images/serquence2.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Frame
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Section
+Design
+\end_layout
+
+\begin_layout Subsection
+Pattern + Style = Architecture
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Pattern + Style = Architecture
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Graphics
+	filename images/firstpage1.pdf
+	scale 35
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Pattern + Style = Architecture
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Graphics
+	filename images/firstpage2.pdf
+	scale 35
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Pattern + Style = Architecture
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Graphics
+	filename images/firstpage3.pdf
+	scale 35
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+MVC
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout FrameSubtitle
+Architectural pattern
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+Problem
+\emph default
+: applications with user interface
+\end_layout
+
+\begin_layout Itemize
+Separation of concerns
+\end_layout
+
+\begin_layout Itemize
+Design and conquer development
+\end_layout
+
+\begin_layout Itemize
+Maintainability
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture}[remember picture,overlay] 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node [xshift=4cm,yshift=-0.7cm] at (current page.center) 
+\end_layout
+
+\begin_layout Plain Layout
+
+{ 
+\backslash
+includegraphics[scale=0.35]{images/mvc}  }; 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tikzpicture}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Client/Server
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout FrameSubtitle
+Architectural style
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+Context
+\emph default
+: distributed application
+\end_layout
+
+\begin_layout Itemize
+Separation of roles
+\end_layout
+
+\begin_layout Itemize
+Lot of source of information
+\end_layout
+
+\begin_layout Itemize
+Just one elaboration point
+\end_layout
+
+\begin_layout Itemize
+Maintainability
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture}[remember picture,overlay] 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node [xshift=4cm,yshift=-0.7cm] at (current page.center) 
+\end_layout
+
+\begin_layout Plain Layout
+
+{ 
+\backslash
+includegraphics[scale=0.35]{images/clientserver}  }; 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tikzpicture}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Three tier
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout FrameSubtitle
+Architectural style flavour
+\end_layout
+
+\begin_layout Itemize
+Different computational and storage resource
+\end_layout
+
+\begin_layout Itemize
+Presentation on clients (Tier 1)
+\end_layout
+
+\begin_layout Itemize
+Separation between 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+data (Tier 3) and 
+\end_layout
+
+\begin_layout Itemize
+business logic (Tier 2)
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Further separation within Tier 2: 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+visualization (web server)
+\end_layout
+
+\begin_layout Itemize
+processing (application server)
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture}[remember picture,overlay] 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node [xshift=4cm,yshift=-0.7cm] at (current page.center) 
+\end_layout
+
+\begin_layout Plain Layout
+
+{ 
+\backslash
+includegraphics[scale=0.25]{images/threetier}  }; 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tikzpicture}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Overall architecture
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename images/tier_description.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Frame
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Subsection
+Architectural views
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Subsystems
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout ColumnsTopAligned
+
+\end_layout
+
+\begin_deeper
+\begin_layout Column
+5cm
+\end_layout
+
+\begin_layout Itemize
+TMA (Taxi Mobile Application)
+\end_layout
+
+\begin_layout Itemize
+PMA (Passenger Mobile Application)
+\end_layout
+
+\begin_layout Itemize
+PWA (Passenger Web Application)
+\end_layout
+
+\begin_layout Column
+5cm
+\end_layout
+
+\begin_layout Itemize
+Web subsystem
+\end_layout
+
+\begin_layout Itemize
+Business subsystem
+\end_layout
+
+\begin_layout Itemize
+DBMS
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Frame
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Subsystems
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout FrameSubtitle
+High level component diagram
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+href[pdfnewwindow=true]{run:images/HighLevelComponents.pdf}{Link}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename images/HighLevelComponents.pdf
+	scale 37
+	BoundingBox 0bp 0bp 824bp 530bp
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Components
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout FrameSubtitle
+Business Subsystem
+\end_layout
+
+\begin_layout ColumnsTopAligned
+
+\end_layout
+
+\begin_deeper
+\begin_layout Column
+5cm
+\end_layout
+
+\begin_layout Itemize
+AccountManager
+\end_layout
+
+\begin_layout Itemize
+RequestManager
+\end_layout
+
+\begin_layout Itemize
+ReservationManager
+\end_layout
+
+\begin_layout Itemize
+GoogleMapsCommunicatior
+\end_layout
+
+\begin_layout Itemize
+DBManager
+\end_layout
+
+\begin_layout Column
+5cm
+\end_layout
+
+\begin_layout Itemize
+TaxiManager (
+\emph on
+macro-component)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+TaxiSelector
+\end_layout
+
+\begin_layout Itemize
+TaxiPositionFineder
+\end_layout
+
+\begin_layout Itemize
+TaxiQueueManager
+\end_layout
+
+\begin_layout Itemize
+TaxiStateChanger
+\end_layout
+
+\end_deeper
+\end_deeper
+\end_deeper
+\begin_layout Frame
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Components
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout FrameSubtitle
+Business Tier - Component diagram
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+href[pdfnewwindow=true]{run:images/BusinessTier.pdf}{Link}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename images/BusinessTier.pdf
+	scale 23
+	BoundingBox 50bp 0bp 1276bp 760bp
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Frame
+
+\end_layout
+
+\begin_layout Frame
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Cloud deployment
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout FrameSubtitle
+Motivations
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+IaaS deployment
+\end_layout
+
+\begin_layout Itemize
+Different traffic loads: upward and downward 
+\emph on
+scalability
+\end_layout
+
+\begin_layout Itemize
+Costs: no acquisition costs, 
+\emph on
+pay-as-you-go
+\end_layout
+
+\begin_layout Itemize
+Security: physical security
+\end_layout
+
+\begin_layout Itemize
+Availability: redundancy in hw and configurations, automatic backup
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture}[remember picture,overlay] 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node [xshift=4cm,yshift=-2.5cm] at (current page.center) 
+\end_layout
+
+\begin_layout Plain Layout
+
+{ 
+\backslash
+includegraphics[scale=0.7]{images/cloud-computing}  }; 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tikzpicture}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Cloud deployment
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout FrameSubtitle
+Deployment diagram
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename images/Deployment View.pdf
+	scale 30
+	BoundingBox 50bp 300bp 2000bp 850bp
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Subsection
+Algorithm design
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Taxi queue management
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout FrameSubtitle
+Example
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture}[->,>=stealth',main_node/.style={circle,fill=blue!20,draw,minim
+um size=1em,inner sep=3pt]},every edge/.append style={font=
+\backslash
+scriptsize}]   
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node[main_node] (1) {$+6$};     
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node[main_node] (2) [below = 1cm of 1]  {$+2$};     
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node[main_node] (3) [below = 1cm of 2] {$+3$};
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node[main_node] (4) [below right = 0.3cm and 3cm of 1] {$-2$};     
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node[main_node] (5) [below right = 2.1cm and 3cm of 1]  {$-1$};   
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\backslash
+node[main_node] (6) [left = 2cm of 2] {$s$};     
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\backslash
+node[main_node] (7) [right = 4cm of 2]  {$t$};     
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+path[draw,thick]     
+\end_layout
+
+\begin_layout Plain Layout
+
+(1) edge node [above] {$4$} (4)
+\end_layout
+
+\begin_layout Plain Layout
+
+(1) edge node [above, very near end] {$3$} (5)     
+\end_layout
+
+\begin_layout Plain Layout
+
+(2) edge node [above, very near start] {$2$} (4)     
+\end_layout
+
+\begin_layout Plain Layout
+
+(2) edge node [above, very near end] {$3$} (5)     
+\end_layout
+
+\begin_layout Plain Layout
+
+(3) edge node [above, very near start] {$1$} (4)     
+\end_layout
+
+\begin_layout Plain Layout
+
+(3) edge node [above] {$2$} (5);        
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tikzpicture}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Taxi queue management
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout FrameSubtitle
+Algorithm
+\end_layout
+
+\begin_layout Enumerate
+Find a maximum flow
+\end_layout
+
+\begin_layout Enumerate
+While there exists a negative cost cycle
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Build the incremental network
+\end_layout
+
+\begin_layout Enumerate
+Find the negative cost cycle
+\end_layout
+
+\begin_layout Enumerate
+Update the flow
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+The complexity is 
+\begin_inset Formula $O(|Z||A'|^{2}k_{max}d_{max})$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Frame
+
+\end_layout
+
+\begin_layout Section
+Integration testing plan
+\end_layout
+
+\begin_layout Subsection
+Integration testing strategy
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Levels of integration
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\emph on
+component level
+\emph default
+: each component will be integrated and tested against every dependent component
+ in the contest of the subsystem to which it belongs
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+subsystems
+\emph default
+ 
+\emph on
+level
+\emph default
+: once each subsystem is entirely integrated, all of them will be integrated
+ and tested.
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Strategies of integration
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+component level: 
+\series bold
+Bottom-up
+\end_layout
+
+\begin_layout Itemize
+subsystems level: 
+\series bold
+Sandwich
+\end_layout
+
+\begin_layout Standard
+The overall methogology is known as 
+\emph on
+modified sandwich 
+\emph default
+strategy
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Component level strategy
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\series bold
+Bottom up
+\end_layout
+
+\begin_layout Itemize
+only test drivers are used, no stubs
+\end_layout
+
+\begin_layout Itemize
+suitable for object oriented design metodologies
+\end_layout
+
+\begin_layout Itemize
+favours the evaluation of the performance requirements
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Subsystem level strategy
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\series bold
+Sandwich
+\end_layout
+
+\begin_layout Itemize
+top and bottom layer tests done in parallel
+\end_layout
+
+\begin_layout Itemize
+suitable for large projects having several subprojects
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Sequence of integration
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Graphics
+	filename images/Testing activity.pdf
+	scale 35
+	BoundingBox 0bp 0bp 854bp 620bp
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Subsection
+Example of integration testing procedure
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Business subsystem - 1
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename images/BusinessTierTest.pdf
+	scale 35
+	BoundingBox 0bp 0bp 500bp 578bp
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+S4I3 RequestManager 
+\begin_inset Formula $\rightarrow$
+\end_inset
+
+ TaxiManager 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align left
+\begin_inset Tabular
+<lyxtabular version="3" rows="8" columns="2">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="left" valignment="top" width="3cm">
+<column alignment="left" valignment="top" width="7cm">
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\emph on
+Test case identifier
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+
+\series bold
+\size footnotesize
+S4I3-T3
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\emph on
+Test items
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+
+\size footnotesize
+RequestManager → TaxiManager 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\emph on
+Input specification
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+
+\size footnotesize
+Create typical RequestManager input
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\emph on
+Output specification
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+
+\size footnotesize
+Check if the correct methods are called in the TaxiManager
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\emph on
+Environmental needs
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\align left
+
+\size footnotesize
+I1 succeeded
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\emph on
+Tested funcional requirements
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Enumerate
+
+\size footnotesize
+Check that when sendRequest is called on RequestManager, selectTaxi is called
+ on TaxiManager.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\emph on
+Tested non funcional requirements
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+-
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\emph on
+Testing technique
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Automated
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Section
+Project plan
+\end_layout
+
+\begin_layout Subsection
+Cost estimation
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Function points count
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="2">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="left" valignment="top" width="5cm">
+<column alignment="center" valignment="top" width="1.5cm">
+<row>
+<cell multicolumn="1" alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+\size scriptsize
+Function type
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none" width="7cm">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+\size scriptsize
+FPs
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+\emph on
+ILF (Internal Logical Files)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+52
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+\emph on
+ELF (External Logical Files)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+25
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+\emph on
+EI (External Inputs)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+48
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+\emph on
+EO (External Outputs)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+9
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+\emph on
+EQ (External Inquiries)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+12
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\begin_inset Formula 
+\[
+UFP=ILF+ELF+EI+EO+EQ=146FPs
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+SLOC=SLOC/FP\cdot UFP=46\cdot146=6716
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+COCOMO II
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Effort=PM=2.94\cdot(6.716)^{1.0536}\cdot1.149=25.1\;\mathrm{person-month}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Duration=TDEV=3.67\cdot(25.1)^{0.30872}=13.8\;\mathrm{months}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Cost=25.1\cdot2500\$=62832\;\mathrm{\$}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+N=\frac{25.1}{13.8}=1.82\;\mathrm{person}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Frame
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Subsection
+Project planning and risk management
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Tasks
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+href[pdfnewwindow=true]{run:images/gantt.png}{Link}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename images/gantt.png
+	scale 20
+	BoundingBox 0bp 0bp 1822bp 929bp
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Frame
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Resources
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+href[pdfnewwindow=true]{run:images/resources.png}{Link}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename images/resources.png
+	scale 30
+	BoundingBox 0bp 0bp 1401bp 608bp
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Frame
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Some examples of risks
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="4">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="left" valignment="top" width="2.5cm">
+<column alignment="left" valignment="top" width="4cm">
+<column alignment="center" valignment="top" width="1.5cm">
+<column alignment="center" valignment="top" width="1.5cm">
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\emph on
+Name
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\emph on
+Description
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\emph on
+Probability
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\emph on
+Impact
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\emph on
+Requirement problem - 2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Customers changes the requirement in the late phases of the software development.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Possible
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Catastrophic
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\emph on
+Personnel problem - 1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Project manager is absent at critical times in the project.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Unlikely
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Critical
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\emph on
+Design problem - 2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+The algorithm for taxi management proposed in the design phase are not correct.
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Rare
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Serious
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\emph on
+Implementation problems - 2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Code does not follow quality guidelines.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Unlikely
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Critical
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Cumulative data
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\emph on
+Total duration
+\emph default
+: 67 days (536 h)
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Total working hours
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Riccardo Mologni: 100 h
+\end_layout
+
+\begin_layout Itemize
+Alberto Maria Metelli: 108 h
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\emph on
+Working hours per day
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Riccardo Mologni: 0,57 h/day
+\end_layout
+
+\begin_layout Itemize
+Alberto Maria Metelli: 0,61 h/day
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Section*
+\start_of_appendix
+Appendix
+\end_layout
+
+\begin_layout Subsection*
+Questions
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Questions
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{center}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename images/questions.jpg
+	scale 80
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{center}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_body
+\end_document

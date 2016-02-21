@@ -992,10 +992,10 @@ g and network communications.
 \begin_layout Itemize
 
 \emph on
-Web Tier
+Web Subsystem
 \emph default
 : it is the subsystem in charge of the information exchang between TMA,
- PMA, PWA and the Business Tier.
+ PMA, PWA and the Business Subsystem.
  It has to be able to send and receive messages in the proper format (HTML
  for web clients and XML for mobile clients
 \begin_inset Foot
@@ -1012,14 +1012,14 @@ We assume that all messages flowing from and to the mobile applications
 \end_inset
 
 ), interpret those message by means of a conversion into commands and invoke
- the suitable services on the Business Tier.
+ the suitable services on the Business Subsystem.
  It is in charge of the safe communications between the previous subsystems.
 \end_layout
 
 \begin_layout Itemize
 
 \emph on
-Business Tier
+Business Subsystem
 \emph default
 : it is the core subsystem in charge of all logic operations.
  It has to handle incoming requests and reservations, be able to correctly
@@ -1036,7 +1036,7 @@ Business Tier
 DBMS
 \emph default
 : it is the subsystem in charge of the persistent data management.
- It is accessed by the Business Tier to store and retrieve information.
+ It is accessed by the Business Subsystem to store and retrieve information.
 \end_layout
 
 \begin_layout Standard
@@ -1273,7 +1273,7 @@ begin{landscape}
 \end_layout
 
 \begin_layout Subsubsection
-WebTier
+WebSubsystem
 \end_layout
 
 \begin_layout Standard
@@ -1298,7 +1298,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-UML component diagram - WebTier
+UML component diagram - WebSubsystem
 \end_layout
 
 \end_inset
@@ -1340,8 +1340,8 @@ end{landscape}
 MessageFormatter
 \emph default
 : it is the component devoted to the translation of events (typically informatio
-n to be displayed or commands) coming from the BusinessTier into a proper
- format, that can be sent over the network and interpreted by clients.
+n to be displayed or commands) coming from the BusinessSubsystem into a
+ proper format, that can be sent over the network and interpreted by clients.
  According to the type of client we have two different implementation of
  this component:
 \end_layout
@@ -1423,9 +1423,9 @@ XMLMessageInterpreter
 CommandEventDispatcher
 \emph default
 : it receives commands from the MessageInterpreter and executes them by
- invoking methods of the BusinessTier and, in case, sends the result to
- the MessageFormatter by means of an event.
- It can also be directly invoked by the BusinessTier in case the client
+ invoking methods of the BusinessSubsystem and, in case, sends the result
+ to the MessageFormatter by means of an event.
+ It can also be directly invoked by the BusinessSubsystem in case the client
  has to be notified of an event (eg.
  the taxi driver has to move to another zone).
 \end_layout
@@ -1466,7 +1466,7 @@ begin{landscape}
 \end_layout
 
 \begin_layout Subsubsection
-BusinessTier
+BusinessSubsystem
 \end_layout
 
 \begin_layout Standard
@@ -1490,7 +1490,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-UML component diagram - BusinessTier
+UML component diagram - BusinessSubsystem
 \end_layout
 
 \end_inset
@@ -1756,7 +1756,7 @@ pay-as-you-go
 \emph on
 Security
 \emph default
-: while logical level security has is not managed by the provider (eg.
+: while logical level security is not managed by the provider (eg.
  authentication, cryptography) in IaaS configuration, physical security
  is ensured since it is typically a critical aspect for the provider.
  In-house security, on the other hand, is not usually an individual's or
@@ -2307,7 +2307,7 @@ In this section for each component and for each provided interface we list
 \end_layout
 
 \begin_layout Subsubsection
-BusinessTier
+BusinessSubsystem
 \end_layout
 
 \begin_layout Standard
@@ -3439,7 +3439,7 @@ moveToTheEnd(taxi : Taxi)
 \end_layout
 
 \begin_layout Subsubsection
-WebTier
+WebSubsystem
 \end_layout
 
 \begin_layout Standard

@@ -80,7 +80,16 @@ Product perspective
 myTaxiService
 \emph default
  (TS) software can be decomposed into four different interacting subsystems
- (Figure 1):
+ (Figure 1); those subsystem are 
+\begin_inset Quotes eld
+\end_inset
+
+abstract subsystems
+\begin_inset Quotes erd
+\end_inset
+
+ therefore they do not necessarely reflect the architecture designed in
+ the following phases:
 \end_layout
 
 \begin_layout Enumerate
@@ -177,7 +186,7 @@ User characteristics
 \end_layout
 
 \begin_layout Standard
-Main addressee of myTaxiService are passengers and taxi drivers.
+The main addressee of myTaxiService are passengers and taxi drivers.
  Users are not expected to have specific knowledge or technical expertise
  but it is assumed they are able to operate the internet and to have access
  to it.

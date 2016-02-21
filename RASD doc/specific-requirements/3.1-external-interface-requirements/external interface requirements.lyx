@@ -290,6 +290,10 @@ browser geolocalization for web passengers;
 \end_layout
 
 \begin_layout Itemize
+GPS system of taxis;
+\end_layout
+
+\begin_layout Itemize
 Google Maps for the estimation of the waiting time and the specification
  of the address when geolocalization or GPS are unavailable.
 \end_layout

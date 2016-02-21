@@ -269,33 +269,6 @@ status open
 
 
 \backslash
-afterpage{
-\backslash
-null
-\backslash
-newpage}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Newpage clearpage
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
 pagenumbering{arabic}
 \end_layout
 

@@ -89,7 +89,7 @@ myTaxiService
 \emph on
 goals
 \emph default
- coming from stakeholders' expectations, the characteristics of the application
+ derived from stakeholders' expectations, the characteristics of the application
  domain and the 
 \emph on
 assumptions
@@ -386,7 +386,7 @@ Call center operator
 \end_layout
 
 \begin_layout Subsection
-Requirement engineering approach
+Requirement engineering (Jackson Zave approach)
 \end_layout
 
 \begin_layout Standard
@@ -540,9 +540,9 @@ Reference documents
 
 \begin_layout Labeling
 \labelwidthstring 00.00.0000
-[1] IEEE Software Engineering Standards Committee, “IEEE Std 830-1998, IEEE
- Recommended Practice for Software Requirements Specifications”, October
- 20, 1998.
+[1] IEEE Software Engineering Standards Committee, “29148-2011 - Systems
+ and software engineering — Life cycle processes — Requirements engineering”,
+ 2011.
  
 \end_layout
 
@@ -574,8 +574,8 @@ This document is drawn up in accordance to the IEEE Std 830-1998 for Software
 \end_layout
 
 \begin_layout Itemize
-The first, this one, section gives a general description of the document
- and brief information about the actors and the purposes of the software.
+The first, this one, gives a general description of the document and brief
+ information about the actors and the purposes of the software.
 \end_layout
 
 \begin_layout Itemize
@@ -607,9 +607,9 @@ The fourth section presents a formalization of a subset of the requirements
 \end_layout
 
 \begin_layout Itemize
-The appendix contains an interesting model of the goals, a brief description
- of the tools used to produce this documents and the number of hours each
- group member has worked towards the fulfillment of this deadline.
+The appendix contains a model of the goals, a brief description of the tools
+ used to produce this documents, the number of hours each group member has
+ worked towards the fulfillment of this deadline and the revision hystory.
 \end_layout
 
 \end_body

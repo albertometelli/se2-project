@@ -1,0 +1,616 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\master ../RASD.lyx
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Subsection
+Purpose
+\end_layout
+
+\begin_layout Standard
+The purpose of the RASD 
+\emph on
+(Requirements Analysis and Specification Document
+\emph default
+) is to give a detailed description, analysis and specification of the requireme
+nts for the 
+\emph on
+myTaxiService
+\emph default
+ software.
+ This document will explain the 
+\emph on
+goals
+\emph default
+ derived from stakeholders' expectations, the characteristics of the application
+ domain and the 
+\emph on
+assumptions
+\emph default
+ made to solve ambiguity and incompleteness.
+ Starting from goals and domain properties, 
+\emph on
+requirements
+\emph default
+ will be formulated according to a specific systematic methodology and then
+ specified using both informal and formal notations.
+ However this document should not be considered the final draft for the
+ software specifications since in the following phases several fixing may
+ be necessary.
+ 
+\end_layout
+
+\begin_layout Standard
+The main objective of the RASD is to achieve good understanding among 
+\emph on
+analysts, developers, testers
+\emph default
+ and 
+\emph on
+customers
+\emph default
+, in particular explaining both the application domain and the system to-be;
+ it is also aimed to be a solid base for project planning, software evaluation
+ and possible future maintenance activities.
+ Therefore this document is primarily intended to be proposed to the stakeholder
+s for their approval, to the analysts and programmers for the development
+ of the project and to the testing team the validation of the first version
+ of the software.
+\end_layout
+
+\begin_layout Subsection
+Present system
+\end_layout
+
+\begin_layout Standard
+At the moment taxi service is entirely managed by phone calls.
+ A passenger who wants to request or reserve a taxi has to contact the call
+ center.
+ In case of request, the call center operator moves the call to the first
+ available taxi, otherwise, in case of reservation, a taxi is booked for
+ the specific date, time and address provided by the passenger.
+ No available taxi queues management is implemented at the moment.
+ 
+\end_layout
+
+\begin_layout Subsection
+Scope
+\end_layout
+
+\begin_layout Standard
+The 
+\emph on
+myTaxyService
+\emph default
+ is an application intended to optimize taxi service in a large city, making
+ the access to service simpler for the passengers and ensuring a fair management
+ of the taxi queues.
+ 
+\end_layout
+
+\begin_layout Standard
+Passengers will be able to request a taxi either through a web application
+ or a mobile app; of course the 
+\begin_inset Quotes eld
+\end_inset
+
+traditional
+\begin_inset Quotes erd
+\end_inset
+
+ ways to call for a taxi, like a phone call or stopping the taxi along the
+ road, will be still available and integrated into the system to-be.
+ The software will make the procedure of calling a taxi simpler (by using
+ GPS information passenger doesn't need to know the address if the taxi
+ is needed for the current position) and more usable (passenger will be
+ provided with information about the waiting time).
+ Moreover, by means of the application, the passenger can reserve a taxi
+ for a certain date and time, specifying the origin and the destination
+ of the ride.
+\end_layout
+
+\begin_layout Standard
+Taxi drivers will use a mobile app to inform the system about their availability
+ and to confirm that they are going to take care of a call (or to reject
+ it for any reason).
+ The software will make the taxi management more efficient: the system will
+ be able to identify the position of each taxi by using GPS; the city will
+ be divided in virtual zones and a suitable distribution of the taxi among
+ the zones will automatically be computed.
+\end_layout
+
+\begin_layout Subsection
+Definitions, acronyms, abbreviations 
+\end_layout
+
+\begin_layout Standard
+In this paragraph all the terms, acronyms and abbreviations used in the
+ following sections are listed.
+\end_layout
+
+\begin_layout Subsubsection
+Definitions
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Request
+\emph default
+: the action performed by the passenger of calling a taxi for the current
+ position.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Confirmed request
+\emph default
+: a request that has been accepted by a taxi driver.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Reservation
+\emph default
+: the action performed by the passenger of booking a taxi for a specific
+ address and specific date and time.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Waiting time
+\emph default
+: an estimation of the time required to taxi driver to get to passenger's
+ position.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Taxi code
+\emph default
+: a unique alphanumerical identifier of the taxi.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Available taxi queues
+\emph default
+: data structures used to store the references of the available taxis, also
+ used to select the taxis to which forward a request.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Automatic geolocalization
+\emph default
+: a system that provides the geographic coordinates of the user.
+ For this document it can be either a GPS system or browser geolocalization.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Passengers' application
+\emph default
+: the applications used by passengers to access to TS system.
+ For this document it can be either PMA or PWA (see 1.4.2).
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Login credentials
+\emph default
+: username and password.
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Notification
+\shape default
+: communication from TS to taxi driver to move to a specific zone.
+\end_layout
+
+\begin_layout Subsubsection
+Acronyms
+\end_layout
+
+\begin_layout Itemize
+TS: myTaxiService.
+\end_layout
+
+\begin_layout Itemize
+PMA: Passenger mobile application.
+\end_layout
+
+\begin_layout Itemize
+PWA: Passenger web application.
+\end_layout
+
+\begin_layout Itemize
+TMA: Taxi driver mobile application.
+\end_layout
+
+\begin_layout Itemize
+QMS: Queue management system.
+\end_layout
+
+\begin_layout Subsubsection
+Abbreviations
+\end_layout
+
+\begin_layout Itemize
+[Gn] n-th goal.
+\end_layout
+
+\begin_layout Itemize
+[Dn] n-th domain assumption.
+\end_layout
+
+\begin_layout Itemize
+[Rn.m] m-th requirement related to goal [Gn].
+\end_layout
+
+\begin_layout Subsection
+Actors
+\end_layout
+
+\begin_layout Standard
+In this paragraph a brief description of the various actors affected by
+ myTaxiService system is provided.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Passenger
+\emph default
+: a person that interacts with myTaxiService to request or reserve a taxi.
+ The interaction with the system may occur by means of either PMA (mobile
+ passenger) or PWA (web passenger).
+ Each passenger can be either a registered passenger or an unregistered
+ passenger.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Registered passenger
+\emph default
+: specific case of passenger that has already registered to the system.
+ He/She can login, request, reserve a taxi and also visualize and modify
+ the previous reservations.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Unregistered passenger
+\emph default
+: specific case of passenger that hasn't registered to the system.
+ He/She can only request a taxi.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Taxi driver
+\emph default
+: a person that drives a taxi and is associated with myTaxiService.
+ He/She interacts with the system confirming or rejecting requests and informing
+ the system about his/her availability by means of TMA.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Call center operator
+\emph default
+: a person working at the call center that interacts with the system inserting
+ taxi requests coming from phone calls.
+ 
+\end_layout
+
+\begin_layout Subsection
+Requirement engineering (Jackson Zave approach)
+\end_layout
+
+\begin_layout Standard
+In order to ensure a sound and complete requirement engineering activity,
+ we decided to follow a systematic technique for requirements formulation
+ proposed by Jackson and Zave.
+ This approach is based on the distinction between the 
+\emph on
+machine
+\emph default
+, the portion of the system to be developed (myTaxiService in our case),
+ and the 
+\emph on
+world
+\emph default
+, the portion of the real world interacting with the machine.
+ Machine and world are tipically non disjoint, some phenomena may affect
+ both of them, they are known as shared phenomena.
+ From this viewpoint, requirement engineering consists in identifying phenomena
+ shared between world and machine, according to a set of 
+\series bold
+goals 
+\series default
+(which express the desired behavior of world phenomena, shared or not) and
+ a set of 
+\series bold
+domain assumptions
+\series default
+ (assertions supposed to be always valid in the world).
+ Formally a set of 
+\series bold
+requirements 
+\series default
+is complete if together with domain assumption it ensures the goals.
+\end_layout
+
+\begin_layout Subsubsection
+Goals
+\end_layout
+
+\begin_layout Standard
+Starting from the available documentation, integrated with some interviews
+ with the stakeholders, the following minimal goals has been identified.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[G1] Allow a passenger to request a taxi for its current position without
+ registration.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[G2] Allow the passenger to visualize the waiting time and the code of the
+ incoming taxi for confirmed requests.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[G3] Allow a registered passenger to have a personal area.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[G4] Allow a registered passenger to reserve a taxi.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[G5] Allow a registered passenger to cancel or modify a previous reservation.
+ 
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[G6] Allow a taxi driver to either accept or reject a request coming from
+ the system.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[G7] Allow a taxi driver to inform the system about his/her availability.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[G8] Ensure that available taxi queues enjoy the properties specified in
+ sub paragraph 1.6.2.
+\end_layout
+
+\begin_layout Subsubsection
+Queue management
+\end_layout
+
+\begin_layout Standard
+This paragraph is aimed to give a more precise definition of 
+\begin_inset Quotes eld
+\end_inset
+
+fair management
+\begin_inset Quotes erd
+\end_inset
+
+ of the available taxi queues.
+\end_layout
+
+\begin_layout Standard
+The city is divided into several zones, to each zone a taxi queue is assigned.
+ Each zone is characterized by a different load of requests 
+\begin_inset Formula $n_{i}$
+\end_inset
+
+ measured in request/minute.
+ Let 
+\begin_inset Formula $N$
+\end_inset
+
+ be the total number of taxis available at a certain moment, the number
+ 
+\begin_inset Formula $q_{i}$
+\end_inset
+
+ of taxis available in the zone 
+\begin_inset Formula $i$
+\end_inset
+
+ has to be proportional to 
+\begin_inset Formula $n_{i}$
+\end_inset
+
+, in particular 
+\begin_inset Formula $q_{i}=Nn_{i}/\sum_{i}n_{i}$
+\end_inset
+
+.
+ Every time one taxi turns from available to busy or out of service or viceversa
+ a new distribution of the taxis has to be computed; the taxis to be moved
+ have to minimize the cost of movement calculated as number of zones passed
+ through.
+ To prevent too many movements, a fluctuation between -30% and 30% from
+ the value 
+\begin_inset Formula $q_{i}$
+\end_inset
+
+ is accepted without performing taxi movements.
+\end_layout
+
+\begin_layout Subsection
+Reference documents 
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[1] IEEE Software Engineering Standards Committee, “29148-2011 - Systems
+ and software engineering — Life cycle processes — Requirements engineering”,
+ 2011.
+ 
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[2] P, Zave, M.
+ Jackson, Four dark corners of requirements engineering, TOSEM 1997.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[3] Software Abstractions: Logic, Language, and Analysis, revised edition
+ Edition by Daniel Jackson, MIT Press.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[4] Software Engineering 2 course slides.
+\end_layout
+
+\begin_layout Subsection
+Overview
+\end_layout
+
+\begin_layout Standard
+This document is drawn up in accordance to the IEEE Std 830-1998 for Software
+ Requirements Specifications and it is composed of four sections and an
+ appendix.
+\end_layout
+
+\begin_layout Itemize
+The first, this one, gives a general description of the document and brief
+ information about the actors and the purposes of the software.
+\end_layout
+
+\begin_layout Itemize
+The second section provides an overview of the software, highlighting the
+ interaction with external system interfaces and explaining the main functions
+ carried out.
+ It also focuses on constraints and domain assumptions.
+\end_layout
+
+\begin_layout Itemize
+The third section is entirely dedicated to the derivation and specification
+ of the requirements.
+ Several scenarios expressed in natural language will be provided.
+ A generalization of the set of scenarios will be specified as a set of
+ use cases that will be expressed both in natural language and using UML
+ use case diagram.
+ For some groups of use cases a dynamical description will be provided mainly
+ using UML sequence diagram.
+ A high level conceptual description of the classes affected by the system
+ will be given using UML class diagram.
+ For some of the objects involved, we will design a UML state chart diagram
+ showing the evolution of its state.
+ 
+\end_layout
+
+\begin_layout Itemize
+The fourth section presents a formalization of a subset of the requirements
+ using Alloy; some significant instances will be shown.
+\end_layout
+
+\begin_layout Itemize
+The appendix contains an interesting model of the goals, a brief description
+ of the tools used to produce this documents and the number of hours each
+ group member has worked towards the fulfillment of this deadline.
+\end_layout
+
+\end_body
+\end_document
